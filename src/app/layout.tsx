@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
 import { Toaster } from "@/components/ui/sonner";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 const fonte = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -16,7 +11,9 @@ const fonte = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
   title: {
     default: "Лидер гарант | Финансовый маркетплейс",
     template: "%s — Лидер гарант",
@@ -34,8 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Лидер гарант | Финансовый маркетплейс",
-    description:
-      "Быстрый подбор финансовых решений для бизнеса и госзакупок.",
+    description: "Быстрый подбор финансовых решений для бизнеса и госзакупок.",
   },
   alternates: {
     canonical: "/",

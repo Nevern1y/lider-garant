@@ -9,18 +9,25 @@ type Props = {
 
 export default function CallbackModal({ open, onClose }: Props) {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   useEffect(() => {
     if (!mounted) return;
+
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) onClose();
     };
+
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";

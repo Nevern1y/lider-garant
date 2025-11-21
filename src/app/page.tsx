@@ -7,7 +7,6 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import BankLogosSlider from "@/components/BankLogosSlider";
-import HeroCardsAnimation from "@/components/HeroCardsAnimation";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -105,29 +104,14 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative hidden h-[360px] w-full overflow-hidden rounded-[30px] bg-white/5 p-5 backdrop-blur-2xl md:block md:h-[420px]">
-              <HeroCardsAnimation
-                className="text-black"
-                rightLogoSrc="./logo.svg"
-                hubLogoSrc="./logo.svg"
-                banks={[
-                  { logo: "/bank1.png", approved: true },
-                  { logo: "/bank2.png", approved: false },
-                ]}
-                offers={[
-                  {
-                    bank: "Bank A",
-                    approved: true,
-                    rate: "11%",
-                    term: "12 мес",
-                  },
-                  { bank: "Bank B", approved: false },
-                ]}
-                singleOffer={{
-                  bank: "Банк",
-                  approved: true,
-                  amount: "550 000 ₽",
-                }}
+            <div className="relative w-full overflow-hidden rounded-[30px] p-5 backdrop-blur-2xl ">
+              <video
+                src="/hero-fon.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-auto rounded-2xl"
               />
             </div>
           </div>
@@ -235,9 +219,9 @@ export default function Home() {
                   </button>
                 </div>
 
-                {(item as any).img && (
+                {item.img && (
                   <Image
-                    src={(item as any).img}
+                    src={item.img}
                     alt={item.title}
                     width={240}
                     height={240}
@@ -264,9 +248,9 @@ export default function Home() {
                       {item.desc}
                     </p>
                   </div>
-                  {(item as any).img && (
+                  {item.img && (
                     <Image
-                      src={(item as any).img}
+                      src={item.img}
                       alt={item.title}
                       width={240}
                       height={240}

@@ -14,6 +14,7 @@ import {
 } from "@radix-ui/react-accordion";
 import { Autoplay, Pagination } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
+import Link from "next/link";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
@@ -38,7 +39,7 @@ export default function Page() {
                 asChild
                 className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
               >
-                <a href="/#application">Подать заявку</a>
+                <Link href="/#application">Подать заявку</Link>
               </Button>
             </div>
 
@@ -323,12 +324,12 @@ export default function Page() {
                   комиссии.
                 </p>
               </div>
-              <a
+              <Link
                 href="/"
                 className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
               >
                 Узнать больше
-              </a>
+              </Link>
             </div>
             <div className="relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_30px_-15px_rgба(0,0,0,0.2)] backdrop-blur-xl">
               <div>
@@ -340,12 +341,12 @@ export default function Page() {
                   лимитами.
                 </p>
               </div>
-              <a
+              <Link
                 href="/"
                 className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
               >
                 Подобрать условия
-              </a>
+              </Link>
             </div>
             <div className="relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_30px_-15px_rgба(0,0,0,0.2)] backdrop-blur-xl">
               <div>
@@ -357,12 +358,12 @@ export default function Page() {
                   закрытых секциях.
                 </p>
               </div>
-              <a
+              <Link
                 href="/"
                 className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
               >
                 Подробнее
-              </a>
+              </Link>
             </div>
           </div>
         </section>

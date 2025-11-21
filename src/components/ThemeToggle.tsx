@@ -13,9 +13,10 @@ export default function ThemeToggle() {
         window.matchMedia("(prefers-color-scheme: dark)").matches;
       const initial = stored || (prefersDark ? "dark" : "light");
       document.documentElement.setAttribute("data-theme", initial);
-      setTheme(initial);
+
+      requestAnimationFrame(() => setTheme(initial));
     } catch {
-      setTheme("light");
+      requestAnimationFrame(() => setTheme("light"));
     }
   }, []);
 

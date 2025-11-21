@@ -1,5 +1,4 @@
 "use client";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function BestOffersSection() {
   const offers = [

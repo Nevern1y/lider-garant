@@ -16,7 +16,7 @@ export default function FadeIn({ children, threshold = 0.15, delay = 0, classNam
   useEffect(() => {
     if (!ref.current) return;
     const el = ref.current;
-    let observer: IntersectionObserver | null = new IntersectionObserver(
+    const observer: IntersectionObserver | null = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {

@@ -65,11 +65,13 @@ export default function HowItWorksSection() {
       next();
     }, 7000);
   };
-
   useEffect(() => {
     if (progressRef.current) window.clearInterval(progressRef.current);
-    setProgress(0);
+
+    requestAnimationFrame(() => setProgress(0));
+
     if (paused) return;
+
     const start = Date.now();
     progressRef.current = window.setInterval(() => {
       const elapsed = Date.now() - start;
@@ -79,6 +81,7 @@ export default function HowItWorksSection() {
         if (progressRef.current) window.clearInterval(progressRef.current);
       }
     }, 100);
+
     return () => {
       if (progressRef.current) window.clearInterval(progressRef.current);
     };
