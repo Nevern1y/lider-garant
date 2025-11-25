@@ -89,14 +89,13 @@ export default function HowItWorksSection() {
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
-      <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] border border-foreground/10">
+      <div className="relative overflow-hidden rounded-3xl sm:rounded-4xl border border-foreground/10">
         <div className="relative grid gap-10 sm:gap-12 px-4 py-10 sm:px-10 sm:py-14 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Левый — список шагов */}
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             tabIndex={0}
-            className="order-1 lg:order-none"
+            className="order-1 lg:order-0"
           >
             <h2 className="mb-6 mt-2 text-[26px] sm:text-[32px] md:text-[42px] font-bold leading-tight text-foreground">
               Как это работает?
@@ -169,7 +168,6 @@ export default function HowItWorksSection() {
             </ol>
           </div>
 
-          {/* Правый — Lottie */}
           <div
             className="relative h-[200px] xs:h-[240px] sm:h-[300px] md:h-[360px] order-2 lg:order-none"
             onMouseEnter={() => setPaused(true)}
@@ -187,28 +185,28 @@ export default function HowItWorksSection() {
 
               <div className="absolute bottom-4 left-4 flex items-center gap-2 sm:gap-3 rounded-full bg-black/40 px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-lg backdrop-blur-xl">
                 <Image
-                  src="/logos/1.png"
+                  src="/logos/10.svg"
                   alt="Банк"
                   width={28}
                   height={28}
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
                 <Image
-                  src="/logos/2.png"
+                  src="/logos/2.svg"
                   alt="Банк"
                   width={28}
                   height={28}
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
                 <Image
-                  src="/logos/3.png"
+                  src="/logos/3.svg"
                   alt="Банк"
                   width={28}
                   height={28}
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
                 <span className="ml-1 text-[11px] sm:text-sm font-medium text-white/80">
-                  +9
+                  +47
                 </span>
               </div>
             </div>

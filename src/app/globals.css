@@ -8,8 +8,8 @@
   --secondary: oklch(0.967 0.001 286.375);
   --warning: #ffd93d;
   --magenta: #e03e9d;
-  --brand-grad-start: #008ED6;
-  --brand-grad-end: #004F70;
+  --brand-grad-start: #008ed6;
+  --brand-grad-end: #004f70;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -86,8 +86,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: #3CE8D1;
-    --secondary: #FF521D;
+    --primary: #3ce8d1;
+    --secondary: #ff521d;
     --warning: #ffd93d;
     --magenta: #e03e9d;
   }
@@ -97,44 +97,71 @@
 [data-theme="light"] {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #3CE8D1;
+  --primary: #3ce8d1;
   --secondary: #3cebd1;
   --warning: #ffd93d;
   --magenta: #e03e9d;
 }
 
 [data-theme="dark"] {
-  --background: #1D194C;
+  --background: #1d194c;
   --foreground: #ededed;
-  --primary: #3CE8D1;
-  --secondary: #FF521D;
+  --primary: #3ce8d1;
+  --secondary: #ff521d;
   --warning: #ffd93d;
   --magenta: #e03e9d;
 }
 
 /* Brand accent (solid primary) */
-.btn-gradient { background-color: var(--primary); color: #ffffff; }
-.btn-gradient:hover { opacity: 0.9; }
+.btn-gradient {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+.btn-gradient:hover {
+  opacity: 0.9;
+}
 
-.text-gradient { color: var(--primary); }
+.text-gradient {
+  color: var(--primary);
+}
 
 /* Accent on hover for links/text */
-.link-gradient { color: var(--foreground); transition: color .2s ease, opacity .2s ease; }
+.link-gradient {
+  color: var(--foreground);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
 .link-gradient:hover,
-.link-gradient:focus-visible { color: var(--primary); }
+.link-gradient:focus-visible {
+  color: var(--primary);
+}
 
 /* Animations */
 @keyframes fade-up {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-fade-up { animation: fade-up .55s ease forwards; }
+.animate-fade-up {
+  animation: fade-up 0.55s ease forwards;
+}
 
 @keyframes grow-y {
-  0% { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
-.animate-grow-y { animation: grow-y 1.2s ease forwards; transform-origin: top; }
+.animate-grow-y {
+  animation: grow-y 1.2s ease forwards;
+  transform-origin: top;
+}
 
 .dark {
   --background: oklch(0.141 0.005 285.823);
@@ -197,7 +224,7 @@
 
 .btn-three::before,
 .btn-three::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -223,4 +250,91 @@
 .btn-three:hover::after {
   transform: scale(1);
   opacity: 1;
+}
+
+.learn-more {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #3ce8d1;
+  border-radius: 120px;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  width: 12rem;
+  height: auto;
+  overflow: hidden;
+}
+
+.learn-more .circle {
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #3ce8d1;
+  border-radius: 1rem;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.learn-more .circle .icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: white;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.learn-more .circle .icon.arrow {
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+.learn-more .button-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #3ce8d1;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.learn-more:hover .circle {
+  width: 100%;
+}
+
+.learn-more:hover .circle .icon.arrow {
+  transform: translate(1rem, 0);
+  background: white;
+}
+
+.learn-more:hover .button-text {
+  color: white;
 }

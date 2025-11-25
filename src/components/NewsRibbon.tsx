@@ -47,6 +47,22 @@ export default function NewsRibbon() {
           Новости компании
         </h2>
 
+        {/* Кнопки в правый верхний угол */}
+        <div className="absolute top-6 right-6 flex gap-3 z-10">
+          <button
+            className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
+            aria-label="Предыдущая новость"
+          >
+            ←
+          </button>
+          <button
+            className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
+            aria-label="Следующая новость"
+          >
+            →
+          </button>
+        </div>
+
         <Swiper
           modules={[Navigation, Autoplay]}
           slidesPerView={1}
@@ -69,20 +85,22 @@ export default function NewsRibbon() {
         >
           {news.map((item, i) => (
             <SwiperSlide key={i}>
-              <article className="group relative rounded-3xl border border-foreground/10 bg-foreground/5 p-5 transition-all duration-300 hover:border-primary/30">
-                <time className="mb-2 block text-xs text-foreground/60">
-                  {item.date}
-                </time>
-                <h3 className="mb-3 text-base font-semibold text-foreground line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="mb-4 text-sm leading-relaxed text-foreground/70 line-clamp-3">
-                  {item.excerpt}
-                </p>
+              <article className="group h-64 flex flex-col justify-between rounded-3xl border border-foreground/10 bg-foreground/5 p-5 transition-all duration-300 hover:border-primary/30">
+                <div>
+                  <time className="mb-2 block text-xs text-foreground/60">
+                    {item.date}
+                  </time>
+                  <h3 className="mb-3 text-base font-semibold text-foreground line-clamp-2">
+                    {item.title}
+                  </h3>
+                  <p className="mb-4 text-sm leading-relaxed text-foreground/70 line-clamp-3">
+                    {item.excerpt}
+                  </p>
+                </div>
                 <Button
                   asChild
                   size="sm"
-                  className="h-9 rounded-full px-4 text-xs font-medium"
+                  className="h-9 rounded-full px-4 text-xs font-medium bg-primary"
                 >
                   <a href="#">Читать полностью →</a>
                 </Button>
@@ -90,21 +108,6 @@ export default function NewsRibbon() {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
-            aria-label="Предыдущая новость"
-          >
-            ←
-          </button>
-          <button
-            className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
-            aria-label="Следующая новость"
-          >
-            →
-          </button>
-        </div>
       </div>
     </section>
   );

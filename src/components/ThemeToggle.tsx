@@ -34,7 +34,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="inline-flex h-9 items-center gap-2 rounded-xl border border-foreground/20 bg-background px-3 text-sm text-foreground hover:bg-foreground/10"
+      className="inline-flex h-12 items-center gap-2 rounded-xl border border-foreground/20 bg-background px-3 text-sm text-foreground hover:bg-foreground/10"
       aria-label="Toggle theme"
       aria-pressed={theme === "dark"}
       type="button"

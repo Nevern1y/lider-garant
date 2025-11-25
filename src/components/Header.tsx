@@ -8,12 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -23,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { Smartphone, Menu, X } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import CustomSelect from "./ui/my-select";
 
 const financeItems = [
   { label: "Гарантии", href: "/bank-guarantee" },
@@ -66,41 +61,7 @@ export default function Header() {
           </span>
         </Link>
         <nav className="mt-1 hidden items-center justify-center gap-6 lg:flex lg:gap-8">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="h-10 rounded-full px-4 text-sm font-medium"
-              >
-                Финансовые продукты
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="16"
-                  height="16"
-                  className="ml-2"
-                >
-                  <path
-                    d="M6 9l6 6 6-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-64 border-none">
-              {financeItems.map((item) => (
-                <DropdownMenuItem key={item.label} asChild>
-                  <Link href={item.href} className="w-full">
-                    {item.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <CustomSelect items={financeItems} />
 
           <Link
             href="/agents"

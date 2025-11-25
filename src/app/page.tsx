@@ -16,7 +16,7 @@ export default function Home() {
       title: "Банковские гарантии",
       desc: "44-ФЗ, 223-ФЗ, 185-ФЗ (615 ПП), коммерческие закупки, налоговые гарантии.",
       btn: "Узнать лимит",
-      img: "/finance-products/one.png",
+      img: "/finance-products/guarantee.png",
     },
     {
       id: "credits",
@@ -76,8 +76,6 @@ export default function Home() {
     },
   ];
 
-  const topProducts = products.slice(0, 2);
-  const otherProducts = products.slice(2);
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-12 md:py-16">
       <FadeIn>
@@ -94,14 +92,24 @@ export default function Home() {
               <p className="max-w-sm text-sm leading-relaxed text-foreground/70 md:text-lg">
                 Все для госзакупок и личных нужд — получите предложение онлайн
               </p>
+              <div className="flex flex-col gap-5 md:flex-row items-center">
+                <button className="learn-more">
+                  <span className="circle">
+                    <span className="icon arrow"></span>
+                  </span>
+                  <Link href="/login" className="button-text">
+                    Войти
+                  </Link>
+                </button>
 
-              <Button
-                asChild
-                size="lg"
-                className="rounded-2xl bg-primary text-primary-foreground py-6 px-9 text-sm font-semibold uppercase tracking-wide w-max"
-              >
-                <Link href="/login">Войти</Link>
-              </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-2xl bg-none border-primary border text-primary py-6 px-9 text-sm font-semibold uppercase tracking-wide w-max"
+                >
+                  <Link href="/register">Зарегистрироваться</Link>
+                </Button>
+              </div>
             </div>
 
             <div className="relative w-full overflow-hidden rounded-[30px] p-3 md:p-5 backdrop-blur-xl">
@@ -196,45 +204,8 @@ export default function Home() {
             <span className="text-primary">Финансовые продукты</span>
           </h2>
 
-          <div className="mb-10 grid gap-8 md:grid-cols-2">
-            {topProducts.map((item) => (
-              <div
-                key={item.id}
-                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-8 py-8 shadow-[0_0_40px_-12px_rgba(0,0,0,0.25)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
-              >
-                <div className="relative flex items-start gap-4">
-                  <div className="max-w-md pr-28 md:pr-40">
-                    <h3 className="mb-4 text-2xl font-semibold text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-foreground/80">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <button className="inline-flex rounded-xl bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:brightness-110 active:translate-y-0">
-                    {item.btn}
-                  </button>
-                </div>
-
-                {item.img && (
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width={240}
-                    height={240}
-                    sizes="(min-width: 768px) 240px, 144px"
-                    className="pointer-events-none absolute bottom-4 right-2 md:right-4 h-36 w-36 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {otherProducts.map((item) => (
+            {products.map((item) => (
               <div
                 key={item.id}
                 className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
@@ -261,7 +232,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-auto flex items-center justify-between gap-3">
-                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary/10 hover:shadow-md active:translate-y-0">
+                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
                     {item.btn}
                   </button>
                 </div>

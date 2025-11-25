@@ -10,7 +10,6 @@ const cards = [
     desc: "Перезвоним в течение 15 минут и подберём решение.",
     link: "#application",
     cta: "Отправить заявку",
-    variant: "default" as const,
   },
   {
     icon: Phone,
@@ -18,7 +17,6 @@ const cards = [
     desc: "Звонок бесплатный по России.",
     link: "tel:+7 800 000 00 00",
     cta: "+7 800 000 00 00",
-    variant: "outline" as const,
   },
   {
     icon: MessageSquareText,
@@ -26,7 +24,6 @@ const cards = [
     desc: "Отвечаем на почту в рабочее время.",
     link: "mailto:client@lider-garant.ru",
     cta: "client@lider-garant.ru",
-    variant: "ghost" as const,
   },
 ];
 
@@ -49,7 +46,7 @@ export default function ManagerCTASection() {
             </p>
 
             <div className="mt-8 grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {cards.map(({ icon: Icon, title, desc, link, cta, variant }) => (
+              {cards.map(({ icon: Icon, title, desc, link, cta }) => (
                 <div
                   key={title}
                   className="group rounded-2xl border border-foreground/10 bg-white/[0.03] 
@@ -70,10 +67,8 @@ export default function ManagerCTASection() {
                   </p>
                   <Button
                     asChild
-                    variant={variant}
                     size="lg"
-                    className="mt-4 sm:mt-5 w-full justify-center rounded-2xl 
-                    text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide"
+                    className="mt-4 sm:mt-5 w-full justify-center rounded-2xl text-[10px] xs:text-[11px] border border-primary/10 hover:bg-primary bg-primary/10 sm:text-xs font-semibold uppercase tracking-wide whitespace-normal break-words text-center"
                   >
                     <a href={link}>{cta}</a>
                   </Button>
@@ -82,7 +77,7 @@ export default function ManagerCTASection() {
             </div>
           </div>
 
-          <div className="order-first lg:order-none rounded-2xl sm:rounded-3xl border border-foreground/10 bg-foreground/5 p-5 sm:p-6 text-center text-foreground/80 backdrop-blur-2xl">
+          <div className="order-first lg:order-0 rounded-2xl sm:rounded-3xl border border-foreground/10 bg-foreground/5 p-5 sm:p-6 text-center text-foreground/80 backdrop-blur-2xl">
             <div className="text-[10px] sm:text-[12px] font-semibold uppercase tracking-[0.25em] text-foreground/60">
               Ваш менеджер
             </div>

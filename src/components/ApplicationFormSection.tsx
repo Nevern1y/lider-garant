@@ -71,7 +71,7 @@ export default function ApplicationFormSection() {
                   onClick={() => form.setValue("product", p)}
                   className={`rounded-full px-5 py-2 text-sm font-semibold transition-all border ${
                     form.watch("product") === p
-                      ? "bg-gradient-to-r from-emerald-400 to-sky-500 text-slate-900 border-transparent shadow-[0_20px_45px_-25px_rgba(16,185,129,1)]"
+                      ? "bg-primary text-white  border-transparent shadow-[0_20px_45px_-25px_rgba(16,185,129,1)]"
                       : "bg-foreground/5 text-foreground/70 border-foreground/10 hover:bg-foreground/10"
                   }`}
                 >
@@ -141,7 +141,7 @@ export default function ApplicationFormSection() {
                 <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
                   <Button
                     type="submit"
-                    className="h-12 rounded-full px-8 text-sm font-semibold uppercase tracking-wide"
+                    className="h-12 rounded-full px-8 text-sm font-semibold uppercase tracking-wide bg-primary"
                   >
                     Оставить заявку
                   </Button>
