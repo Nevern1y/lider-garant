@@ -13,13 +13,31 @@ import {
 } from "@radix-ui/react-accordion";
 import { useState } from "react";
 import Link from "next/link";
+import "swiper/css";
+import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
+import GuaranteeHowItWorksSection from "@/components/guarantee-how-it-works";
+import { Laptop, Layers, UserCheck, Timer, Percent } from "lucide-react";
 
 export default function BankGuaranteePage() {
   const TOTAL_OFFERS = 25;
   const [visibleOffers, setVisibleOffers] = useState(6);
   const [visibleDeals] = useState(12);
+
+  const benefits = [
+    {
+      text: "Все операции онлайн — от оформления до получения гарантии.",
+      icon: Laptop,
+    },
+    { text: "Возможность выбрать самое подходящее предложение.", icon: Layers },
+    { text: "Помощь менеджера в оформлении заявки.", icon: UserCheck },
+    {
+      text: "Рассмотрение заявки ≤ 1 часа, гарантия в день обращения.",
+      icon: Timer,
+    },
+    { text: "Минимальная комиссия.", icon: Percent },
+  ];
 
   const banks = [
     "Реалист",
@@ -124,7 +142,7 @@ export default function BankGuaranteePage() {
 
             <div className="relative grid items-center gap-8 md:grid-cols-2">
               <div className="space-y-5">
-                <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
+                <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-primary">
                   Банковская гарантия
                 </h1>
                 <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
@@ -144,7 +162,7 @@ export default function BankGuaranteePage() {
                 <div className="flex items-center gap-3">
                   <Button
                     asChild
-                    className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
+                    className="h-11 rounded-xl px-6 text-sm font-medium bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 "
                   >
                     <Link href="/#application">Подать заявку!</Link>
                   </Button>
@@ -153,7 +171,7 @@ export default function BankGuaranteePage() {
 
               <div className="relative hidden h-[360px] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl md:flex items-center justify-center">
                 <Image
-                  src="/people.png"
+                  src="/guarantee.png"
                   alt=""
                   width={640}
                   height={640}
@@ -161,24 +179,6 @@ export default function BankGuaranteePage() {
                   className="h-72 w-auto md:h-80 lg:h-88 object-contain"
                   priority
                 />
-
-                <div className="pointer-events-none absolute right-4 bottom-8 flex w-full max-w-[230px] flex-col gap-2">
-                  {[
-                    "Одна заявка — множество предложений",
-                    "Одобрение и выдача онлайн",
-                    "Все виды банковских гарантий",
-                  ].map((text, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 rounded-2xl bg-white/95 px-3 py-2 text-xs font-medium text-slate-800 shadow-md"
-                    >
-                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-blue-600 text-[11px] text-white">
-                        ✓
-                      </span>
-                      <span className="leading-snug">{text}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </section>
@@ -191,92 +191,13 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto mt-6 w-full max-w-7xl py-12">
-            <div className="rounded-2xl border border-foreground/10 bg-white/5 p-6 md:p-8 shadow-md">
-              <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
-                Как это работает?
-              </h2>
-              <ol className="space-y-4 md:space-y-5">
-                <li className="rounded-xl border border-foreground/10 bg-white/5 p-4">
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background text-sm font-semibold">
-                      1
-                    </span>
-                    <div>
-                      <div className="text-base font-semibold">
-                        Пройдите простую регистрацию
-                      </div>
-                      <div className="text-sm text-foreground/70">
-                        Создайте аккаунт за минуту и получите доступ к личному
-                        кабинету.
-                      </div>
-                      <Button
-                        asChild
-                        className="mt-3 h-10 rounded-full px-5 text-sm font-medium text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-xl active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-                      >
-                        <a href="/login">Зарегистрироваться</a>
-                      </Button>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="rounded-xl border border-foreground/10 bg-white/5 p-4">
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background text-sm font-semibold">
-                      2
-                    </span>
-                    <div>
-                      <div className="text-base font-semibold">
-                        Заведите заявку на банковскую гарантию
-                      </div>
-                      <div className="text-sm text-foreground/70">
-                        Заполните короткую форму — это займёт пару минут.
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="rounded-xl border border-foreground/10 bg-white/5 p-4">
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background text-sm font-semibold">
-                      3
-                    </span>
-                    <div>
-                      <div className="text-base font-semibold">
-                        Выберите предложение в режиме одного окна
-                      </div>
-                      <div className="text-sm text-foreground/70">
-                        Сравните условия от банков и подтвердите лучший вариант.
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="rounded-xl border border-foreground/10 bg-white/5 p-4">
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background text-sm font-semibold">
-                      4
-                    </span>
-                    <div>
-                      <div className="text-base font-semibold">
-                        Оформите банковскую гарантию и получите комиссионное
-                        вознаграждение
-                      </div>
-                      <div className="text-sm text-foreground/70">
-                        Всё онлайн — без посещения офиса.
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </section>
+          <GuaranteeHowItWorksSection />
         </FadeIn>
 
         <FadeIn>
           <section className="relative mx-auto mt-6 w-full max-w-7xl py-16 md:py-20">
             <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-              <div className="h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-indigo-500/30 via-sky-500/25 to-emerald-500/30 blur-[140px] opacity-70" />
+              <div className="h-112 w-md rounded-full bg-gradient-to-br from-indigo-500/30 via-sky-500/25 to-emerald-500/30 blur-[140px] opacity-70" />
             </div>
 
             <h2 className="mb-12 text-center text-3xl font-semibold tracking-tight text-primary md:text-4xl">
@@ -328,11 +249,7 @@ export default function BankGuaranteePage() {
               <p className="max-w-xl text-sm text-foreground/70">
                 Мы вам поможем. Оставьте заявку и начните зарабатывать.
               </p>
-              <Button
-                asChild
-                variant="outline"
-                className="h-12 rounded-full px-8 text-sm font-medium text-primary transition-transform hover:-translate-y-0.5 hover:shadow-md"
-              >
+              <Button asChild variant="outline" className="btn-three h-12 px-6">
                 <Link href="/#application">Начать зарабатывать</Link>
               </Button>
             </div>
@@ -340,28 +257,23 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto mt-6 w-full max-w-7xl py-12">
-            <h2 className="mb-8 text-2xl font-bold text-primary md:text-3xl">
+          <section className="mx-auto mt-6 w-full max-w-7xl py-16">
+            <h2 className="mb-12 text-center text-2xl font-bold text-primary md:text-3xl">
               Почему работать с нами выгодно?
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              {[
-                "Все операции онлайн — от оформления до получения гарантии.",
-                "Возможность выбрать самое подходящее предложение.",
-                "Помощь менеджера в оформлении заявки.",
-                "Срок рассмотрения заявки — не более часа, выдача гарантий в день обращения.",
-                "Минимальная комиссия.",
-              ].map((text, i) => (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+              {benefits.map((item, i) => (
                 <div
                   key={i}
-                  className="group relative flex items-start gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-6 backdrop-blur-md shadow-[0_0_30px_-10px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_45px_-5px_rgba(0,0,0,0.25)]"
+                  className="group relative flex flex-col items-center text-center gap-3 rounded-2xl border border-primary/10 bg-background/70 p-6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-500 text-white text-sm font-bold shadow-md">
-                    {i + 1}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-md group-hover:scale-110 transition-transform">
+                    <item.icon className="h-6 w-6" />
                   </div>
-                  <p className="text-sm text-foreground/85 leading-relaxed">
-                    {text}
+
+                  <p className="text-foreground/80 text-xs md:text-sm leading-relaxed">
+                    {item.text}
                   </p>
                 </div>
               ))}
@@ -373,7 +285,7 @@ export default function BankGuaranteePage() {
           <section className="mx-auto mt-2 w-full max-w-7xl py-12">
             <div className="grid items-stretch gap-10 md:grid-cols-2">
               <div>
-                <h2 className="mb-4 text-2xl font-semibold text-foreground">
+                <h2 className="mb-4 text-2xl font-semibold text-primary">
                   Подберем самые выгодные предложения
                 </h2>
                 <p className="mb-6 text-sm text-foreground/70">
@@ -387,12 +299,17 @@ export default function BankGuaranteePage() {
                       name="inn"
                       placeholder="ИНН"
                       inputMode="numeric"
-                      pattern="^(\\d{10}|\\d{12})$"
+                      pattern="^\\d{10}(\\d{2})?$"
+                      maxLength={12}
                       title="ИНН должен содержать 10 или 12 цифр"
                       required
-                      maxLength={12}
+                      onInput={(e) => {
+                        const target = e.target as HTMLInputElement;
+                        target.value = target.value.replace(/\D/g, ""); // оставить только цифры
+                      }}
                       className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                     />
+
                     <Input
                       type="number"
                       name="amount"
@@ -408,9 +325,10 @@ export default function BankGuaranteePage() {
                       type="tel"
                       name="phone"
                       placeholder="Номер телефона"
-                      inputMode="tel"
-                      pattern="^(?:\\+?7|8)?\\d{10}$"
-                      title="Формат: +7XXXXXXXXXX или 8XXXXXXXXXX"
+                      inputMode="numeric"
+                      pattern="^\\+?7\\d{10}$"
+                      title="Формат: +7XXXXXXXXXX"
+                      maxLength={12}
                       required
                       className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                     />
@@ -442,16 +360,13 @@ export default function BankGuaranteePage() {
                       .
                     </span>
                   </label>
-                  <Button
-                    type="submit"
-                    className="h-11 rounded-xl px-6 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-xl active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-                  >
+                  <Button type="submit" className="btn-three h-12">
                     Отправить заявку
                   </Button>
                 </form>
               </div>
 
-              <div className="relative h-[320px] md:h-auto w-full rounded-3xl overflow-hidden border border-white/10">
+              <div className="relative h-80 md:h-auto w-full rounded-3xl overflow-hidden border border-white/10">
                 <Image
                   src="/good-deal.jpg"
                   alt="good deal"
@@ -468,7 +383,7 @@ export default function BankGuaranteePage() {
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl py-6">
             <div className="mb-6 flex items-center justify-between">
-              <h3 className="text-xl font-semibold text-foreground">
+              <h3 className="text-xl font-semibold text-primary">
                 Подобрано 25 предложений
               </h3>
               <span className="text-sm text-foreground/60">
@@ -479,7 +394,7 @@ export default function BankGuaranteePage() {
               {banks.slice(0, visibleOffers).map((bank, i) => (
                 <div
                   key={i}
-                  className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5"
+                  className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5 hover:-translate-y-1 hover:border-primary/70 transition-all"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="mb-1 text-2xl font-semibold text-primary">
@@ -489,7 +404,7 @@ export default function BankGuaranteePage() {
                       Сумма: до 500 млн ₽ · Срок: до 2600 дн · Комиссия: от 1.8%
                     </div>
                   </div>
-                  <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-primary text-primary-foreground">
+                  <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm  hover:-translate-y-0.5 hover:shadow-md bg-none border border-primary hover:bg-primary text-primary hover:text-white transition-all">
                     Подать заявку
                   </Button>
                 </div>
@@ -511,10 +426,9 @@ export default function BankGuaranteePage() {
             )}
           </section>
         </FadeIn>
-
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
+            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
               Часто задаваемые вопросы
             </h2>
             <Accordion type="single" collapsible className="space-y-3">
@@ -551,7 +465,7 @@ export default function BankGuaranteePage() {
                 <AccordionItem
                   key={i}
                   value={`item-${i}`}
-                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4"
+                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
                 >
                   <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                     {item.q}
@@ -581,7 +495,7 @@ export default function BankGuaranteePage() {
 
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl py-12">
-            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
+            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
               Смотрите также
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
@@ -597,7 +511,7 @@ export default function BankGuaranteePage() {
                   <Button
                     asChild
                     variant="outline"
-                    className="rounded-xl px-4 py-2 text-sm"
+                    className="rounded-xl px-4 py-2 text-sm border border-primary text-primary hover:bg-primary hover:text-white"
                   >
                     <a href={item.href}>Подробнее</a>
                   </Button>
@@ -612,7 +526,7 @@ export default function BankGuaranteePage() {
 
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl py-12">
-            <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
+            <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl text-center">
               Гарантии для госзаказа
             </h2>
 

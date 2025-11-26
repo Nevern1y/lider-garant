@@ -6,20 +6,51 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import "swiper/css";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
-import { SwiperSlide, Swiper } from "swiper/react";
 import Link from "next/link";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
   const [visibleOffers, setVisibleOffers] = useState(6);
   const [visibleDeals] = useState(12);
+  const related = [
+    {
+      title: "Кредитирование бизнеса",
+      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
+      href: "/credits",
+    },
+    {
+      title: "ВЭД",
+      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
+      href: "/ved",
+    },
+    {
+      title: "Страхование",
+      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
+      href: "/insurance",
+    },
+    {
+      title: "Лизинг",
+      desc: "Финансируем новое и с пробегом с авансом от 0%.",
+      href: "/leasing",
+    },
+    {
+      title: "Проверка контрагентов",
+      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
+      href: "/checking",
+    },
+    {
+      title: "Тендерное сопровождение",
+      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
+      href: "/tender-support",
+    },
+  ];
 
   const banks = [
     "Реалист",
@@ -103,7 +134,7 @@ export default function Page() {
 
           <div className="relative grid items-center gap-6 md:grid-cols-2">
             <div className="space-y-5">
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              <h1 className="text-4xl font-semibold tracking-tight text-primary">
                 Кредиты для бизнеса
               </h1>
               <p className="max-w-2xl text-foreground/70">
@@ -111,15 +142,15 @@ export default function Page() {
               </p>
               <Button
                 asChild
-                className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
+                className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-primary"
               >
                 <Link href="/#application">Подать заявку</Link>
               </Button>
             </div>
 
-            <div className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl md:block">
+            <div className="relative hidden aspect-4/3 overflow-hidden rounded-2xl md:block">
               <Image
-                src="/credit-bg.jpg"
+                src="/credit-bg.jpeg"
                 alt="Кредит для бизнеса"
                 fill
                 className="object-cover object-center"
@@ -138,26 +169,11 @@ export default function Page() {
 
       <FadeIn>
         <section className="mx-auto mt-8 w-full max-w-7xl py-10">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-primary md:text-3xl">
             Доступные виды кредита
           </h2>
 
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            pagination={{ clickable: true }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            spaceBetween={30}
-            slidesPerView={1.2}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="pb-10"
-          >
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Кредитная линия (ВКЛ / НКЛ)",
               "Оборотный кредит (до 2 млрд)",
@@ -166,14 +182,21 @@ export default function Page() {
               "На любые цели",
               "Бизнес-ипотека",
             ].map((t, i) => (
-              <SwiperSlide key={i}>
-                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md shadow-[0_0_30px_-15px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.35)]">
-                  <div className="pointer-events-none absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gradient-to-br from-indigo-500/15 via-sky-500/15 to-emerald-500/15 blur-xl" />
+              <div
+                key={i}
+                className="relative overflow-hidden hover:border-primary rounded-3xl border border-white/20 bg-gradient-to-br from-indigo-50/20 via-sky-50/10 to-emerald-50/10 p-6 text-sm text-foreground/90 backdrop-blur-md shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-to-br from-indigo-400/20 via-sky-400/20 to-emerald-400/20 blur-2xl" />
+
+                <h3 className="mb-2 text-base font-semibold text-primary">
                   {t}
-                </div>
-              </SwiperSlide>
+                </h3>
+                <p className="text-sm text-foreground/70">
+                  Подробное описание условий и преимуществ данного вида кредита.
+                </p>
+              </div>
             ))}
-          </Swiper>
+          </div>
         </section>
       </FadeIn>
 
@@ -191,7 +214,7 @@ export default function Page() {
             ].map((t, i) => (
               <div
                 key={i}
-                className="group relative flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md shadow-[0_0_30px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.35)]"
+                className="group relative flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md shadow-[0_0_30px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.35)]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-500 text-white text-sm font-bold shadow-md">
                   {i + 1}
@@ -241,7 +264,7 @@ export default function Page() {
                         1.8%
                       </div>
                     </div>
-                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-primary text-primary-foreground">
+                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary text-primary-foreground">
                       Подать заявку
                     </Button>
                   </div>
@@ -274,7 +297,7 @@ export default function Page() {
         <section className="mx-auto mt-2 w-full max-w-7xl py-12">
           <div className="grid items-stretch gap-10 md:grid-cols-2">
             <div>
-              <h2 className="mb-4 text-2xl font-semibold text-foreground">
+              <h2 className="mb-4 text-2xl font-semibold text-primary">
                 Подберем самые выгодные предложения
               </h2>
               <p className="mb-6 text-sm text-foreground/70">
@@ -348,7 +371,7 @@ export default function Page() {
                 </label>
                 <Button
                   type="submit"
-                  className="h-11 rounded-xl px-6 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
+                  className="h-11 rounded-xl px-6 text-sm font-semibold bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 "
                 >
                   Отправить заявку
                 </Button>
@@ -369,64 +392,33 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl py-12 md:py-16">
-          <h2 className="mb-8 text-2xl font-bold text-primary md:text-3xl">
+        <section className="mx-auto w-full max-w-7xl py-12">
+          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
             Смотрите также
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl">
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">
-                  Банковские гарантии (44‑ФЗ, 223‑ФЗ, 185‑ФЗ (615 ПП),
-                  коммерческие закупки, налоговые гарантии)
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Выбор из нескольких банков и маркетплейсов. Сопровождение без
-                  комиссии.
-                </p>
-              </div>
-              <Link
-                href="/"
-                className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
+            {related.map((item) => (
+              <div
+                key={item.title}
+                className="group relative hover:border-primary overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
               >
-                Узнать больше
-              </Link>
-            </div>
-            <div className="relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_30px_-15px_rgба(0,0,0,0.2)] backdrop-blur-xl">
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">
-                  Льготное кредитование бизнеса
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Субсидии и снижение ставки: банки и маркетплейсы с выгодными
-                  лимитами.
-                </p>
+                <div className="mb-2 text-lg font-semibold text-foreground">
+                  {item.title}
+                </div>
+                <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-xl px-4 py-2 text-sm"
+                >
+                  <a href={item.href}>Подробнее</a>
+                </Button>
               </div>
-              <Link
-                href="/"
-                className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
-              >
-                Подобрать условия
-              </Link>
-            </div>
-            <div className="relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_30px_-15px_rgба(0,0,0,0.2)] backdrop-blur-xl">
-              <div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">
-                  Тендерное сопровождение
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Спецсчет, ЕРУЗ, регистрация на площадках. Аккредитации на
-                  закрытых секциях.
-                </p>
-              </div>
-              <Link
-                href="/"
-                className="mt-5 inline-flex rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
-              >
-                Подробнее
-              </Link>
-            </div>
+            ))}
           </div>
+          <h3 className="text-sm text-foreground/70 text-center mt-6">
+            Ответим на ваши вопросы с 7:00 до 23:00 по московскому времени
+          </h3>
         </section>
       </FadeIn>
 
@@ -447,7 +439,7 @@ export default function Page() {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4"
+                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
               >
                 <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                   {q}
@@ -477,7 +469,7 @@ export default function Page() {
       </FadeIn>
 
       <section className="mx-auto mt-2 w-full max-w-7xl py-8">
-        <div className="mb-2 flex items-end justify-between gap-4">
+        <div className="mb-4 flex flex-col md:flex-row items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-primary md:text-3xl">
               Лента сделок
@@ -495,46 +487,30 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="relative pt-2">
-          <Swiper
-            modules={[Autoplay, FreeMode]}
-            slidesPerView={1.2}
-            spaceBetween={12}
-            breakpoints={{
-              480: { slidesPerView: 2, spaceBetween: 14 },
-              768: { slidesPerView: 3, spaceBetween: 16 },
-              1024: { slidesPerView: 4, spaceBetween: 18 },
-            }}
-            loop
-            freeMode={{ enabled: true, momentum: false }}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            speed={2200}
-            className="select-none"
-          >
-            {deals.slice(0, visibleDeals).map((d, i) => (
-              <SwiperSlide key={i}>
-                <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
-                  <div className="mb-1 text-xs text-foreground/60">Кредит</div>
-                  <div className="mb-3 text-base font-semibold leading-snug">
-                    {d.title}
-                  </div>
-                  <div className="mb-3 h-px w-full bg-white/10" />
-                  <div className="mt-auto">
-                    <div className="text-2xl font-bold">{d.amount}</div>
-                    <div className="text-xs text-foreground/60">
-                      сумма заявки
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {deals.slice(0, visibleDeals).map((d, i) => (
+            <div
+              key={i}
+              className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="mb-1 text-xs text-foreground/60">Кредит</div>
+              <div className="mb-3 text-base font-semibold leading-snug">
+                {d.title}
+              </div>
+              <div className="mb-3 h-px w-full bg-white/10" />
+              <div className="mt-auto">
+                <div className="text-2xl font-bold">{d.amount}</div>
+                <div className="text-xs text-foreground/60">сумма заявки</div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
+
+      <FadeIn>
+        <ManagerCTASection />
+      </FadeIn>
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-12">
           <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
@@ -581,10 +557,6 @@ export default function Page() {
             </div>
           </div>
         </section>
-      </FadeIn>
-
-      <FadeIn>
-        <ManagerCTASection />
       </FadeIn>
     </main>
   );

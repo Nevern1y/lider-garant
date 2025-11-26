@@ -85,7 +85,7 @@ export default function Header() {
             </a>
             <button
               onClick={() => setModalOpen(true)}
-              className="mt-0.5 text-xs font-medium text-brand hover:underline"
+              className="text-xs font-medium text-brand nav-link link-gradient"
             >
               Обратный звонок
             </button>
@@ -102,66 +102,6 @@ export default function Header() {
           <Menu className="h-6 w-6" />
         </button>
       </div>
-
-      <style jsx global>{`
-        .nav-link {
-          position: relative;
-          padding: 6px 8px;
-        }
-        .nav-link::after {
-          content: "";
-          position: absolute;
-          left: 8px;
-          right: 8px;
-          bottom: 2px;
-          height: 2px;
-          background-color: var(--primary);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.2s ease;
-        }
-        .nav-link:hover::after {
-          transform: scaleX(1);
-        }
-
-        /* Animated outline button */
-        .btn-outline-anim {
-          border-radius: 12px;
-          color: var(--foreground);
-          isolation: isolate;
-          transition: transform 0.25s ease, box-shadow 0.25s ease,
-            background 0.25s ease;
-          will-change: transform;
-        }
-        .btn-outline-anim svg {
-          position: absolute;
-          left: 0;
-          top: 0;
-          fill: none;
-          stroke: var(--foreground);
-          stroke-dasharray: 150 480;
-          stroke-dashoffset: 150;
-          transition: stroke-dashoffset 1s ease-in-out, stroke 0.2s ease;
-          pointer-events: none;
-        }
-        .btn-outline-anim rect {
-          stroke-width: 1.5;
-        }
-        .btn-outline-anim:hover svg {
-          stroke-dashoffset: -480;
-        }
-        .btn-outline-anim span {
-          position: relative;
-          z-index: 1;
-          font-size: 0.9rem;
-          font-weight: 500;
-        }
-        .btn-outline-anim:hover {
-          background: color-mix(in oklab, var(--foreground) 10%, transparent);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        }
-      `}</style>
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="sm:max-w-md">
