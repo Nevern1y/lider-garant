@@ -51,9 +51,9 @@ export default function Page() {
           </p>
           <h1 className="mt-4 text-3xl font-semibold text-foreground md:text-4xl">
             Присоединитесь в маркетплейсу Лидер-Гарант для получения стабильного
-            потока Клиентов
+            потока клиентов
           </h1>
-          <Button className="mt-6 h-12 rounded-full px-8 text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">
+          <Button className="mt-6 h-12 rounded-full px-8 bg-primary text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">
             Оставить заявку
           </Button>
         </section>

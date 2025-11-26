@@ -42,23 +42,12 @@ export default function Header() {
           className="grid grid-cols-[auto_1fr] items-center gap-x-3"
         >
           <Image
-            src="/logo.svg"
+            src="/Logo.png"
             alt="Логотип"
-            width={44}
-            height={36}
-            className="row-span-2"
+            width={144}
+            height={156}
+            className="row-span-2 bg-white p-4 rounded-2xl"
           />
-          <div className="leading-tight">
-            <span className="block text-sm font-extrabold tracking-wide text-foreground md:text-base">
-              ЛИДЕР
-            </span>
-            <span className="block -mt-0.5 text-sm font-extrabold tracking-wide text-foreground md:text-base">
-              ГАРАНТ
-            </span>
-          </div>
-          <span className="col-span-2 mt-0.5 block text-[10px] font-semibold uppercase tracking-[0.14em] text-gradient md:text-xs">
-            Финансовый маркетплейс
-          </span>
         </Link>
         <nav className="mt-1 hidden items-center justify-center gap-6 lg:flex lg:gap-8">
           <CustomSelect items={financeItems} />
@@ -103,8 +92,6 @@ export default function Header() {
           </div>
 
           <button className="btn-three py-2 px-6">Личный кабинет</button>
-
-          <ThemeToggle />
         </div>
 
         <button

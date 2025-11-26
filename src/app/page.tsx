@@ -105,7 +105,7 @@ export default function Home() {
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-2xl bg-none border-primary border text-primary py-6 px-9 text-sm font-semibold uppercase tracking-wide w-max"
+                  className="rounded-2xl bg-none border-primary border text-primary hover:bg-primary hover:text-white py-6 px-9 text-sm font-semibold uppercase tracking-wide w-max"
                 >
                   <Link href="/register">Зарегистрироваться</Link>
                 </Button>

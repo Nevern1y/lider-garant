@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
 import { Toaster } from "@/components/ui/sonner";
 
 const fonte = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const font2 = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
@@ -69,7 +75,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${fonte.className} antialiased`}>
+      <body className={`${fonte.className} ${font2.className} antialiased`}>
         <AppShell>{children}</AppShell>
         <Toaster richColors closeButton />
       </body>

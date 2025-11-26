@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
 
 export default function SiteFooter() {
   return (
@@ -26,6 +27,9 @@ export default function SiteFooter() {
                 support@lider-garant.ru
               </a>
             </div>
+            <div>
+              <ThemeToggle />
+            </div>
           </div>
 
           <div>
@@ -34,32 +38,32 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/bank-guarantee" className="link-gradient">
+                <Link href="/bank-guarantee" className="nav-link link-gradient">
                   Банковская гарантия
                 </Link>
               </li>
               <li>
-                <Link href="/credits" className="link-gradient">
+                <Link href="/credits" className="nav-link link-gradient">
                   Кредиты
                 </Link>
               </li>
               <li>
-                <Link href="/ved" className="link-gradient">
+                <Link href="/ved" className="nav-link link-gradient">
                   ВЭД
                 </Link>
               </li>
               <li>
-                <Link href="/leasing" className="link-gradient">
+                <Link href="/leasing" className="nav-link link-gradient">
                   Лизинг
                 </Link>
               </li>
               <li>
-                <Link href="/insurance" className="link-gradient">
+                <Link href="/insurance" className="nav-link link-gradient">
                   Страхование
                 </Link>
               </li>
               <li>
-                <Link href="/rko" className="link-gradient">
+                <Link href="/rko" className="nav-link link-gradient">
                   РКО и спец счета
                 </Link>
               </li>
@@ -72,17 +76,20 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/news" className="link-gradient">
+                <Link href="/news" className="nav-link link-gradient">
                   Новости
                 </Link>
               </li>
               <li>
-                <Link href="/counterparty-check" className="link-gradient">
+                <Link
+                  href="/counterparty-check"
+                  className="nav-link link-gradient"
+                >
                   Проверка контрагента
                 </Link>
               </li>
               <li>
-                <Link href="/tender-support" className="link-gradient">
+                <Link href="/tender-support" className="nav-link link-gradient">
                   Тендерное сопровождение
                 </Link>
               </li>
@@ -95,27 +102,27 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/about" className="link-gradient">
+                <Link href="/about" className="nav-link link-gradient">
                   О компании
                 </Link>
               </li>
               <li>
-                <Link href="/contacts" className="link-gradient">
+                <Link href="/contacts" className="nav-link link-gradient">
                   Контакты
                 </Link>
               </li>
               <li>
-                <Link href="/sitemap" className="link-gradient">
+                <Link href="/sitemap" className="nav-link link-gradient">
                   Карта сайта
                 </Link>
               </li>
               <li>
-                <Link href="/agents" className="link-gradient">
+                <Link href="/agents" className="nav-link link-gradient">
                   Агентам
                 </Link>
               </li>
               <li>
-                <Link href="/partners" className="link-gradient">
+                <Link href="/partners" className="nav-link link-gradient">
                   Партнерам
                 </Link>
               </li>
