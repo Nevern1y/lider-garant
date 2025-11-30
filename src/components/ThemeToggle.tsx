@@ -16,7 +16,6 @@ export default function ThemeToggle() {
     return stored || (prefersDark ? "dark" : "light");
   });
 
-  // применяем тему при изменении state
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);

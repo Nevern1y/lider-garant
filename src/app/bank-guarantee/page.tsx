@@ -18,8 +18,57 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import GuaranteeHowItWorksSection from "@/components/guarantee-how-it-works";
-import { Laptop, Layers, UserCheck, Timer, Percent } from "lucide-react";
+import {
+  Laptop,
+  Layers,
+  UserCheck,
+  Timer,
+  Percent,
+  CheckCheck,
+} from "lucide-react";
+import {
+  ShieldCheck,
+  FileCheck,
+  Building2,
+  BadgeCheck,
+  Lock,
+  Handshake,
+} from "lucide-react";
+import TopApplicationForm from "@/components/topApplicationForm";
+import GuaranteeCalculator from "@/components/GuaranteeCalculator";
 
+const guarantees = [
+  {
+    icon: ShieldCheck,
+    title: "На обеспечение заявки",
+    desc: "Выдача день в день.",
+  },
+  {
+    icon: FileCheck,
+    title: "На исполнение контракта",
+    desc: "По 44 и 223 ФЗ. До 1 млрд. без сроков.",
+  },
+  {
+    icon: Building2,
+    title: "На аванс",
+    desc: "До 1 ККК.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "На гарантийные обязательства",
+    desc: "Без ограничений по срокам.",
+  },
+  {
+    icon: Lock,
+    title: "Открытые и закрытые",
+    desc: "Все ФЗ, любые требования.",
+  },
+  {
+    icon: Handshake,
+    title: "Коммерческие",
+    desc: "Все виды БГ, без посещения офиса.",
+  },
+];
 export default function BankGuaranteePage() {
   const TOTAL_OFFERS = 25;
   const [visibleOffers, setVisibleOffers] = useState(6);
@@ -87,31 +136,37 @@ export default function BankGuaranteePage() {
       title: "Кредитирование бизнеса",
       desc: "Кредитование для осуществления текущих операционных и иных расходов.",
       href: "/credits",
+      img: "/finance-products/guarantee.png",
     },
     {
       title: "ВЭД",
       desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
       href: "/ved",
+      img: "/finance-products/money.png",
     },
     {
       title: "Страхование",
       desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
       href: "/insurance",
+      img: "/finance-products/hands.png",
     },
     {
       title: "Лизинг",
       desc: "Финансируем новое и с пробегом с авансом от 0%.",
       href: "/leasing",
+      img: "/finance-products/four.png",
     },
     {
       title: "Проверка контрагентов",
       desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
       href: "/checking",
+      img: "/finance-products/proverka.png",
     },
     {
       title: "Тендерное сопровождение",
       desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
       href: "/tender-support",
+      img: "/finance-products/calculator-hand.png",
     },
   ];
 
@@ -137,18 +192,30 @@ export default function BankGuaranteePage() {
       <main className="mx-auto w-full max-w-7xl px-6 py-10 md:py-16">
         <FadeIn>
           <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/10 via-sky-500/10 to-emerald-500/10 p-8 md:p-12">
-            <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-            <div className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-
             <div className="relative grid items-center gap-8 md:grid-cols-2">
               <div className="space-y-5">
-                <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-primary">
-                  Банковская гарантия
+                <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-white">
+                  Банковская гарантия{" "}
+                  <div className="text-primary">с выгодой 40%</div>
                 </h1>
-                <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
-                  Предлагаем выбрать вам лучшие условия по банковским гарантиям
-                  для бизнеса!
-                </p>
+                <h2 className="text-2xl font-semibold">
+                  Оформите банковскую гарантию в 20+ банках партнерах:
+                </h2>
+                <p className="max-w-2xl text-base text-foreground/80 md:text-lg"></p>
+                <ul>
+                  <li className="list-disc marker:text-primary">
+                    Сумма банковской гарантии до 1 млрд
+                  </li>
+                  <li className="list-disc marker:text-primary">
+                    Гарантии до 10 млн рублей за 2 минуты по паспорту
+                  </li>
+                  <li className="list-disc marker:text-primary">
+                    44-ФЗ, 223-ФЗ, 185-ФЗ и коммерция
+                  </li>
+                  <li className="list-disc marker:text-primary">
+                    Все регионы: включая СКФО, Крым и новые территории
+                  </li>
+                </ul>
 
                 <div className="flex flex-wrap gap-3">
                   <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-foreground/80 md:text-sm">
@@ -160,16 +227,31 @@ export default function BankGuaranteePage() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Button
-                    asChild
-                    className="h-11 rounded-xl px-6 text-sm font-medium bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 "
-                  >
+                  <Button asChild className="btn-three h-12">
                     <Link href="/#application">Подать заявку!</Link>
                   </Button>
                 </div>
               </div>
 
               <div className="relative hidden h-[360px] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl md:flex items-center justify-center">
+                <div className="absolute bottom-2 right-2 space-y-3 z-20">
+                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
+                    <span className="text-sm font-medium text-white flex items-center gap-5">
+                      <CheckCheck /> Одна заявка — множество предложений
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
+                    <span className="text-sm font-medium text-white flex items-center gap-5">
+                      <CheckCheck /> Одобрение и выдача онлайн
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
+                    <span className="text-sm font-medium text-white flex items-center gap-5">
+                      <CheckCheck /> Все виды банковских гарантий
+                    </span>
+                  </div>
+                </div>
+
                 <Image
                   src="/guarantee.png"
                   alt=""
@@ -188,6 +270,52 @@ export default function BankGuaranteePage() {
           <div className="mt-8">
             <BankLogosSlider />
           </div>
+        </FadeIn>
+
+        <FadeIn>
+          <section className="mx-auto mt-16 w-full max-w-7xl py-12">
+            <h2 className="mb-10 text-center text-3xl font-bold text-primary">
+              Доступные виды Банковских гарантий
+            </h2>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {guarantees.map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border bg-foreground/10 border-foreground/10 p-6 shadow-sm hover:shadow-lg hover:border-primary transition-all"
+                >
+                  <item.icon className="mb-4 h-12 w-12 p-2 rounded-xl text-white bg-primary" />
+                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeIn>
+
+        <FadeIn>
+          <section className="mx-auto mt-6 w-full max-w-7xl py-16">
+            <h2 className="mb-12 text-center text-2xl font-bold text-primary md:text-3xl">
+              Почему работать с нами выгодно?
+            </h2>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+              {benefits.map((item, i) => (
+                <div
+                  key={i}
+                  className="group relative flex flex-col items-center text-center gap-3 rounded-2xl border border-primary/10 bg-background/70 p-6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-md group-hover:scale-110 transition-transform">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+
+                  <p className="text-foreground/80 text-xs md:text-sm leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
         </FadeIn>
 
         <FadeIn>
@@ -257,127 +385,75 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto mt-6 w-full max-w-7xl py-16">
-            <h2 className="mb-12 text-center text-2xl font-bold text-primary md:text-3xl">
-              Почему работать с нами выгодно?
-            </h2>
+          <GuaranteeCalculator />
+        </FadeIn>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-              {benefits.map((item, i) => (
-                <div
-                  key={i}
-                  className="group relative flex flex-col items-center text-center gap-3 rounded-2xl border border-primary/10 bg-background/70 p-6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-md group-hover:scale-110 transition-transform">
-                    <item.icon className="h-6 w-6" />
-                  </div>
-
-                  <p className="text-foreground/80 text-xs md:text-sm leading-relaxed">
-                    {item.text}
-                  </p>
+        <FadeIn>
+          <section className="mx-auto mt-2 w-full max-w-7xl py-8">
+            <div className="mb-2 flex items-end justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight text-primary md:text-3xl">
+                  Лента сделок
+                </h2>
+                <p className="text-sm text-foreground/60">
+                  Последние заявки от наших клиентов и агентов
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-bold text-foreground md:text-3xl">
+                  3 064 379 982 ₽
                 </div>
-              ))}
+                <div className="text-xs text-foreground/60">
+                  Общая сумма последних заявок
+                </div>
+              </div>
+            </div>
+            <div className="relative pt-2">
+              <Swiper
+                modules={[Autoplay, FreeMode]}
+                slidesPerView={1.2}
+                spaceBetween={12}
+                breakpoints={{
+                  480: { slidesPerView: 2, spaceBetween: 14 },
+                  768: { slidesPerView: 3, spaceBetween: 16 },
+                  1024: { slidesPerView: 4, spaceBetween: 18 },
+                }}
+                loop
+                freeMode={{ enabled: true, momentum: false }}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                speed={2200}
+                className="select-none"
+              >
+                {deals.slice(0, visibleDeals).map((d, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
+                      <div className="mb-1 text-xs text-foreground/60">
+                        Гарантии
+                      </div>
+                      <div className="mb-3 text-base font-semibold leading-snug">
+                        {d.title}
+                      </div>
+                      <div className="mb-3 h-px w-full bg-white/10" />
+                      <div className="mt-auto">
+                        <div className="text-2xl font-bold">{d.amount}</div>
+                        <div className="text-xs text-foreground/60">
+                          сумма заявки
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </section>
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto mt-2 w-full max-w-7xl py-12">
-            <div className="grid items-stretch gap-10 md:grid-cols-2">
-              <div>
-                <h2 className="mb-4 text-2xl font-semibold text-primary">
-                  Подберем самые выгодные предложения
-                </h2>
-                <p className="mb-6 text-sm text-foreground/70">
-                  Заполните форму, выберите среди предложений банков лучшее,
-                  получите гарантию и заключайте контракт с заказчиком.
-                </p>
-                <form className="space-y-4" action="#" method="post">
-                  <div className="grid gap-4">
-                    <Input
-                      type="text"
-                      name="inn"
-                      placeholder="ИНН"
-                      inputMode="numeric"
-                      pattern="^\\d{10}(\\d{2})?$"
-                      maxLength={12}
-                      title="ИНН должен содержать 10 или 12 цифр"
-                      required
-                      onInput={(e) => {
-                        const target = e.target as HTMLInputElement;
-                        target.value = target.value.replace(/\D/g, ""); // оставить только цифры
-                      }}
-                      className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                    />
-
-                    <Input
-                      type="number"
-                      name="amount"
-                      placeholder="Сумма"
-                      inputMode="numeric"
-                      min={1}
-                      step={1000}
-                      title="Укажите сумму больше 0"
-                      required
-                      className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                    />
-                    <Input
-                      type="tel"
-                      name="phone"
-                      placeholder="Номер телефона"
-                      inputMode="numeric"
-                      pattern="^\\+?7\\d{10}$"
-                      title="Формат: +7XXXXXXXXXX"
-                      maxLength={12}
-                      required
-                      className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                    />
-                  </div>
-                  <label className="flex items-start gap-3 text-xs text-foreground/70">
-                    <input
-                      type="checkbox"
-                      required
-                      className="mt-0.5 h-4 w-4 rounded border-foreground/30"
-                    />
-                    <span>
-                      Ставя галочку, я соглашаюсь на обработку персональных
-                      данных, в соответствии с
-                      <a
-                        href="/docs/agreement.pdf"
-                        target="_blank"
-                        className="mx-1 underline"
-                      >
-                        Соглашением
-                      </a>
-                      и
-                      <a
-                        href="/docs/privacy.pdf"
-                        target="_blank"
-                        className="ml-1 underline"
-                      >
-                        Политикой конфиденциальности
-                      </a>
-                      .
-                    </span>
-                  </label>
-                  <Button type="submit" className="btn-three h-12">
-                    Отправить заявку
-                  </Button>
-                </form>
-              </div>
-
-              <div className="relative h-80 md:h-auto w-full rounded-3xl overflow-hidden border border-white/10">
-                <Image
-                  src="/good-deal.jpg"
-                  alt="good deal"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-            </div>
-          </section>
+          <TopApplicationForm />
         </FadeIn>
 
         <FadeIn>
@@ -426,6 +502,7 @@ export default function BankGuaranteePage() {
             )}
           </section>
         </FadeIn>
+
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
             <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
@@ -502,19 +579,34 @@ export default function BankGuaranteePage() {
               {related.map((item) => (
                 <div
                   key={item.title}
-                  className="group relative overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
+                  className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
                 >
-                  <div className="mb-2 text-lg font-semibold text-foreground">
-                    {item.title}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="pr-24 md:pr-32">
+                      <h3 className="mb-3 text-lg font-semibold text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="mb-6 text-sm leading-relaxed text-foreground/75">
+                        {item.desc}
+                      </p>
+                    </div>
+                    {item.img && (
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={240}
+                        height={240}
+                        sizes="(min-width: 768px) 240px, 192px"
+                        className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
+                      />
+                    )}
                   </div>
-                  <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="rounded-xl px-4 py-2 text-sm border border-primary text-primary hover:bg-primary hover:text-white"
-                  >
-                    <a href={item.href}>Подробнее</a>
-                  </Button>
+
+                  <div className="mt-auto flex items-center justify-between gap-3">
+                    <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
+                      Узнать больше
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -563,67 +655,7 @@ export default function BankGuaranteePage() {
         <FadeIn>
           <ManagerCTASection />
         </FadeIn>
-        <section className="mx-auto mt-2 w-full max-w-7xl py-8">
-          <div className="mb-2 flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-primary md:text-3xl">
-                Лента сделок
-              </h2>
-              <p className="text-sm text-foreground/60">
-                Последние заявки от наших клиентов и агентов
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-foreground md:text-3xl">
-                3 064 379 982 ₽
-              </div>
-              <div className="text-xs text-foreground/60">
-                Общая сумма последних заявок
-              </div>
-            </div>
-          </div>
-          <div className="relative pt-2">
-            <Swiper
-              modules={[Autoplay, FreeMode]}
-              slidesPerView={1.2}
-              spaceBetween={12}
-              breakpoints={{
-                480: { slidesPerView: 2, spaceBetween: 14 },
-                768: { slidesPerView: 3, spaceBetween: 16 },
-                1024: { slidesPerView: 4, spaceBetween: 18 },
-              }}
-              loop
-              freeMode={{ enabled: true, momentum: false }}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              speed={2200}
-              className="select-none"
-            >
-              {deals.slice(0, visibleDeals).map((d, i) => (
-                <SwiperSlide key={i}>
-                  <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
-                    <div className="mb-1 text-xs text-foreground/60">
-                      Гарантии
-                    </div>
-                    <div className="mb-3 text-base font-semibold leading-snug">
-                      {d.title}
-                    </div>
-                    <div className="mb-3 h-px w-full bg-white/10" />
-                    <div className="mt-auto">
-                      <div className="text-2xl font-bold">{d.amount}</div>
-                      <div className="text-xs text-foreground/60">
-                        сумма заявки
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </section>
+
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl py-12">
             <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">

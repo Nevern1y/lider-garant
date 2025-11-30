@@ -128,6 +128,57 @@ export default function Home() {
       <FadeIn>
         <BankLogosSlider />
       </FadeIn>
+
+      <FadeIn>
+        <section
+          id="products"
+          className="relative overflow-hidden mx-auto mt-12 w-full max-w-7xl py-20 md:py-28"
+        >
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-primary/15 blur-[120px] opacity-70" />
+          </div>
+
+          <h2 className="mb-14 text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+            <span className="text-primary">Финансовые продукты</span>
+          </h2>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {products.map((item) => (
+              <div
+                key={item.id}
+                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="pr-24 md:pr-32">
+                    <h3 className="mb-3 text-lg font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mb-6 text-sm leading-relaxed text-foreground/75">
+                      {item.desc}
+                    </p>
+                  </div>
+                  {item.img && (
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      width={240}
+                      height={240}
+                      sizes="(min-width: 768px) 240px, 192px"
+                      className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
+                    />
+                  )}
+                </div>
+
+                <div className="mt-auto flex items-center justify-between gap-3">
+                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
+                    {item.btn}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeIn>
       <FadeIn>
         <HowItWorksSection />
       </FadeIn>
@@ -191,56 +242,6 @@ export default function Home() {
         </section>
       </FadeIn>
 
-      <FadeIn>
-        <section
-          id="products"
-          className="relative overflow-hidden mx-auto mt-12 w-full max-w-7xl py-20 md:py-28"
-        >
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-primary/15 blur-[120px] opacity-70" />
-          </div>
-
-          <h2 className="mb-14 text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            <span className="text-primary">Финансовые продукты</span>
-          </h2>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {products.map((item) => (
-              <div
-                key={item.id}
-                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="pr-24 md:pr-32">
-                    <h3 className="mb-3 text-lg font-semibold text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="mb-6 text-sm leading-relaxed text-foreground/75">
-                      {item.desc}
-                    </p>
-                  </div>
-                  {item.img && (
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      width={240}
-                      height={240}
-                      sizes="(min-width: 768px) 240px, 192px"
-                      className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
-                    />
-                  )}
-                </div>
-
-                <div className="mt-auto flex items-center justify-between gap-3">
-                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
-                    {item.btn}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </FadeIn>
       <FadeIn>
         <NewsRibbon />
       </FadeIn>

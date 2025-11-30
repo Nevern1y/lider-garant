@@ -169,7 +169,7 @@ export default function HowItWorksSection() {
           </div>
 
           <div
-            className="relative h-[200px] xs:h-[240px] sm:h-[300px] md:h-[360px] order-2 lg:order-none"
+            className="relative h-[200px] xs:h-[240px] sm:h-[300px] md:h-[470px] order-2 lg:order-0"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >

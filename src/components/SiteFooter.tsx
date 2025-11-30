@@ -9,10 +9,13 @@ export default function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-4">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Image src="/logo.svg" alt="Логотип" width={28} height={28} />
-              <span className="text-sm font-semibold text-foreground">
-                Лидер‑Гарант
-              </span>
+              <Image
+                src="/Logo.jpg"
+                alt="Логотип"
+                width={104}
+                height={106}
+                className="row-span-2 rounded-2xl"
+              />
             </div>
             <address className="not-italic text-sm text-foreground/70">
               ООО Лидер‑Гарант, 127283, г. Москва, ул. Остоженка 10
