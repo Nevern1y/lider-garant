@@ -18,7 +18,6 @@ import {
 import { Smartphone, Menu, X } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import CustomSelect from "./ui/my-select";
-import { useTheme } from "next-themes";
 
 const financeItems = [
   { label: "Гарантии", href: "/bank-guarantee" },
@@ -32,11 +31,8 @@ const financeItems = [
 ];
 
 export default function Header() {
-  const { theme } = useTheme();
-
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const logoSrc = theme === "dark" ? "/white-logo.png" : "/Logo.jpg";
 
   return (
     <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/80 backdrop-blur py-5">
@@ -46,11 +42,12 @@ export default function Header() {
           className="grid grid-cols-[auto_1fr] items-center gap-x-3"
         >
           <Image
-            src={logoSrc}
+            src="/logo.jpg"
             alt="Логотип"
-            width={104}
-            height={106}
-            className="row-span-2 rounded-2xl"
+            width={160}
+            height={160}
+            className="h-12 w-auto sm:h-14 md:h-16 lg:h-20 xl:h-23 object-contain"
+            priority
           />
         </Link>
         <nav className="mt-1 hidden items-center justify-center gap-6 lg:flex lg:gap-8">
