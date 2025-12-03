@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
+import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,9 +24,16 @@ const banks = [
 ];
 
 export default function TopApplicationForm() {
+  const [phoneKey, setPhoneKey] = useState(0);
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log("submit");
+
+    toast.success("Заявка отправлена");
+
+    const form = e.currentTarget as HTMLFormElement;
+    form.reset();
+
+    setPhoneKey((k) => k + 1);
   }
 
   return (
@@ -119,12 +128,11 @@ export default function TopApplicationForm() {
 
               <div className="mt-3 space-y-3">
                 <Label htmlFor="phone">Телефон</Label>
-                <Input
+                <PhoneInput
+                  key={phoneKey}
                   id="phone"
-                  type="tel"
                   name="phone"
-                  placeholder="+7 (___) ___-__-__"
-                  className="bg-white border-gray-300 px-4 py-6"
+                  className="bg-white border-gray-300 px-4 py-6 h-11 rounded-full"
                   required
                 />
               </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -247,12 +248,11 @@ export default function GuaranteeCalculator() {
                 </div>
 
                 <div className="space-y-2">
-                  <Input
-                    type="tel"
+                  <PhoneInput
                     placeholder="+7 (___) ___-__-__"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="bg-white border-gray-300 px-4 py-6"
+                    className="bg-white border-gray-300 px-4 py-6 h-11 rounded-full"
                     required
                   />
                 </div>

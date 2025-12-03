@@ -13,10 +13,7 @@ import {
 } from "@radix-ui/react-accordion";
 import { useState } from "react";
 import Link from "next/link";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+// Swiper removed - using grid layout for deals
 import GuaranteeHowItWorksSection from "@/components/guarantee-how-it-works";
 import {
   Laptop,
@@ -201,16 +198,16 @@ export default function BankGuaranteePage() {
             <div className="relative grid items-center gap-8 md:grid-cols-2">
               <div className="space-y-5">
                 <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-white">
-                  Банковская гарантия{" "}
-                  <div className="text-primary">с выгодой 40%</div>
+                  Банковская гарантия
+                  <div className="text-primary">с выгодой 45%</div>
                 </h1>
                 <h2 className="text-2xl font-semibold">
-                  Оформите банковскую гарантию в 20+ банках партнерах:
+                  Оформите банковскую гарантию <br /> в 20+ банках партнерах:
                 </h2>
                 <p className="max-w-2xl text-base text-foreground/80 md:text-lg"></p>
                 <ul>
                   <li className="list-disc marker:text-primary">
-                    Сумма банковской гарантии до 1 млрд
+                    Сумма банковской гарантии до 2 млрд
                   </li>
                   <li className="list-disc marker:text-primary">
                     Гарантии до 10 млн рублей за 2 минуты по паспорту
@@ -223,15 +220,6 @@ export default function BankGuaranteePage() {
                   </li>
                 </ul>
 
-                <div className="flex flex-wrap gap-3">
-                  <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-foreground/80 md:text-sm">
-                    Закрытые закупки
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-foreground/80 md:text-sm">
-                    Коммерческие закупки
-                  </span>
-                </div>
-
                 <div className="flex items-center gap-3">
                   <Button asChild className="btn-three h-12">
                     <Link href="/#application">Подать заявку!</Link>
@@ -241,19 +229,30 @@ export default function BankGuaranteePage() {
 
               <div className="relative hidden h-[360px] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl md:flex items-center justify-center">
                 <div className="absolute bottom-2 right-2 space-y-3 z-20">
-                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
-                    <span className="text-sm font-medium text-white flex items-center gap-5">
-                      <CheckCheck /> Одна заявка — множество предложений
+                  <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                      <CheckCheck className="h-3 w-3" />
+                    </div>
+                    <span className="text-sm font-medium text-white">
+                      Одна заявка — множество предложений
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
-                    <span className="text-sm font-medium text-white flex items-center gap-5">
-                      <CheckCheck /> Одобрение и выдача онлайн
+
+                  <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                      <CheckCheck className="h-3 w-3" />
+                    </div>
+                    <span className="text-sm font-medium text-white">
+                      Одобрение и выдача онлайн
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-primary/15 border border-primary/30 px-4 py-2 backdrop-blur-md">
-                    <span className="text-sm font-medium text-white flex items-center gap-5">
-                      <CheckCheck /> Все виды банковских гарантий
+
+                  <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                      <CheckCheck className="h-3 w-3" />
+                    </div>
+                    <span className="text-sm font-medium text-white">
+                      Все виды банковских гарантий
                     </span>
                   </div>
                 </div>
@@ -285,26 +284,37 @@ export default function BankGuaranteePage() {
             </h2>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {guarantees.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl hover:-translate-y-1 border bg-foreground/10 border-foreground/10 p-6 shadow-sm hover:shadow-lg hover:border-primary transition-all"
-                >
-                  <item.icon className="mb-4 h-12 w-12 p-2 rounded-xl text-white bg-primary" />
-                  <div className="flex flex-wrap gap-5 my-2">
-                    {item.features.map((f) => (
-                      <span
-                        key={f}
-                        className="border-2 font-semibold border-primary text-primary rounded-2xl p-2 "
-                      >
-                        {f}
-                      </span>
-                    ))}
+              {guarantees.map((item, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="group relative rounded-2xl hover:-translate-y-1 border border-foreground/10 bg-white/5 p-4 shadow-sm hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="min-w-0">
+                        <h3 className="text-base font-semibold text-foreground ">
+                          {item.title}
+                        </h3>
+
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {item.features.map((f) => (
+                            <span
+                              key={f}
+                              className="inline-flex items-center text-xs font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2 py-1"
+                            >
+                              {f}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="mt-3 text-sm text-foreground/70">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
         </FadeIn>
@@ -424,46 +434,27 @@ export default function BankGuaranteePage() {
                 </div>
               </div>
             </div>
-            <div className="relative pt-2">
-              <Swiper
-                modules={[Autoplay, FreeMode]}
-                slidesPerView={1.2}
-                spaceBetween={12}
-                breakpoints={{
-                  480: { slidesPerView: 2, spaceBetween: 14 },
-                  768: { slidesPerView: 3, spaceBetween: 16 },
-                  1024: { slidesPerView: 4, spaceBetween: 18 },
-                }}
-                loop
-                freeMode={{ enabled: true, momentum: false }}
-                autoplay={{
-                  delay: 0,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }}
-                speed={2200}
-                className="select-none"
-              >
-                {deals.slice(0, visibleDeals).map((d, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
-                      <div className="mb-1 text-xs text-foreground/60">
-                        Гарантии
-                      </div>
-                      <div className="mb-3 text-base font-semibold leading-snug">
-                        {d.title}
-                      </div>
-                      <div className="mb-3 h-px w-full bg-white/10" />
-                      <div className="mt-auto">
-                        <div className="text-2xl font-bold">{d.amount}</div>
-                        <div className="text-xs text-foreground/60">
-                          сумма заявки
-                        </div>
-                      </div>
+            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {deals.slice(0, visibleDeals).map((d, i) => (
+                <div
+                  key={i}
+                  className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="mb-1 text-xs text-foreground/60">
+                    Гарантии
+                  </div>
+                  <div className="mb-3 text-base font-semibold leading-snug">
+                    {d.title}
+                  </div>
+                  <div className="mb-3 h-px w-full bg-white/10" />
+                  <div className="mt-auto">
+                    <div className="text-2xl font-bold">{d.amount}</div>
+                    <div className="text-xs text-foreground/60">
+                      сумма заявки
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </FadeIn>

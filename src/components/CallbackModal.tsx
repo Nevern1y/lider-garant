@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 type Props = {
   open: boolean;
@@ -81,12 +82,17 @@ export default function CallbackModal({ open, onClose }: Props) {
               className="w-full rounded-xl border border-foreground/15 bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground/30 sm:text-base"
               required
             />
-            <input
-              type="tel"
-              placeholder="Телефон"
-              className="w-full rounded-xl border border-foreground/15 bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground/30 sm:text-base"
-              required
-            />
+            <div>
+              <label className="sr-only" htmlFor="callback-phone">
+                Телефон
+              </label>
+              <PhoneInput
+                id="callback-phone"
+                name="phone"
+                className="w-full rounded-xl border border-foreground/15 bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground/30 sm:text-base"
+                required
+              />
+            </div>
             <button
               type="submit"
               className="w-full rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-background hover:opacity-90 sm:text-base"

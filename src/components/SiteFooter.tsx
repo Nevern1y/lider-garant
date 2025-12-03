@@ -5,16 +5,27 @@ import ThemeToggle from "./ThemeToggle";
 export default function SiteFooter() {
   return (
     <footer className="border-t border-foreground/10 bg-background/80">
+      <style>{`
+        html[data-theme="light"] .logo-light-footer { display: none; }
+        html[data-theme="dark"] .logo-dark-footer { display: none; }
+      `}</style>
       <div className="mx-auto w-full max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="space-y-3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 -my-18">
               <Image
-                src="/Logo.jpg"
+                src="/logo-light-2.png"
+                alt="Логотип"
+                width={154}
+                height={156}
+                className="row-span-2 h-55 w-auto mb-2  logo-light-footer"
+              />
+              <Image
+                src="/logo-dark.png"
                 alt="Логотип"
                 width={104}
                 height={106}
-                className="row-span-2 rounded-2xl"
+                className="row-span-2 h-10 mb-25 mt-15 w-auto logo-dark-footer"
               />
             </div>
             <address className="not-italic text-sm text-foreground/70">

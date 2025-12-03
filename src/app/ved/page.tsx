@@ -5,11 +5,10 @@ import BankLogosSlider from "@/components/BankLogosSlider";
 import ManagerCTASection from "@/components/ManagerCTASection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
 
 export default function Page() {
   const [visibleDeals] = useState(12);
@@ -112,29 +111,59 @@ export default function Page() {
           <div className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
 
           <div className="relative grid items-center gap-8 md:grid-cols-2">
-            <div className="space-y-5">
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-                Внешнеэкономическая деятельность
-              </h1>
-              <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
-                Комплексные решения для импортеров и экспортеров. Поможем
-                перевести деньги, получить оплату из‑за рубежа и сопровождать
-                сделки.
-              </p>
-              <Button
-                asChild
-                className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-              >
-                <a href="#ved-form">Подать заявку</a>
-              </Button>
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+                  <span className="text-primary">Международные</span>
+                  <br />
+                  <span className="text-primary">платежи для</span>
+                  <br />
+                  <span className="text-primary">бизнеса.</span>
+                </h1>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-lg text-foreground/85 font-medium">
+                  Комплексные решения по ВЭД для импортеров и экспортеров.
+                </p>
+                <p className="text-base text-foreground/75 leading-relaxed">
+                  Поможем перевести деньги, получить оплату из‑за рубежа и
+                  сопровождать сделки.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="h-3 w-3 rounded-full bg-primary" />
+                  </div>
+                  <span className="text-base font-semibold text-foreground">
+                    от 0,3%
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="h-3 w-3 rounded-full bg-primary" />
+                  </div>
+                  <span className="text-base font-semibold text-foreground">
+                    от 1 дня
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <Button asChild className="btn-three h-12">
+                  <a href="#ved-form">Подать заявку</a>
+                </Button>
+              </div>
             </div>
 
-            <div className="relative hidden h-[320px] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl md:block">
+            <div className="relative hidden h-120 w-full overflow-hidden rounded-3xl border border-white/10 md:block">
               <Image
                 src="/economic-activity.jpg"
                 alt="ВЭД"
                 fill
-                className="object-cover rounded-3xl"
+                className="object-cover"
               />
             </div>
           </div>
@@ -221,10 +250,8 @@ export default function Page() {
                 placeholder="Валюта (USD, EUR, CNY, AED и др.)"
                 className="h-11 rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
               />
-              <Input
-                type="tel"
+              <PhoneInput
                 name="phone"
-                placeholder="Номер телефона"
                 className="h-11 rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
               />
               <Input
@@ -404,15 +431,10 @@ export default function Page() {
                     required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                   />
-                  <Input
-                    type="tel"
+                  <PhoneInput
                     name="phone"
-                    placeholder="Номер телефона"
-                    inputMode="tel"
-                    pattern="^(?:\\+?7|8)?\\d{10}$"
-                    title="Формат: +7XXXXXXXXXX или 8XXXXXXXXXX"
-                    required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
+                    required
                   />
                 </div>
                 <label className="flex items-start gap-3 text-xs text-foreground/70">
@@ -512,46 +534,25 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="relative pt-2">
-            <Swiper
-              modules={[Autoplay, FreeMode]}
-              slidesPerView={1.2}
-              spaceBetween={12}
-              breakpoints={{
-                480: { slidesPerView: 2, spaceBetween: 14 },
-                768: { slidesPerView: 3, spaceBetween: 16 },
-                1024: { slidesPerView: 4, spaceBetween: 18 },
-              }}
-              loop
-              freeMode={{ enabled: true, momentum: false }}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              speed={2200}
-              className="select-none"
-            >
-              {deals.slice(0, visibleDeals).map((d, i) => (
-                <SwiperSlide key={i}>
-                  <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
-                    <div className="mb-1 text-xs text-foreground/60">
-                      Внешнеэкономическая деятельность
-                    </div>
-                    <div className="mb-3 text-base font-semibold leading-snug">
-                      {d.title}
-                    </div>
-                    <div className="mb-3 h-px w-full bg-white/10" />
-                    <div className="mt-auto">
-                      <div className="text-2xl font-bold">{d.amount}</div>
-                      <div className="text-xs text-foreground/60">
-                        сумма заявки
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {deals.slice(0, visibleDeals).map((d, i) => (
+              <div
+                key={i}
+                className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="mb-1 text-xs text-foreground/60">
+                  Внешнеэкономическая деятельность
+                </div>
+                <div className="mb-3 text-base font-semibold leading-snug">
+                  {d.title}
+                </div>
+                <div className="mb-3 h-px w-full bg-white/10" />
+                <div className="mt-auto">
+                  <div className="text-2xl font-bold">{d.amount}</div>
+                  <div className="text-xs text-foreground/60">сумма заявки</div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </FadeIn>

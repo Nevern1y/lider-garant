@@ -9,16 +9,26 @@ const entrepreneurs = [
 ];
 
 const specialists = [
-  "Закрепляем заявки",
-  "Если заявка заведена через — мы закрепляем её за вами. Другой агент не может завести эту заявку даже через сторонний сервис.",
-  "Верификация",
-  "Вручную проверяем заявки перед отправкой в банк. Это снижает риск ошибки и отклонения.",
-  "Анализируем отклонённые заявки",
-  "Если банк отклонил заявку — разбираемся почему так произошло. Часто получается убедить банк, что отказ ошибочный и выпустить гарантию.",
-  "Экономьте время на проверке документов и заполнении заявок - в нашей системе все автоматизировано.",
-  "Помогаем заводить заявки",
-  "Нам можно прислать данные для заявки и операторы Лидер-Гарант заполнят документы за вас.",
-  "Получайте честные и своевременные выплаты когда вам удобно.",
+  {
+    title: "Закрепляем заявки",
+    description:
+      "Если заявка заведена через Лидер-Гарант — мы закрепляем её за вами. Другой агент не может завести эту заявку даже через сторонний сервис.",
+  },
+  {
+    title: "Верификация",
+    description:
+      "Вручную проверяем заявки перед отправкой в банк. Это снижает риск ошибки и отклонения.",
+  },
+  {
+    title: "Анализируем отклонённые заявки",
+    description:
+      "Если банк отклонил заявку — разбираемся почему так произошло. Часто получается убедить банк, что отказ ошибочный и выпустить гарантию.",
+  },
+  {
+    title: "Помогаем заводить заявки",
+    description:
+      "Нам можно прислать данные для заявки и операторы Лидер-Гарант заполнят документы за вас.",
+  },
 ];
 
 function CheckIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -45,27 +55,19 @@ export default function Page() {
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 md:py-16 space-y-10">
       <FadeIn>
-        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/3 to-white/2 p-8 shadow-lg backdrop-blur-sm">
-          <h1 className="text-3xl md:text-4xl font-semibold text-foreground leading-tight">
-            Предпринимателям и компаниям
-          </h1>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-indigo-500/10 via-sky-500/10 to-emerald-500/10 p-8 md:p-16">
+          <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-1 md:grid-cols-2">
-            {entrepreneurs.map((text) => (
-              <article
-                key={text}
-                className="flex items-start gap-4 rounded-2xl border border-white/6 bg-white/4 p-4 md:p-5"
-              >
-                <div className="flex-shrink-0 mt-1 text-foreground/90">
-                  <span className="inline-flex items-center justify-center rounded-full bg-foreground/5 p-2">
-                    <CheckIcon className="w-4 h-4" />
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-foreground/85">
-                  {text}
-                </p>
-              </article>
-            ))}
+          <div className="relative z-10 space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
+              Предпринимателям и компаниям
+            </h1>
+            <p className="text-lg text-foreground/75 max-w-2xl leading-relaxed">
+              Быстро подберем лучшие условия по банковским гарантиям, кредитам,
+              лизингу, страхованию. Предоставим тендерное сопровождение и
+              поможем с РКО и ВЭД.
+            </p>
           </div>
         </section>
       </FadeIn>
@@ -77,20 +79,24 @@ export default function Page() {
           </h2>
 
           <div className="mt-6 grid gap-6 md:grid-cols-2">
-            {specialists.map((text, index) => (
+            {specialists.map((item, index) => (
               <div
-                key={`${text}-${index}`}
-                className="group flex items-start gap-4 rounded-2xl border border-white/6 bg-white/3 p-4 transition-shadow hover:shadow-md"
+                key={index}
+                className="group flex flex-col gap-3 rounded-2xl border border-white/6 bg-white/3 p-6 transition-shadow hover:shadow-md"
               >
-                <div className="shrink-0 mt-1 text-foreground/90">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/6 text-foreground/100 transition-transform group-hover:scale-105">
-                    <CheckIcon className="w-4 h-4" />
-                  </span>
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 mt-0.5 text-foreground/90">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <CheckIcon className="w-4 h-4" />
+                    </span>
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground">
+                    {item.title}
+                  </h3>
                 </div>
-
-                <div className="text-sm leading-relaxed text-foreground/80">
-                  {text}
-                </div>
+                <p className="text-sm leading-relaxed text-foreground/70 ml-11">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>

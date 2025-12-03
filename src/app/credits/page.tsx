@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import "swiper/css";
 import {
   Accordion,
@@ -331,15 +332,10 @@ export default function Page() {
                     required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                   />
-                  <Input
-                    type="tel"
+                  <PhoneInput
                     name="phone"
-                    placeholder="Номер телефона"
-                    inputMode="tel"
-                    pattern="^(?:\\+?7|8)?\\d{10}$"
-                    title="Формат: +7XXXXXXXXXX или 8XXXXXXXXXX"
-                    required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
+                    required
                   />
                 </div>
                 <label className="flex items-start gap-3 text-xs text-foreground/70">

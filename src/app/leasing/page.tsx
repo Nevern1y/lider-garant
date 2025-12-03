@@ -6,9 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
 
 export default function Page() {
   const TOTAL_OFFERS = 17;
@@ -129,18 +128,25 @@ export default function Page() {
 
           <div className="relative grid items-center gap-6 md:grid-cols-2">
             <div className="space-y-5">
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                Лизинг для бизнеса
+              <h1 className="text-3xl font-semibold tracking-tight text-primary md:text-4xl">
+                Лизинг для юридических лиц
               </h1>
-              <p className="max-w-2xl text-foreground/80">
-                Предложим самые выгодные предложения по лизингу для бизнеса.
-                Финансируем с авансом от 0%. Работаем со сложным оборудованием.
-                Подберем выгодное решение.
-              </p>
-              <Button
-                asChild
-                className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-              >
+              <h2 className="text-2xl font-semibold">
+                Предложим самые выгодные предложения по лизингу для бизнеса:
+              </h2>
+              <p className="max-w-2xl text-base text-foreground/80 md:text-lg"></p>
+              <ul>
+                <li className="list-disc marker:text-primary">
+                  Финансируем с авансом от 0%
+                </li>
+                <li className="list-disc marker:text-primary">
+                  Работаем со сложным оборудованием.
+                </li>
+                <li className="list-disc marker:text-primary">
+                  Подберем выгодное решение для вашей компании.
+                </li>
+              </ul>
+              <Button asChild className="btn-three h-12">
                 <a href="#leasing-form">Подать заявку</a>
               </Button>
             </div>
@@ -317,15 +323,10 @@ export default function Page() {
                     required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                   />
-                  <Input
-                    type="tel"
+                  <PhoneInput
                     name="phone"
-                    placeholder="Номер телефона"
-                    inputMode="tel"
-                    pattern="^(?:\\+?7|8)?\\d{10}$"
-                    title="Формат: +7XXXXXXXXXX или 8XXXXXXXXXX"
-                    required
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
+                    required
                   />
                 </div>
                 <label className="flex items-start gap-3 text-xs text-foreground/70">
@@ -424,44 +425,23 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="relative pt-2">
-          <Swiper
-            modules={[Autoplay, FreeMode]}
-            slidesPerView={1.2}
-            spaceBetween={12}
-            breakpoints={{
-              480: { slidesPerView: 2, spaceBetween: 14 },
-              768: { slidesPerView: 3, spaceBetween: 16 },
-              1024: { slidesPerView: 4, spaceBetween: 18 },
-            }}
-            loop
-            freeMode={{ enabled: true, momentum: false }}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            speed={2200}
-            className="select-none"
-          >
-            {deals.slice(0, visibleDeals).map((d, i) => (
-              <SwiperSlide key={i}>
-                <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col">
-                  <div className="mb-1 text-xs text-foreground/60">Лизинг</div>
-                  <div className="mb-3 text-base font-semibold leading-snug">
-                    {d.title}
-                  </div>
-                  <div className="mb-3 h-px w-full bg-white/10" />
-                  <div className="mt-auto">
-                    <div className="text-2xl font-bold">{d.amount}</div>
-                    <div className="text-xs text-foreground/60">
-                      сумма заявки
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {deals.slice(0, visibleDeals).map((d, i) => (
+            <div
+              key={i}
+              className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="mb-1 text-xs text-foreground/60">Лизинг</div>
+              <div className="mb-3 text-base font-semibold leading-snug">
+                {d.title}
+              </div>
+              <div className="mb-3 h-px w-full bg-white/10" />
+              <div className="mt-auto">
+                <div className="text-2xl font-bold">{d.amount}</div>
+                <div className="text-xs text-foreground/60">сумма заявки</div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
       <FadeIn>

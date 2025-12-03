@@ -36,12 +36,13 @@ export default function BankLogosSlider() {
   const items = [...banks, ...banks, ...banks];
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-6 py-14">
+    <section className="mx-auto w-full max-w-7xl px-6 py-12">
       <div className="overflow-hidden rounded-[32px] border border-foreground/10">
-        <div className="px-6 py-10 md:px-12">
-          <div className="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-foreground/70">
+        <div className="px-6 py-8 md:px-12">
+          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
             Наши партнёры
-          </div>
+          </h2>
+
           <div
             ref={sliderRef}
             className="flex gap-6 whitespace-nowrap overflow-x-hidden"
@@ -49,14 +50,14 @@ export default function BankLogosSlider() {
             {items.map((src, i) => (
               <div
                 key={i}
-                className="flex h-16 min-w-[120px] items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 backdrop-blur-lg"
+                className="flex h-20 min-w-[140px] items-center justify-center rounded-2xl border border-primary/10 bg-primary/5 px-6"
               >
                 <Image
                   src={src}
-                  alt={`Логотип банка ${i + 1}`}
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto object-contain"
+                  alt={`Логотип партнёра ${i + 1}`}
+                  width={140}
+                  height={48}
+                  className="h-12 w-auto object-contain "
                   loading="lazy"
                   decoding="async"
                 />
