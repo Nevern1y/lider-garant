@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Send } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { Send } from "lucide-react";
 
 export default function SiteFooter() {
   return (
@@ -19,14 +19,14 @@ export default function SiteFooter() {
                 alt="Логотип"
                 width={154}
                 height={156}
-                className="row-span-2 h-55 w-auto mb-2  logo-light-footer"
+                className="row-span-2 h-55 w-auto mb-2 logo-light-footer"
               />
               <Image
                 src="/logo-dark.png"
                 alt="Логотип"
-                width={104}
-                height={106}
-                className="row-span-2 h-10 mb-25 mt-15 w-auto logo-dark-footer"
+                width={154}
+                height={156}
+                className="row-span-2 h-15 mb-25 mt-15 w-auto logo-dark-footer"
               />
             </div>
             <address className="not-italic text-sm text-foreground/70">
@@ -51,13 +51,7 @@ export default function SiteFooter() {
                 className=""
                 title="Telegram"
               >
-                <Image
-                  src="/tg-icon.svg"
-                  alt="Telegram"
-                  width={20}
-                  height={20}
-                  className="h-10 w-10"
-                />
+                <Send className="h-7 w-7 hover:text-primary transition-colors" />
               </a>
             </div>
           </div>

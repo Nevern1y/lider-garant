@@ -54,10 +54,9 @@ export default function Header() {
             <Image
               src="/logo-light-2.png"
               alt="Логотип"
-              width={160}
-              height={160}
-              className="logo-light w-auto h-65 object-contain transition-all"
-              priority
+              width={154}
+              height={156}
+              className="row-span-2 h-55 w-auto mb-2 logo-light"
             />
             <Image
               src="/logo-dark.png"

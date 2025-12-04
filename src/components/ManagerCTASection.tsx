@@ -68,7 +68,7 @@ export default function ManagerCTASection() {
                   <Button
                     asChild
                     size="lg"
-                    className="mt-4 sm:mt-5 w-full justify-center rounded-2xl text-[10px] xs:text-[11px] border border-primary/10 hover:bg-primary bg-primary/10 sm:text-xs font-semibold uppercase tracking-wide whitespace-normal break-words text-center"
+                    className="mt-4 sm:mt-5 w-full justify-center rounded-2xl text-[10px] xs:text-[11px]  hover:bg-primary bg-none text-primary border-2 border-primary hover:text-white sm:text-xs font-semibold uppercase tracking-wide whitespace-normal break-words text-center"
                   >
                     <a href={link}>{cta}</a>
                   </Button>
