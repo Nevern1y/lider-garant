@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Pencil } from "lucide-react";
+import { toast } from "sonner";
 import FadeIn from "@/components/FadeIn";
 
 const guaranteeTypes = [
@@ -23,6 +24,7 @@ export default function GuaranteeCalculator() {
   const [discount, setDiscount] = useState(true);
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneKey, setPhoneKey] = useState(0);
 
   const formatNumber = (num: number) => {
     return num.toLocaleString("ru-RU");
@@ -50,27 +52,35 @@ export default function GuaranteeCalculator() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ guaranteeType, amount, months, discount, fullname, phone });
+
+    // Reset form
+    setFullname("");
+    setPhone("");
+    setPhoneKey((k) => k + 1);
+
+    // Show success toast
+    toast.success("Заявка отправлена");
   };
 
   return (
     <FadeIn>
-      <section className="mx-auto mt-16 w-full max-w-7xl p-12 bg-foreground/5 rounded-2xl">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section className="mx-auto mt-8 md:mt-16 w-full max-w-7xl px-4 md:p-12 bg-foreground/5 rounded-xl md:rounded-2xl">
+        <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
           <div className="space-y-8">
             <div>
-              <h2 className="mb-2 text-3xl font-bold text-primary">
+              <h2 className="mb-2 text-2xl md:text-3xl font-bold text-primary">
                 Рассчитайте свою банковскую гарантию
               </h2>
-              <p className="text-sm">Выберите тип гарантии</p>
+              <p className="text-xs md:text-sm">Выберите тип гарантии</p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {guaranteeTypes.map((type) => (
                 <button
                   key={type.value}
                   type="button"
                   onClick={() => setGuaranteeType(type.value)}
-                  className={`rounded-xl px-4 py-2.5 text-sm  font-semibold transition-all hover:bg-primary hover:-translate-y-1 hover:text-white cursor-pointer ${
+                  className={`rounded-lg md:rounded-xl px-2 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold transition-all hover:bg-primary hover:-translate-y-1 hover:text-white cursor-pointer ${
                     guaranteeType === type.value
                       ? "border-2 border-primary bg-primary text-white"
                       : "border-2 border-primary text-primary"
@@ -82,7 +92,7 @@ export default function GuaranteeCalculator() {
             </div>
 
             <div className="space-y-4">
-              <Label className="text-base font-medium text-primary">
+              <Label className="text-sm md:text-base font-medium text-primary">
                 Сумма гарантии, ₽
               </Label>
               <div className="relative">
@@ -94,7 +104,7 @@ export default function GuaranteeCalculator() {
                       parseInt(e.target.value.replace(/\s/g, "")) || 0;
                     setAmount(Math.min(Math.max(value, 10000), 1000000000));
                   }}
-                  className="h-16 text-2xl font-bold text-gray-900 bg-white border-gray-300 px-4 pr-12"
+                  className="h-12 md:h-16 text-lg md:text-2xl font-bold text-gray-900 bg-white border-gray-300 px-4 pr-12"
                 />
                 <button
                   type="button"
@@ -134,16 +144,16 @@ export default function GuaranteeCalculator() {
                 }}
               />
 
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>10 000 ₽</span>
-                <span>1 000 000 ₽</span>
-                <span>100 000 000 ₽</span>
-                <span>до 1 000 000 000 ₽</span>
+              <div className="flex flex-wrap justify-between gap-2 text-xs text-gray-500">
+                <span className="text-xs">10 тыс</span>
+                <span className="hidden sm:inline text-xs">1 млн</span>
+                <span className="hidden md:inline text-xs">100 млн</span>
+                <span className="text-xs">1 млрд</span>
               </div>
             </div>
 
             <div className="space-y-4">
-              <Label className="text-base font-medium text-primary">
+              <Label className="text-sm md:text-base font-medium text-primary">
                 Срок, месяцев
               </Label>
               <div className="relative">
@@ -154,7 +164,7 @@ export default function GuaranteeCalculator() {
                     const value = parseInt(e.target.value) || 0;
                     setMonths(Math.min(Math.max(value, 1), 120));
                   }}
-                  className="h-16 text-2xl font-bold text-gray-900 bg-white border-gray-300 px-4 pr-12"
+                  className="h-12 md:h-16 text-lg md:text-2xl font-bold text-gray-900 bg-white border-gray-300 px-4 pr-12"
                 />
                 <button
                   type="button"
@@ -202,18 +212,18 @@ export default function GuaranteeCalculator() {
           </div>
 
           <div className="lg:sticky lg:top-8 lg:h-fit">
-            <div className="rounded-3xl border border-foreground/10 bg-foreground/10 p-8 shadow-xl">
-              <div className="mb-6 space-y-3 border-b border-gray-200 pb-6">
-                <div className="flex justify-between text-sm">
-                  <span className="">Сумма банковской гарантии:</span>
+            <div className="rounded-2xl md:rounded-3xl border border-foreground/10 bg-foreground/10 p-5 md:p-8 shadow-xl">
+              <div className="mb-6 space-y-2 md:space-y-3 border-b border-gray-200 pb-6">
+                <div className="flex justify-between text-xs md:text-sm">
+                  <span className="">Сумма гарантии:</span>
                   <span className="font-semibold text-primary">
                     {amount >= 1000000
                       ? `${(amount / 1000000).toFixed(1)} млн ₽`
                       : `${formatNumber(amount)} ₽`}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="">Срок гарантии:</span>
+                <div className="flex justify-between text-xs md:text-sm">
+                  <span className="">Срок:</span>
                   <span className="font-semibold text-primary">
                     {months}{" "}
                     {months === 1 ? "месяц" : months < 5 ? "месяца" : "месяцев"}
@@ -222,13 +232,13 @@ export default function GuaranteeCalculator() {
               </div>
 
               <div className="mb-6">
-                <div className="mb-2 text-sm">Итоговая цена гарантии:</div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-bold text-primary">
+                <div className="mb-2 text-xs md:text-sm">Итоговая цена:</div>
+                <div className="flex items-baseline gap-2 md:gap-3">
+                  <span className="text-2xl md:text-3xl font-bold text-primary">
                     {formatNumber(finalPrice)} ₽
                   </span>
                   {discount && (
-                    <span className="text-lg text-red-500 line-through">
+                    <span className="text-sm md:text-lg text-red-500 line-through">
                       {formatNumber(originalPrice)} ₽
                     </span>
                   )}
@@ -239,49 +249,50 @@ export default function GuaranteeCalculator() {
                 <div className="space-y-2">
                   <Input
                     type="text"
-                    placeholder="Иванов Иван Иванович"
+                    placeholder="ФИО"
                     value={fullname}
                     onChange={(e) => setFullname(e.target.value)}
-                    className="bg-white border-gray-300 px-4 py-6"
+                    className="bg-white border-gray-300 px-4 py-3 md:py-6 text-sm md:text-base"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
                   <PhoneInput
+                    key={phoneKey}
                     placeholder="+7 (___) ___-__-__"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="bg-white border-gray-300 px-4 py-6 h-11 rounded-full"
+                    className="bg-white border-gray-300 px-4 py-3 md:py-6 h-10 md:h-11 rounded-full text-sm md:text-base"
                     required
                   />
                 </div>
 
-                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-4">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3 md:p-4">
+                  <div className="flex items-center gap-2 md:gap-3">
                     <Switch checked={discount} onCheckedChange={setDiscount} />
-                    <Label className="text-sm font-medium text-black cursor-pointer">
-                      Активировать скидку
+                    <Label className="text-xs md:text-sm font-medium text-black cursor-pointer">
+                      Скидка
                     </Label>
                   </div>
                   {discount && (
-                    <span className="rounded bg-red-500 px-3 py-1 text-xs font-bold text-white">
+                    <span className="rounded bg-red-500 px-2 md:px-3 py-0.5 md:py-1 text-xs font-bold text-white">
                       -20%
                     </span>
                   )}
                 </div>
 
-                <div className="space-y-3">
-                  <Label className="flex items-start gap-3 cursor-pointer">
+                <div className="space-y-2 md:space-y-3">
+                  <Label className="flex items-start gap-2 md:gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       required
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
+                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20 shrink-0"
                     />
-                    <span className="text-sm">
+                    <span className="text-xs md:text-sm">
                       Я даю согласие на обработку{" "}
                       <span className="font-medium text-primary">
-                        моих персональных данных
+                        персональных данных
                       </span>
                     </span>
                   </Label>
@@ -289,14 +300,14 @@ export default function GuaranteeCalculator() {
 
                 <Button
                   type="submit"
-                  className="w-full h-14 bg-primary btn-three"
+                  className="w-full h-11 md:h-14 bg-primary btn-three text-sm md:text-base"
                   size="lg"
                 >
-                  Отправить заявку
+                  Отправить
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  * Предварительный расчет. Не является публичной офертой
+                  * Предварительный расчет
                 </p>
               </form>
             </div>

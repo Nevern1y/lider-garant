@@ -65,10 +65,10 @@ const PhoneInput = React.forwardRef<HTMLInputElement, Props>(
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      // set validity on blur
       const el = e.target as HTMLInputElement;
       const digits = onlyDigits(el.value);
-      if (digits.length !== 10) {
+
+      if (digits.length > 0 && digits.length !== 11) {
         el.setCustomValidity("Введите номер в формате +7(XXX)XXX-XX-XX");
       } else {
         el.setCustomValidity("");

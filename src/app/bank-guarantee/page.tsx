@@ -222,7 +222,7 @@ export default function BankGuaranteePage() {
 
                 <div className="flex items-center gap-3">
                   <Button asChild className="btn-three h-12">
-                    <Link href="/#application">Подать заявку!</Link>
+                    <Link href="#form">Подать заявку!</Link>
                   </Button>
                 </div>
               </div>
@@ -460,7 +460,9 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <TopApplicationForm />
+          <section id="form">
+            <TopApplicationForm />
+          </section>
         </FadeIn>
 
         <FadeIn>

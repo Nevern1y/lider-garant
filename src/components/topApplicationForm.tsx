@@ -38,19 +38,19 @@ export default function TopApplicationForm() {
 
   return (
     <FadeIn>
-      <section className="relative mx-auto mt-8 w-full max-w-7xl bg-foreground/10 overflow-visible rounded-3xl px-6 py-10 md:px-12 min-h-[550px] border border-foreground/10">
-        <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12 h-full min-h-[500px]">
+      <section className="relative mx-auto mt-6 md:mt-8 w-full max-w-7xl bg-foreground/10 overflow-visible rounded-2xl md:rounded-3xl px-4 md:px-6 lg:px-12 py-6 md:py-10 min-h-auto md:min-h-[550px] border border-foreground/10">
+        <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-8 lg:gap-12 h-full min-h-auto lg:min-h-[500px]">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8 flex-1">
-            <div className="flex flex-col gap-4 w-full lg:w-auto z-20">
+            <div className="flex flex-col gap-3 md:gap-4 w-full lg:w-auto z-20">
               {banks.map((bank, index) => (
                 <div
                   key={bank.name}
-                  className="group relative flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.01] min-w-[320px] lg:min-w-[380px]"
+                  className="group relative flex items-center gap-3 md:gap-4 rounded-xl md:rounded-2xl border border-gray-200 bg-white px-3 md:px-5 py-3 md:py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.01] min-w-full md:min-w-[320px] lg:min-w-[380px]"
                   style={{
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white">
+                  <div className="flex h-10 md:h-12 w-10 md:w-12 shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-white">
                     <Image
                       src={bank.logo}
                       alt={bank.name}
@@ -61,12 +61,14 @@ export default function TopApplicationForm() {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="mt-1.5 flex items-center gap-2 text-xs text-gray-600">
+                    <p className="mt-1 md:mt-1.5 flex items-center gap-1.5 md:gap-2 text-xs md:text-xs text-gray-600">
                       <CheckCircle2
-                        className="h-4 w-4 shrink-0 text-emerald-500"
+                        className="h-3.5 w-3.5 md:h-4 md:w-4 shrink-0 text-emerald-500"
                         strokeWidth={2.5}
                       />
-                      <span>Заявка успешно одобрена</span>
+                      <span className="truncate md:truncate">
+                        Заявка одобрена
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -88,18 +90,20 @@ export default function TopApplicationForm() {
           <div className="flex shrink-0 w-full lg:w-auto">
             <form
               onSubmit={handleSubmit}
-              className="w-full max-w-lg lg:max-w-xl rounded-3xl border border-foreground/20 bg-foreground/10 p-10 lg:p-12 shadow-2xl relative -mt-8 -mb-8 lg:-mt-12 lg:-mb-12"
+              className="w-full max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border border-foreground/20 bg-foreground/10 p-5 md:p-10 lg:p-12 shadow-2xl relative mt-4 md:-mt-8 lg:-mt-12 md:-mb-8 lg:-mb-12"
               aria-label="Форма получения банковской гарантии"
             >
-              <h3 className="mb-6 text-2xl font-bold leading-tight text-primary">
-                Получить банковскую гарантию
+              <h3 className="mb-4 md:mb-6 text-xl md:text-2xl font-bold leading-tight text-primary">
+                Получить гарантию
               </h3>
 
-              <div className="space-y-3">
-                <Label htmlFor="guarantee-type">Вид гарантии</Label>
+              <div className="space-y-2 md:space-y-3">
+                <Label htmlFor="guarantee-type" className="text-xs md:text-sm">
+                  Вид гарантии
+                </Label>
                 <Select name="guarantee-type" required>
-                  <SelectTrigger className="w-full bg-white border-gray-300 px-4 py-6">
-                    <SelectValue placeholder="Выберите тип гарантии" />
+                  <SelectTrigger className="w-full bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base">
+                    <SelectValue placeholder="Выберите тип" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="tender">Участие в тендере</SelectItem>
@@ -114,40 +118,44 @@ export default function TopApplicationForm() {
                 </Select>
               </div>
 
-              <div className="mt-3 space-y-3">
-                <Label htmlFor="fullname">ФИО</Label>
+              <div className="mt-2 md:mt-3 space-y-2 md:space-y-3">
+                <Label htmlFor="fullname" className="text-xs md:text-sm">
+                  ФИО
+                </Label>
                 <Input
                   id="fullname"
                   type="text"
                   name="fullname"
-                  placeholder="Иванов Иван Иванович"
-                  className="bg-white border-gray-300 px-4 py-6"
+                  placeholder="ФИО"
+                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base"
                   required
                 />
               </div>
 
-              <div className="mt-3 space-y-3">
-                <Label htmlFor="phone">Телефон</Label>
+              <div className="mt-2 md:mt-3 space-y-2 md:space-y-3">
+                <Label htmlFor="phone" className="text-xs md:text-sm">
+                  Телефон
+                </Label>
                 <PhoneInput
                   key={phoneKey}
                   id="phone"
                   name="phone"
-                  className="bg-white border-gray-300 px-4 py-6 h-11 rounded-full"
+                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 h-10 md:h-11 rounded-full text-sm md:text-base"
                   required
                 />
               </div>
 
-              <div className="mt-4 space-y-3">
-                <Label className="flex items-start gap-3 cursor-pointer">
+              <div className="mt-3 md:mt-4 space-y-2 md:space-y-3">
+                <Label className="flex items-start gap-2 md:gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     required
-                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
+                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20 shrink-0"
                   />
-                  <span className="text-sm">
+                  <span className="text-xs md:text-sm">
                     Я даю согласие на обработку{" "}
                     <span className="font-medium text-primary">
-                      моих персональных данных
+                      персональных данных
                     </span>
                   </span>
                 </Label>
@@ -155,10 +163,10 @@ export default function TopApplicationForm() {
 
               <Button
                 type="submit"
-                className="mt-6 w-full rounded-xl px-6 py-6 bg-primary"
+                className="mt-4 md:mt-6 w-full rounded-lg md:rounded-xl px-4 md:px-6 py-3 md:py-6 bg-primary text-sm md:text-base"
                 size="lg"
               >
-                Отправить заявку
+                Отправить
               </Button>
             </form>
           </div>
