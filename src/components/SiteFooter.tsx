@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Send } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function SiteFooter() {
@@ -41,8 +42,23 @@ export default function SiteFooter() {
                 support@lider-garant.ru
               </a>
             </div>
-            <div>
+            <div className="flex items-center gap-3">
               <ThemeToggle />
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className=""
+                title="Telegram"
+              >
+                <Image
+                  src="/tg-icon.svg"
+                  alt="Telegram"
+                  width={20}
+                  height={20}
+                  className="h-10 w-10"
+                />
+              </a>
             </div>
           </div>
 
