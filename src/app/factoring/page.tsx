@@ -5,6 +5,12 @@ import ManagerCTASection from "@/components/ManagerCTASection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -307,10 +313,7 @@ export default function Page() {
                     .
                   </span>
                 </label>
-                <Button
-                  type="submit"
-                  className="h-11 rounded-xl px-6 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-xl active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-                >
+                <Button type="submit" className="h-11 btn-three w-full">
                   Отправить заявку
                 </Button>
               </form>
@@ -338,7 +341,7 @@ export default function Page() {
             {related.map((item) => (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
+                className="group relative hover:border-primary overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
               >
                 <div className="mb-2 text-lg font-semibold text-foreground">
                   {item.title}
@@ -347,7 +350,7 @@ export default function Page() {
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm"
+                  className="rounded-xl px-4 py-2 text-sm border-2 border-primary text-primary transition-all hover:bg-primary hover:text-white"
                 >
                   <a href={item.href}>Подробнее</a>
                 </Button>
@@ -395,6 +398,81 @@ export default function Page() {
           ))}
         </div>
       </section>
+
+      <FadeIn>
+        <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
+          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
+            Вопросы по факторингу
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {[
+              {
+                q: "Что такое факторинг?",
+                a: "Факторинг — это финансирование компании под уступку денежного требования. Вы получаете деньги за поставку сразу, а фактор ждёт оплату от покупателя.",
+              },
+              {
+                q: "Кому подходит факторинг?",
+                a: "Компанию, которые продают товары или услуги с отсрочкой платежа: производителям, поставщикам, подрядчикам, логистам и компаниям в сфере торговли.",
+              },
+              {
+                q: "Какие виды факторинга бывают?",
+                a: "Регрессный и безрегрессный факторинг, международный факторинг, скрытый факторинг, а также факторинг для поставщиков госзаказа.",
+              },
+              {
+                q: "В чём польза для бизнеса?",
+                a: "Вы сразу получаете оборотные средства, увеличиваете объём продаж, улучшаете cash-flow и снижаете риски неплатежей при безрегрессном факторинге.",
+              },
+              {
+                q: "Как быстро можно получить финансирование?",
+                a: "Предварительное решение — от 1 часа. Финансирование обычно доступно в тот же день, когда поставка или документы подтверждены.",
+              },
+              {
+                q: "Нужны ли залоги или поручительства?",
+                a: "Нет. Факторинг не требует залога — обеспечение выступает дебиторская задолженность, что делает продукт удобным и быстрым.",
+              },
+              {
+                q: "Какие документы нужны для начала?",
+                a: "Уставные документы, договор с покупателем, документы по отгрузке. В ряде случаев достаточно минимального пакета — подскажем что именно.",
+              },
+              {
+                q: "Можно ли пользоваться факторингом онлайн?",
+                a: "Да, весь процесс — от подачи заявки до получения финансирования — можно пройти дистанционно.",
+              },
+            ].map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`item-${i}`}
+                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+              >
+                <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
+                  {item.q}
+                  <svg
+                    className="h-4 w-4 shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6 6-6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </AccordionTrigger>
+                <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <ManagerCTASection />
+      </FadeIn>
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-12">
           <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
@@ -441,9 +519,6 @@ export default function Page() {
             </div>
           </div>
         </section>
-      </FadeIn>
-      <FadeIn>
-        <ManagerCTASection />
       </FadeIn>
     </main>
   );

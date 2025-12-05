@@ -4,6 +4,7 @@ import FadeIn from "@/components/FadeIn";
 import ManagerCTASection from "@/components/ManagerCTASection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import {
   Select,
   SelectContent,
@@ -11,6 +12,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function DepositsPage() {
@@ -279,40 +288,221 @@ export default function DepositsPage() {
             </div>
           </section>
 
-          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-[0_0_20px_rgb(34,211,238,0.1)]">
-            <h2 className="text-xl font-semibold mb-3 text-white">
-              Подберем самое выгодное
-            </h2>
-            <p className="text-sm text-[var(--foreground-secondary)] mb-6">
-              Выберите из предложений банков лучшее — мы поможем оформить.
-            </p>
+          <FadeIn>
+            <section className="mx-auto mt-2 w-full max-w-7xl py-12">
+              <div className="grid items-stretch gap-10 md:grid-cols-2">
+                <div>
+                  <h2 className="mb-4 text-2xl font-semibold text-foreground">
+                    Подберем самые выгодные предложения
+                  </h2>
+                  <p className="mb-6 text-sm text-foreground/70">
+                    Заполните форму, выберите среди предложений банков лучшее,
+                    получите гарантию и заключайте контракт с заказчиком.
+                  </p>
+                  <form
+                    id="application"
+                    className="space-y-4"
+                    action="#"
+                    method="post"
+                  >
+                    <div className="grid gap-4">
+                      <Input
+                        type="text"
+                        name="inn"
+                        placeholder="ИНН"
+                        inputMode="numeric"
+                        pattern="^(\\d{10}|\\d{12})$"
+                        title="ИНН должен содержать 10 или 12 цифр"
+                        required
+                        maxLength={12}
+                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                      />
+                      <Input
+                        type="number"
+                        name="amount"
+                        placeholder="Сумма"
+                        inputMode="numeric"
+                        min={1}
+                        step={1000}
+                        title="Укажите сумму больше 0"
+                        required
+                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                      />
+                      <PhoneInput
+                        name="phone"
+                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                        required
+                      />
+                    </div>
+                    <label className="flex items-start gap-3 text-xs text-foreground/70">
+                      <input
+                        type="checkbox"
+                        required
+                        className="mt-0.5 h-4 w-4 rounded border-foreground/30"
+                      />
+                      <span>
+                        Ставя галочку, я соглашаюсь на обработку персональных
+                        данных, в соответствии с
+                        <a
+                          href="/docs/agreement.pdf"
+                          target="_blank"
+                          className="mx-1 underline"
+                        >
+                          Соглашением
+                        </a>
+                        и
+                        <a
+                          href="/docs/privacy.pdf"
+                          target="_blank"
+                          className="ml-1 underline"
+                        >
+                          Политикой конфиденциальности
+                        </a>
+                        .
+                      </span>
+                    </label>
+                    <Button type="submit" className="h-11 btn-three w-full">
+                      Отправить заявку
+                    </Button>
+                  </form>
+                </div>
 
-            <form className="space-y-4">
-              <Input
-                placeholder="ИНН"
-                className="h-12 rounded-xl bg-[#062033]/60 border border-white/10 text-sm px-4"
-              />
-              <Input
-                placeholder="Сумма"
-                className="h-12 rounded-xl bg-[#062033]/60 border border-white/10 text-sm px-4"
-              />
-              <Input
-                placeholder="Номер телефона"
-                className="h-12 rounded-xl bg-[#062033]/60 border border-white/10 text-sm px-4"
-              />
-              <Button
-                className="w-full h-12 rounded-xl bg-primary
-                text-white font-semibold shadow-[0_0_20px_var(--primary-glow)]
-                hover:brightness-110 hover:-translate-y-0.5 transition-all"
-              >
-                Отправить заявку
-              </Button>
-            </form>
-          </section>
+                <div className="relative h-80 md:h-auto w-full rounded-3xl overflow-hidden border border-white/10">
+                  <Image
+                    src="/good-deal.jpg"
+                    alt="good deal"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                </div>
+              </div>
+            </section>
+          </FadeIn>
         </div>
 
         <FadeIn>
+          <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
+            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
+              Вопросы по депозитам
+            </h2>
+            <Accordion type="single" collapsible className="space-y-3">
+              {[
+                {
+                  q: "Что такое депозит?",
+                  a: "Депозит — это вклад в банк под фиксированную или плавающую процентную ставку, который приносит доход через определённый срок.",
+                },
+                {
+                  q: "Какие бывают виды депозитов?",
+                  a: "Срочные депозиты, депозиты до востребования, накопительные счета, депозиты с возможностью пополнения и снятия, а также валютные депозиты.",
+                },
+                {
+                  q: "Чем отличается вклад от накопительного счёта?",
+                  a: "Вклад имеет фиксированный срок и ставку, а накопительный счёт позволяет свободно пополнять и снимать деньги, но с гибкой ставкой.",
+                },
+                {
+                  q: "Какой минимальный срок открывают депозиты?",
+                  a: "Обычно от 1 месяца до 36 месяцев, в зависимости от условий банка.",
+                },
+                {
+                  q: "Можно ли снимать деньги раньше срока?",
+                  a: "Да, но в большинстве случаев ставка пересчитывается на минимальную. Некоторые банки позволяют частичное снятие без потери процентов.",
+                },
+                {
+                  q: "Уплачиваются ли налоги с дохода по депозитам?",
+                  a: "Да, налог взимается с дохода, превышающего необлагаемый лимит. Банк удерживает налог автоматически.",
+                },
+                {
+                  q: "Насколько безопасны депозиты?",
+                  a: "Депозиты защищены системой страхования вкладов — до 1,4 млн рублей на одного человека в одном банке.",
+                },
+                {
+                  q: "Можно ли открыть депозит онлайн?",
+                  a: "Да, большинство банков позволяют открыть депозит полностью онлайн — через приложение или личный кабинет.",
+                },
+              ].map((item, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`item-${i}`}
+                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                >
+                  <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
+                    {item.q}
+                    <svg
+                      className="h-4 w-4 shrink-0 transition-transform duration-300"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 9l6 6 6-6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </AccordionTrigger>
+                  <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+        </FadeIn>
+
+        <FadeIn>
           <ManagerCTASection />
+        </FadeIn>
+
+        <FadeIn>
+          <section className="mx-auto w-full max-w-7xl py-12">
+            <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
+              Часто ищут
+            </h2>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+                {[
+                  "Банковские гарантии на исполнение контракта",
+                  "Банковские гарантии на участие в тендере",
+                  "Банковские гарантии на гарантийное обеспечение (ГО)",
+                  "Банковские гарантии на авансовый платёж",
+                  "Банковские гарантии по закрытой закупке",
+                  "Банковские гарантии по коммерческой закупке",
+                ].map((t, i) => (
+                  <Link
+                    key={i}
+                    href="/#application"
+                    className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
+                  >
+                    {t}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+                {[
+                  "Банковские гарантии для ИП",
+                  "Банковские гарантии для ООО",
+                  "Банковские гарантии 44-ФЗ",
+                  "Банковские гарантии 223-ФЗ",
+                  "Экспресс-гарантии",
+                  "Налоговые банковские гарантии",
+                ].map((t, i) => (
+                  <Link
+                    key={i}
+                    href="/#application"
+                    className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
+                  >
+                    {t}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
         </FadeIn>
       </div>
     </main>

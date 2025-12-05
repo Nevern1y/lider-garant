@@ -387,7 +387,7 @@ export default function Page() {
             {related.map((item) => (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
+                className="group relative hover:border-primary overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
               >
                 <div className="mb-2 text-lg font-semibold text-foreground">
                   {item.title}
@@ -396,7 +396,7 @@ export default function Page() {
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm"
+                  className="rounded-xl px-4 py-2 text-sm border-2 border-primary text-primary transition-all hover:bg-primary hover:text-white"
                 >
                   <a href={item.href}>Подробнее</a>
                 </Button>
@@ -444,6 +444,11 @@ export default function Page() {
           ))}
         </div>
       </section>
+
+      <FadeIn>
+        <ManagerCTASection />
+      </FadeIn>
+
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-12">
           <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
@@ -451,7 +456,7 @@ export default function Page() {
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-foreground/3 p-6 space-y-2">
               {[
                 "Банковские гарантии на исполнение контракта",
                 "Банковские гарантии на участие в тендере",
@@ -470,7 +475,7 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-foreground/3 p-6 space-y-2">
               {[
                 "Банковские гарантии для ИП",
                 "Банковские гарантии для ООО",
@@ -490,10 +495,6 @@ export default function Page() {
             </div>
           </div>
         </section>
-      </FadeIn>
-
-      <FadeIn>
-        <ManagerCTASection />
       </FadeIn>
     </main>
   );

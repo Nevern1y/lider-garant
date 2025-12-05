@@ -58,7 +58,6 @@ export default function GuaranteeCalculator() {
     setPhone("");
     setPhoneKey((k) => k + 1);
 
-    // Show success toast
     toast.success("Заявка отправлена");
   };
 
@@ -69,7 +68,7 @@ export default function GuaranteeCalculator() {
           <div className="space-y-8">
             <div>
               <h2 className="mb-2 text-2xl md:text-3xl font-bold text-primary">
-                Рассчитайте свою банковскую гарантию
+                Рассчитайте стоимость банковской гарантии (БГ)
               </h2>
               <p className="text-xs md:text-sm">Выберите тип гарантии</p>
             </div>

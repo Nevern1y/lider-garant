@@ -22,6 +22,7 @@ import {
   Timer,
   Percent,
   CheckCheck,
+  Banknote,
 } from "lucide-react";
 import {
   ShieldCheck,
@@ -88,7 +89,7 @@ export default function BankGuaranteePage() {
       text: "Рассмотрение заявки ≤ 1 часа, гарантия в день обращения.",
       icon: Timer,
     },
-    { text: "Минимальная комиссия.", icon: Percent },
+    { text: "Минимальная комиссия банка.", icon: Percent },
   ];
 
   const banks = [
@@ -288,7 +289,7 @@ export default function BankGuaranteePage() {
                 return (
                   <div
                     key={i}
-                    className="group relative rounded-2xl hover:-translate-y-1 border border-foreground/10 bg-white/5 p-4 shadow-sm hover:shadow-md transition-all"
+                    className="group hover:border-primary relative rounded-2xl hover:-translate-y-1 border border-foreground/10 bg-white/5 p-4 shadow-sm hover:shadow-md transition-all"
                   >
                     <div className="flex items-start gap-3">
                       <div className="min-w-0">
@@ -515,7 +516,7 @@ export default function BankGuaranteePage() {
         <FadeIn>
           <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
             <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-              Часто задаваемые вопросы
+              Банковская гарантия вопросы
             </h2>
             <Accordion type="single" collapsible className="space-y-3">
               {[
@@ -626,35 +627,46 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto w-full max-w-7xl py-12">
-            <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl text-center">
+          <section className="mx-auto w-full max-w-7xl py-16">
+            <h2 className="mb-12 text-center text-3xl font-bold text-primary md:text-4xl">
               Гарантии для госзаказа
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-3 ">
-              <div className="rounded-xl border border-foreground/10 bg-foreground/5 p-6">
-                <p className="text-base text-muted-foreground ">
-                  Получить поручительство банка на выполнение обязательств для
-                  заказчика,согласно требованиям 44-ФЗ,223-ФЗ,с помощью нашего
-                  финансового маркетплейса , можно быстро и выгодно.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6">
+            <div className="grid gap-8 md:grid-cols-3">
+              <div className="group rounded-2xl border border-foreground/10 bg-foreground/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/40">
+                  <ShieldCheck className="h-7 w-7 text-primary" />
+                </div>
                 <p className="text-base text-muted-foreground">
-                  Одна заявка уйдет в несколько банков , среди предложений,среди
-                  которых выберете лучшее.
+                  Получите поручительство банка на выполнение обязательств по
+                  44-ФЗ и 223-ФЗ через наш маркетплейс — быстро, выгодно и без
+                  лишних шагов.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6">
-                <p className="mb-4 font-semibold">
-                  Мы работаем со всеми видами гарантий для госзаказа :
+              <div className="group rounded-2xl border border-foreground/10 bg-foreground/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/40">
+                  <Banknote className="h-7 w-7 text-primary" />
+                </div>
+                <p className="text-base text-muted-foreground">
+                  Одна заявка отправляется сразу в несколько банков — выбирайте
+                  наиболее выгодные условия среди полученных предложений.
                 </p>
+              </div>
+
+              <div className="group rounded-2xl border border-foreground/10 bg-foreground/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/40">
+                  <FileCheck className="h-7 w-7 text-primary" />
+                </div>
+
+                <p className="mb-4 font-semibold text-foreground">
+                  Мы работаем со всеми видами гарантий:
+                </p>
+
                 <ul className="flex flex-col gap-2 text-muted-foreground">
-                  <li>Гарантии на заявку для участия в торгах</li>
-                  <li>Гарантии на исполнение контракта</li>
-                  <li>Гарантии обеспечение гарантийных обязательств</li>
+                  <li>✔ Гарантия на заявку (участие в торгах)</li>
+                  <li>✔ Гарантия исполнения контракта</li>
+                  <li>✔ Гарантия обеспечения гарантийных обязательств</li>
                 </ul>
               </div>
             </div>
