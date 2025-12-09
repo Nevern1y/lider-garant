@@ -6,6 +6,7 @@ import ManagerCTASection from "@/components/ManagerCTASection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
+import WhyUs from "@/components/Why-us";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -255,10 +256,24 @@ export default function Page() {
               <h1 className="text-3xl font-semibold tracking-tight text-primary md:text-5xl">
                 РКО и спецсчета
               </h1>
+
               <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
-                Предлагаем выбрать вам лучшие условия по рассчетно-кассовому
-                обслуживанию и открытию спецчетов гарантии для бизнеса!
+                Предлагаем выбрать вам лучшие условия по расчётно-кассовому
+                обслуживанию и открытию спецсчетов гарантии для бизнеса!
               </p>
+
+              <ul className="mt-4 space-y-2 text-foreground/90 md:text-lg">
+                <li className="list-disc marker:text-primary">
+                  Обслуживание от 0 ₽/мес.
+                </li>
+                <li className="list-disc marker:text-primary">
+                  Первый месяц бесплатно
+                </li>
+                <li className="list-disc marker:text-primary">
+                  Реквизиты сразу онлайн
+                </li>
+              </ul>
+
               <div className="flex items-center gap-3">
                 <Button asChild className="btn-three h-12">
                   <a href="#rko-form">Подать заявку</a>
@@ -280,9 +295,15 @@ export default function Page() {
           </div>
         </section>
       </FadeIn>
+
       <FadeIn>
         <BankLogosSlider />
       </FadeIn>
+
+      <FadeIn>
+        <WhyUs variant="rko" />
+      </FadeIn>
+
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-6">
           <div className="mb-6 flex items-center justify-between">
@@ -518,7 +539,7 @@ export default function Page() {
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
               {[
                 "Банковские гарантии на исполнение контракта",
                 "Банковские гарантии на участие в тендере",
@@ -537,7 +558,7 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
               {[
                 "Банковские гарантии для ИП",
                 "Банковские гарантии для ООО",

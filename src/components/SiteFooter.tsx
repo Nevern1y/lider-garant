@@ -26,20 +26,17 @@ export default function SiteFooter() {
                 alt="Логотип"
                 width={154}
                 height={156}
-                className="row-span-2 h-15 mb-25 mt-15 w-auto logo-dark-footer"
+                className="row-span-2 h-15 mb-25 mt-20 w-auto logo-dark-footer"
               />
             </div>
             <address className="not-italic text-sm text-foreground/70">
-              ООО Лидер‑Гарант, 127283, г. Москва, ул. Остоженка 10
+              ООО Лидер‑Гарант, 129085, г. Москва, Проспект мира 105
             </address>
             <div className="text-sm text-foreground/70">
               Служба поддержки
-              <div>8 300 000 00 00 Ежедневно с 7 до 20 Мск</div>
-              <a
-                href="mailto:support@lider-garant.ru"
-                className="link-gradient"
-              >
-                support@lider-garant.ru
+              <div>+7(965)284-14-15 Ежедневно с 7 до 20 Мск</div>
+              <a href="mailto:info@lider-garant.ru" className="link-gradient">
+                info@lider-garant.ru
               </a>
             </div>
             <div className="flex items-center gap-3">
@@ -69,6 +66,16 @@ export default function SiteFooter() {
               <li>
                 <Link href="/credits" className="nav-link link-gradient">
                   Кредиты
+                </Link>
+              </li>
+              <li>
+                <Link href="/factoring" className="nav-link link-gradient">
+                  Факторинг
+                </Link>
+              </li>
+              <li>
+                <Link href="/deposit" className="nav-link link-gradient">
+                  Депозиты
                 </Link>
               </li>
               <li>

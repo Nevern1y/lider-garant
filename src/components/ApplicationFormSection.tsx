@@ -52,7 +52,7 @@ export default function ApplicationFormSection() {
   ];
 
   return (
-    <section id="application" className="mx-auto mt-4 w-full max-w-7xl py-16">
+    <section id="application" className="mx-auto w-full max-w-7xl py-5">
       <div className="relative overflow-hidden rounded-[32px] border border-foreground/10">
         <div className="pointer-events-none absolute inset-0 opacity-70">
           <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-sky-500/30 blur-[160px]" />

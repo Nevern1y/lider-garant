@@ -67,7 +67,7 @@ export default function BestOffersSection() {
   );
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-12 sm:py-14 md:py-20">
+    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-5">
       <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] border border-foreground/10">
         <div className="relative px-5 sm:px-6 md:px-12 py-10 sm:py-12">
           <h2 className="mb-8 sm:mb-10 text-center text-[26px] xs:text-3xl md:text-[42px] font-semibold text-primary">

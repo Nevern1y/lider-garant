@@ -63,7 +63,7 @@ export default function GuaranteeCalculator() {
 
   return (
     <FadeIn>
-      <section className="mx-auto mt-8 md:mt-16 w-full max-w-7xl px-4 md:p-12 bg-foreground/5 rounded-xl md:rounded-2xl">
+      <section className="mx-auto w-full max-w-7xl px-4 md:p-12 bg-white/5 rounded-xl md:rounded-2xl my-10">
         <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
           <div className="space-y-8">
             <div>
@@ -211,7 +211,7 @@ export default function GuaranteeCalculator() {
           </div>
 
           <div className="lg:sticky lg:top-8 lg:h-fit">
-            <div className="rounded-2xl md:rounded-3xl border border-foreground/10 bg-foreground/10 p-5 md:p-8 shadow-xl">
+            <div className="rounded-2xl md:rounded-3xl border border-foreground/10 bg-white/5 p-5 md:p-8 shadow-xl">
               <div className="mb-6 space-y-2 md:space-y-3 border-b border-gray-200 pb-6">
                 <div className="flex justify-between text-xs md:text-sm">
                   <span className="">Сумма гарантии:</span>

@@ -77,7 +77,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 py-12 md:py-16">
+    <main className="mx-auto w-full max-w-7xl px-6 py-12">
       <FadeIn>
         <section className="relative overflow-hidden rounded-[40px] border border-foreground/10">
           <div className="relative grid gap-10 px-4 py-12 md:grid-cols-[1.1fr_0.9fr] md:px-14">
@@ -101,14 +101,6 @@ export default function Home() {
                     Войти
                   </Link>
                 </button>
-
-                <Button
-                  asChild
-                  size="lg"
-                  className="rounded-2xl bg-none border-primary border text-primary hover:bg-primary hover:text-white py-6 px-9 text-sm font-semibold uppercase tracking-wide w-max"
-                >
-                  <Link href="/register">Зарегистрироваться</Link>
-                </Button>
               </div>
             </div>
 
@@ -125,6 +117,7 @@ export default function Home() {
           </div>
         </section>
       </FadeIn>
+
       <FadeIn>
         <BankLogosSlider />
       </FadeIn>
@@ -132,7 +125,7 @@ export default function Home() {
       <FadeIn>
         <section
           id="products"
-          className="relative overflow-hidden mx-auto mt-12 w-full max-w-7xl py-20 md:py-28"
+          className="relative overflow-hidden mx-auto w-full max-w-7xl py-5"
         >
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-primary/15 blur-[120px] opacity-70" />
@@ -146,7 +139,7 @@ export default function Home() {
             {products.map((item) => (
               <div
                 key={item.id}
-                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
+                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] hover:shadow-xl hover:shadow-primary/10 backdrop-blur-xl transition-all duration-500"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="pr-24 md:pr-32">
@@ -184,15 +177,15 @@ export default function Home() {
       </FadeIn>
 
       <FadeIn>
-        <section className="relative mx-auto mt-10 w-full max-w-7xl py-20 md:py-28">
+        <section className="relative mx-auto w-full max-w-7xl py-5">
           <h2 className="mb-16 text-center text-4xl font-semibold tracking-tight text-primary md:text-5xl">
             Кто и как зарабатывает с нами?
           </h2>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-foreground/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-[0_0_55px_-5px_rgba(0,0,0,0.25)] hover:border-foreground/20">
-              <div className="relative flex items-start gap-5">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-base font-bold text-background shadow-md">
+            <div className="group relative overflow-hidden rounded-3xl hover:shadow-xl hover:shadow-primary/10  border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500 hover:border-foreground/20">
+              <div className="relative flex items-start gap-5 ">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                   A
                 </span>
                 <div>
@@ -207,11 +200,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-foreground/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-[0_0_55px_-5px_rgba(0,0,0,0.25)] hover:border-foreground/20">
-              <div className="pointer-events-none absolute -right-16 -bottom-16 h-52 w-52 rounded-full bg-gradient-to-tl from-emerald-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
+            <div className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:border-foreground/20">
+              <div className="pointer-events-none absolute  -right-16 -bottom-16 h-52 w-52 rounded-full bg-gradient-to-tl from-emerald-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
 
               <div className="relative flex items-start gap-5">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-base font-bold text-background shadow-md">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                   B
                 </span>
                 <div>

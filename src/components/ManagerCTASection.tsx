@@ -29,7 +29,7 @@ const cards = [
 
 export default function ManagerCTASection() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-12 sm:py-16 md:py-24">
+    <section className="mx-auto w-full max-w-7xl px-4 py-5">
       <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-foreground/15">
         <div className="relative grid gap-10 px-5 sm:px-8 md:px-14 py-10 sm:py-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
@@ -55,7 +55,7 @@ export default function ManagerCTASection() {
                   sm:hover:-translate-y-1 sm:hover:border-white/25"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-2xl bg-foreground/15 text-foreground">
+                    <span className="inline-flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-2xl bg-white/55 text-foreground">
                       <Icon className="h-4 w-4 xs:h-5 xs:w-5" />
                     </span>
                     <div className="text-[13px] sm:text-sm font-semibold">
@@ -77,7 +77,7 @@ export default function ManagerCTASection() {
             </div>
           </div>
 
-          <div className="order-first lg:order-0 rounded-2xl sm:rounded-3xl border border-foreground/10 bg-foreground/5 p-5 sm:p-6 text-center text-foreground/80 backdrop-blur-2xl">
+          <div className="order-first lg:order-0 rounded-2xl sm:rounded-3xl border border-foreground/10 bg-white/5 p-5 sm:p-6 text-center text-foreground/80 backdrop-blur-2xl">
             <div className="text-[10px] sm:text-[12px] font-semibold uppercase tracking-[0.25em] text-foreground/60">
               Ваш менеджер
             </div>
@@ -89,10 +89,10 @@ export default function ManagerCTASection() {
               для вас способом. Решаем вопросы даже вне рабочего времени.
             </p>
             <div className="mt-5 sm:mt-6 flex flex-col items-center gap-2.5 text-[11px] sm:text-sm">
-              <div className="rounded-2xl border border-foreground/10 bg-foreground/10 px-3 py-2 text-foreground">
+              <div className="rounded-2xl border border-foreground/10 bg-white/10 px-3 py-2 text-foreground">
                 График: 07:00 — 23:00 (МСК)
               </div>
-              <div className="rounded-2xl border border-foreground/10 bg-foreground/10 px-3 py-2 text-foreground">
+              <div className="rounded-2xl border border-foreground/10 bg-white/10 px-3 py-2 text-foreground">
                 Каналы: телефон, почта, мессенджеры
               </div>
             </div>

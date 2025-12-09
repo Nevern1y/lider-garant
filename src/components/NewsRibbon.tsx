@@ -41,22 +41,21 @@ const news = [
 
 export default function NewsRibbon() {
   return (
-    <section className="relative mx-auto w-full max-w-7xl px-6 py-10 md:py-16 overflow-hidden">
+    <section className="relative mx-auto w-full max-w-7xl px-6 py-5 overflow-hidden">
       <div className="relative rounded-[32px] border border-foreground/10 p-8 md:p-12 bg-white/5 backdrop-blur-xl">
         <h2 className="mb-10 text-center text-3xl font-semibold text-primary md:text-4xl">
           Новости компании
         </h2>
 
-        {/* Кнопки в правый верхний угол */}
         <div className="absolute top-6 right-6 flex gap-3 z-10">
           <button
-            className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
+            className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-white/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
             aria-label="Предыдущая новость"
           >
             ←
           </button>
           <button
-            className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
+            className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-white/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
             aria-label="Следующая новость"
           >
             →

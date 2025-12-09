@@ -97,17 +97,17 @@ export default function HowItWorksSection() {
             tabIndex={0}
             className="order-1 lg:order-0"
           >
-            <h2 className="mb-6 mt-2 text-[26px] sm:text-[32px] md:text-[42px] font-bold leading-tight text-foreground">
+            <h2 className="mb-6 mt-2 text-[26px] sm:text-[32px] md:text-[42px] font-bold leading-tight text-primary">
               Как это работает?
             </h2>
 
             <ol className="relative space-y-4 sm:space-y-6">
               {steps.map((step, i) => (
                 <li key={i} className="relative pl-10 sm:pl-12">
-                  <div className="pointer-events-none absolute left-2 sm:left-3 top-0 h-full w-[2px] sm:w-[3px] -translate-x-1/2">
-                    <div className="absolute inset-0 rounded-full bg-foreground/10" />
+                  <div className="pointer-events-none absolute left-2 sm:left-3 top-0 h-full w-0.5 sm:w-[3px] -translate-x-1/2">
+                    <div className="absolute inset-0 rounded-full bg-white/10" />
                     <div
-                      className="absolute left-0 top-0 w-full rounded-full bg-linear-to-b from-emerald-400 to-sky-500"
+                      className="absolute left-0 top-0 w-full rounded-full bg-primary"
                       style={{
                         height: `${
                           i < active ? 100 : i === active ? progress : 0
@@ -125,10 +125,10 @@ export default function HowItWorksSection() {
                   >
                     <span
                       className={
-                        "absolute left-[-20px] sm:left-[-18px] top-[-18px] flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full text-[10px] sm:text-sm font-semibold shadow-lg transition-all " +
+                        "absolute -left-5 sm:left-[-18px] top-[-18px] flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full text-[10px] sm:text-sm font-semibold shadow-lg transition-all " +
                         (i === active
-                          ? "bg-foreground text-background"
-                          : "bg-foreground/10 text-foreground/10 group-hover:bg-foreground/20")
+                          ? "bg-white text-background text-primary"
+                          : "bg-white/10 group-hover:bg-white/20 text-primary")
                       }
                     >
                       {i + 1}
@@ -137,8 +137,8 @@ export default function HowItWorksSection() {
                     <div
                       className={
                         (i === active
-                          ? "rounded-xl sm:rounded-2xl bg-foreground/5 p-4 sm:p-5 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.9)]"
-                          : "rounded-xl sm:rounded-2xl p-4 sm:p-5 hover:bg-foreground/5") +
+                          ? "rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.9)]"
+                          : "rounded-xl sm:rounded-2xl p-4 sm:p-5 hover:bg-white/5") +
                         " transition-colors"
                       }
                     >
@@ -173,9 +173,9 @@ export default function HowItWorksSection() {
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            <div className="absolute inset-0 rounded-[20px] sm:rounded-[30px] border border-foreground/10 bg-foreground/5 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.7)]" />
+            <div className="absolute inset-0 rounded-[20px] sm:rounded-[30px] border border-foreground/10 bg-white/5 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.7)]" />
 
-            <div className="relative h-full overflow-hidden rounded-[20px] sm:rounded-[30px] border border-foreground/10 bg-foreground/5">
+            <div className="relative h-full overflow-hidden rounded-[20px] sm:rounded-[30px] border border-foreground/10 bg-white/5">
               <div
                 className="h-full w-full transition-opacity duration-300"
                 style={{ opacity: fading ? 0 : 1 }}

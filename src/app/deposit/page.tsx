@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import WhyUs from "@/components/Why-us";
 import {
   Accordion,
   AccordionContent,
@@ -98,26 +99,28 @@ export default function DepositsPage() {
         <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr,360px] gap-8 shadow-[0_0_30px_rgb(34,211,238,0.15)]">
           <div className="flex flex-col gap-6">
             <span className="inline-block text-primary font-bold text-4xl lg:text-5xl tracking-tight">
-              Депозит
+              Депозиты для бизнеса в Москве
             </span>
-            <h1 className="text-3xl font-semibold text-[var(--foreground)] leading-snug">
-              Сравнивайте и выбирайте лучшие условия по депозитам
-            </h1>
-            <p className="text-[var(--foreground-secondary)] text-sm">
-              Подобрано{" "}
-              <strong className="text-foreground">26 предложений</strong> от{" "}
-              <strong className="text-foreground">14 банков</strong>.
-              Максимальная ставка — до{" "}
-              <strong className="text-foreground">28%</strong>.
+
+            <p className="text-xl">
+              Подайте заявки на открытие вклада для юридических лиц и ИП в
+              несколько банков. Выберите лучшие депозиты для малого и среднего
+              бизнеса под высокий процент в 2026 году! — ставка до 16,7%
+            </p>
+
+            <p className="text-[var(--foreground-secondary)] text-sm mt-2">
+              <ul className="space-y-1 text-[var(--foreground)] text-base">
+                <li className="list-disc marker:text-primary">
+                  Сумма от 1 до 1 000 000 000 ₽
+                </li>
+                <li className="list-disc marker:text-primary">
+                  Срок от 8 до 365 дней
+                </li>
+              </ul>
             </p>
 
             <div className="flex flex-wrap gap-4 mt-4">
-              <button
-                className="px-6 py-3 rounded-2xl bg-primary text-white font-semibold shadow-[0_0_20px_var(--primary-glow)]
-        hover:brightness-110 hover:-translate-y-0.5 transition-all"
-              >
-                Подать заявку
-              </button>
+              <button className="h-12 btn-three">Подать заявку</button>
             </div>
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -141,6 +144,12 @@ export default function DepositsPage() {
             </div>
           </div>
         </section>
+
+        <FadeIn>
+          <div className="mt-10">
+            <WhyUs variant="deposits" />
+          </div>
+        </FadeIn>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr,340px] gap-10">
           <section>
@@ -464,7 +473,7 @@ export default function DepositsPage() {
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+              <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
                 {[
                   "Банковские гарантии на исполнение контракта",
                   "Банковские гарантии на участие в тендере",
@@ -483,7 +492,7 @@ export default function DepositsPage() {
                 ))}
               </div>
 
-              <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+              <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
                 {[
                   "Банковские гарантии для ИП",
                   "Банковские гарантии для ООО",

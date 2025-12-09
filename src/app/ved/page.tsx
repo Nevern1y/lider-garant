@@ -9,6 +9,7 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import WhyUs from "@/components/Why-us";
 
 export default function Page() {
   const [visibleDeals] = useState(12);
@@ -171,9 +172,11 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <div className="mt-8">
-          <BankLogosSlider />
-        </div>
+        <BankLogosSlider />
+      </FadeIn>
+
+      <FadeIn>
+        <WhyUs variant="ved" />
       </FadeIn>
 
       <FadeIn>
@@ -564,7 +567,7 @@ export default function Page() {
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
               {[
                 "Банковские гарантии на исполнение контракта",
                 "Банковские гарантии на участие в тендере",
@@ -583,7 +586,7 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="rounded-xl border border-foreground/10 bg-foreground/10 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
               {[
                 "Банковские гарантии для ИП",
                 "Банковские гарантии для ООО",

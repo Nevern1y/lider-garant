@@ -38,7 +38,7 @@ export default function TopApplicationForm() {
 
   return (
     <FadeIn>
-      <section className="relative mx-auto mt-6 md:mt-8 w-full max-w-7xl bg-foreground/10 overflow-visible rounded-2xl md:rounded-3xl px-4 md:px-6 lg:px-12 py-6 md:py-10 min-h-auto md:min-h-[550px] border border-foreground/10">
+      <section className="relative mx-auto mt-6 md:mt-8 w-full max-w-7xl bg-white/5 overflow-visible rounded-2xl md:rounded-3xl px-4 md:px-6 lg:px-12 py-6 md:py-10 min-h-auto md:min-h-[550px] border border-foreground/10">
         <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-8 lg:gap-12 h-full min-h-auto lg:min-h-[500px]">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8 flex-1">
             <div className="flex flex-col gap-3 md:gap-4 w-full lg:w-auto z-20">
@@ -90,7 +90,7 @@ export default function TopApplicationForm() {
           <div className="flex shrink-0 w-full lg:w-auto">
             <form
               onSubmit={handleSubmit}
-              className="w-full max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border border-foreground/20 bg-foreground/10 p-5 md:p-10 lg:p-12 shadow-2xl relative mt-4 md:-mt-8 lg:-mt-12 md:-mb-8 lg:-mb-12"
+              className="w-full max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border border-foreground/20 bg-white/5 p-5 md:p-10 lg:p-12 shadow-2xl relative mt-4 md:-mt-8 lg:-mt-12 md:-mb-8 lg:-mb-12"
               aria-label="Форма получения банковской гарантии"
             >
               <h3 className="mb-4 md:mb-6 text-xl md:text-2xl font-bold leading-tight text-primary">

@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import Link from "next/link";
+import WhyUs from "@/components/Why-us";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion";
 
 export default function Page() {
   const TOTAL_OFFERS = 17;
@@ -107,7 +114,21 @@ export default function Page() {
     .slice(0, visibleOffers);
 
   const deals = Array.from({ length: 24 }).map((_, i) => ({
-    title: ["Лизинг", "Лизинг", "Лизинг", "Лизинг"][i % 4],
+    title: [
+      "лизинг для бизнеса",
+      "лизинг для малого бизнеса",
+      "лизинг оборудование для бизнеса",
+      "лизинг оборудования для малого бизнеса",
+      "льготный лизинг для бизнеса",
+      "льготный лизинг для малого бизнеса",
+      "лизинг для ип",
+      "лизинг авто для ип",
+      "лизинг для ип без первоначального взноса",
+      "лизинг машин оборудования",
+      "лизинг оборудования",
+      "лизинг авто для юридических лиц",
+      "лизинг бу авто",
+    ][i % 4],
     amount: [
       "50 000 000 ₽",
       "26 205 355 ₽",
@@ -118,6 +139,29 @@ export default function Page() {
       "44 769 067 ₽",
     ][i % 7],
   }));
+
+  const faqs = [
+    {
+      q: "Что такое предмет лизинга?",
+      a: "Это могут быть любые непотребляемые вещи, в том числе предприятия и другие имущественные комплексы, здания, сооружения, оборудование, транспортные средства и другое движимое и недвижимое имущество, кроме земельных участков и других природных объектов.",
+    },
+    {
+      q: "Кто участвует в лизинговой сделке?",
+      a: "Субъектами лизинговой сделки являются лизингодатель, лизингополучатель и продавец. При возвратном лизинге продавец и лизингополучатель — одно лицо.",
+    },
+    {
+      q: "Какие обязательства несёт лизингополучатель?",
+      a: "Важно соблюдать условия договора: вносить лизинговые платежи в установленные графиком сроки, использовать предмет лизинга и содержать его в соответствии с условиями договора, давать лизингодателю полную информацию о состоянии арендуемой техники и предоставлять доступ для проверки.",
+    },
+    {
+      q: "Что можно и нельзя делать с автомобилями, которые взяли в лизинг?",
+      a: "После заключения договора лизингополучатель обретает права владения и пользования автомобилем, но в собственность он перейдёт только после выкупа. Лизингополучатель должен самостоятельно проходить ТО и обслуживать автомобиль, оплачивать штрафы, если нарушит правила дорожного движения, соблюдать лимиты пробега, если они оговорены в договоре.",
+    },
+    {
+      q: "Как вносятся платежи по лизингу?",
+      a: "Оплата производится по графику, который прописывается в договоре и доступен в личном кабинете клиента. Важно вносить платежи своевременно, так как просрочки ведут к начислению пеней и возможному расторжению контракта.",
+    },
+  ];
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 md:py-16">
@@ -165,9 +209,11 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <div className="mt-8">
-          <BankLogosSlider />
-        </div>
+        <BankLogosSlider />
+      </FadeIn>
+
+      <FadeIn>
+        <WhyUs variant="leasing" />
       </FadeIn>
 
       <FadeIn>
@@ -356,10 +402,7 @@ export default function Page() {
                     .
                   </span>
                 </label>
-                <Button
-                  type="submit"
-                  className="h-11 rounded-xl px-6 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500"
-                >
+                <Button type="submit" className="h-11 btn-three">
                   Отправить заявку
                 </Button>
               </form>
@@ -446,6 +489,44 @@ export default function Page() {
       </section>
 
       <FadeIn>
+        <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
+          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
+            Вопросы по банковским гарантиям
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`item-${i}`}
+                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+              >
+                <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
+                  {item.q}
+                  <svg
+                    className="h-4 w-4 shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6 6-6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </AccordionTrigger>
+                <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
         <ManagerCTASection />
       </FadeIn>
 
@@ -455,34 +536,44 @@ export default function Page() {
             Часто ищут
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-foreground/10 bg-foreground/3 p-6 space-y-2">
+          <div className="rounded-xl border border-foreground/10 bg-white/5 p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
               {[
-                "Банковские гарантии на исполнение контракта",
-                "Банковские гарантии на участие в тендере",
-                "Банковские гарантии на гарантийное обеспечение (ГО)",
-                "Банковские гарантии на авансовый платёж",
-                "Банковские гарантии по закрытой закупке",
-                "Банковские гарантии по коммерческой закупке",
-              ].map((t, i) => (
-                <Link
-                  key={i}
-                  href="/#application"
-                  className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
-                >
-                  {t}
-                </Link>
-              ))}
-            </div>
-
-            <div className="rounded-xl border border-foreground/10 bg-foreground/3 p-6 space-y-2">
-              {[
-                "Банковские гарантии для ИП",
-                "Банковские гарантии для ООО",
-                "Банковские гарантии 44-ФЗ",
-                "Банковские гарантии 223-ФЗ",
-                "Экспресс-гарантии",
-                "Налоговые банковские гарантии",
+                "лизинг для бизнеса",
+                "лизинг для малого бизнеса",
+                "лизинг оборудование для бизнеса",
+                "лизинг оборудования для малого бизнеса",
+                "льготный лизинг для бизнеса",
+                "льготный лизинг для малого бизнеса",
+                "лизинг для ип",
+                "лизинг авто для ип",
+                "лизинг для ип без",
+                "лизинг для ип без первоначального",
+                "лизинг для ип без первоначального взноса",
+                "лизинг авто для ип без первоначального взноса",
+                "лизинг для ип на авто без первоначального",
+                "условия лизинга для ип",
+                "газель в лизинг для ип",
+                "автомобиль в лизинг для ип",
+                "машина в лизинг для ип",
+                "лизинг для ип калькулятор",
+                "грузовой лизинг для ип",
+                "лизинг для ип на усн",
+                "купить в лизинг для ип",
+                "лизинг авто с пробегом",
+                "лизинг бу авто",
+                "лизинг авто для юридических",
+                "лизинг авто для юридических лиц",
+                "лизинг оборудования",
+                "оборудование лизинг аренда",
+                "договор лизинга оборудования",
+                "финансовый лизинг оборудования",
+                "стоимость лизинга оборудования",
+                "оборудование кредит лизинг",
+                "лизинг машин оборудования",
+                "лизинг оборудования компания",
+                "приобрести оборудование в лизинг",
+                "какое оборудование в лизинг",
               ].map((t, i) => (
                 <Link
                   key={i}
