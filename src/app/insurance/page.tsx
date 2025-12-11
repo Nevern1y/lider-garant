@@ -17,6 +17,7 @@ import { CheckCheck, Plus } from "lucide-react";
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
 import DealFeed from "@/components/deal-feed";
+import SeeAlso from "@/components/see-also";
 
 export default function Page() {
   const [visibleDeals] = useState(12);
@@ -66,39 +67,6 @@ export default function Page() {
       "44 769 067 ₽",
     ][i % 7],
   }));
-
-  const related = [
-    {
-      title: "Кредитирование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      href: "/credits",
-    },
-    {
-      title: "ВЭД",
-      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
-      href: "/ved",
-    },
-    {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
-      href: "/tender-support",
-    },
-  ];
 
   const faqs = [
     {
@@ -314,7 +282,7 @@ export default function Page() {
             Виды страхования
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 pr-28 md:pr-40 min-h-[180px] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+            <div className="relative overflow-hidden hover:border-primary/50 hover:shadow-primary/30 rounded-3xl border border-white/10 bg-white/5 p-6 pr-28 md:pr-40 min-h-[180px] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
               <div className="mb-3 text-lg font-semibold text-foreground">
                 Строительно-монтажные риски
               </div>
@@ -325,7 +293,7 @@ export default function Page() {
                   "СМР, Ответственность, ППГО",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-500" />
+                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -340,14 +308,14 @@ export default function Page() {
                 className="pointer-events-none absolute -bottom-2 -right-2 h-36 w-36 md:h-44 md:w-44 object-contain"
               />
             </div>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+            <div className="relative overflow-hidden hover:border-primary/50 hover:shadow-primary/30 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
               <div className="mb-3 text-lg font-semibold text-foreground">
                 Все виды страхования ответственности
               </div>
               <ul className="space-y-2 text-sm text-foreground/85">
                 {responsibility.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-500" />
+                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -362,14 +330,14 @@ export default function Page() {
                 className="pointer-events-none absolute bottom-6 -right-6 h-36 w-36 md:h-44 md:w-44 object-contain"
               />
             </div>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <div className="relative hover:border-primary/50 hover:shadow-primary/30 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-md transition-all duration-300 hover:-translate-y-0.5">
               <div className="mb-3 text-lg font-semibold text-foreground">
                 Имущество и грузы
               </div>
               <ul className="space-y-2 text-sm text-foreground/85">
                 {propertyAndCargo.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-500" />
+                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -384,14 +352,14 @@ export default function Page() {
                 className="pointer-events-none absolute -bottom-2 -right-2 h-36 w-36 md:h-44 md:w-44 object-contain"
               />
             </div>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <div className="relative hover:border-primary/50 hover:shadow-primary/30 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-md transition-all duration-300 hover:-translate-y-0.5">
               <div className="mb-3 text-lg font-semibold text-foreground">
                 Страхование от несчастных случаев
               </div>
               <ul className="space-y-2 text-sm text-foreground/85">
                 {accidents.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-500" />
+                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -421,43 +389,12 @@ export default function Page() {
                 key={t}
                 className="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md"
               >
-                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-foreground/70">
+                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-foreground">
                   {i + 1}
                 </div>
                 <div className="leading-snug">{t}</div>
               </div>
             ))}
-          </div>
-        </section>
-      </FadeIn>
-
-      <FadeIn>
-        <section className="mx-auto mt-2 w-full max-w-7xl py-10">
-          <div className="grid items-center gap-10 md:grid-cols-2">
-            <div>
-              <h2 className="mb-4 text-2xl font-bold tracking-tight text-primary md:text-3xl">
-                Дадим лучшее предложение
-              </h2>
-              <p className="mb-2 text-sm text-foreground/70">
-                Уже получили предложение по страхованию?
-              </p>
-              <p className="mb-6 text-sm text-foreground/70">
-                Мы дадим лучшие условия страхования после заключения о качестве
-                предложения.
-              </p>
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-xl px-5 py-2.5 text-sm"
-              >
-                <a href="#insurance-form">Оставить заявку</a>
-              </Button>
-            </div>
-            <div className="relative hidden min-h-[220px] rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/10 via-sky-500/10 to-emerald-500/10 md:block">
-              <div className="absolute inset-0 flex items-center justify-center text-foreground/60 text-sm">
-                Иллюстрация
-              </div>
-            </div>
           </div>
         </section>
       </FadeIn>
@@ -489,7 +426,7 @@ export default function Page() {
       </FadeIn>
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center md:text-left">
+          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
             Часто задаваемые вопросы
           </h2>
 
@@ -498,7 +435,7 @@ export default function Page() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                className="overflow-hidden hover:border-primary/50 hover:shadow-primary/10 shadow-xl rounded-2xl border border-foreground/10 bg-white/5 px-4 transition-all"
               >
                 <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                   {item.q}
@@ -623,31 +560,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl py-12 md:py-16">
-          <h2 className="mb-8 text-2xl font-bold text-primary md:text-3xl">
-            Смотрите также
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((item) => (
-              <div
-                key={item.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
-              >
-                <div className="mb-2 text-lg font-semibold text-foreground">
-                  {item.title}
-                </div>
-                <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm"
-                >
-                  <a href={item.href}>Подробнее</a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </section>
+        <SeeAlso />
       </FadeIn>
 
       <FadeIn>

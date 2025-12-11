@@ -4,6 +4,7 @@ import BankLogosSlider from "@/components/BankLogosSlider";
 import DealFeed from "@/components/deal-feed";
 import FadeIn from "@/components/FadeIn";
 import ManagerCTASection from "@/components/ManagerCTASection";
+import SeeAlso from "@/components/see-also";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -319,7 +320,7 @@ export default function Page() {
             {filteredBanks.slice(0, visibleOffers).map((bank, i) => (
               <div
                 key={i}
-                className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5"
+                className="relative hover:border-primary/50 hover:shadow-primary/20 shadow-2xl flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5 transition-all"
               >
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 text-2xl font-semibold text-primary">
@@ -330,7 +331,7 @@ export default function Page() {
                     650 ₽/месяц
                   </div>
                 </div>
-                <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-primary text-primary-foreground">
+                <Button className="shrink-0 text-primary rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary hover:text-white cursor-pointer">
                   Подать заявку
                 </Button>
               </div>
@@ -344,7 +345,7 @@ export default function Page() {
                 onClick={() =>
                   setVisibleOffers((v) => Math.min(v + 6, TOTAL_OFFERS))
                 }
-                className="rounded-full px-6 py-2 text-sm text-foreground/80 transition-transform hover:-translate-y-0.5 hover:shadow-sm"
+                className="h-12 btn-three"
               >
                 Показать еще
               </Button>
@@ -448,42 +449,7 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <section className="mx-auto mt-10 w-full max-w-7xl">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-primary md:text-3xl">
-              Смотрите также
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {relatedServices.map((service) => (
-              <div
-                key={service.title}
-                className="group flex flex-col rounded-3xl border border-foreground/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_20px_45px_-25px_rgba(15,23,42,0.65)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {service.title}
-                    </h3>
-                    <p className="mt-2 text-xs uppercase text-primary/70">
-                      {service.cta}
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-4 flex-1 text-sm text-foreground/70">
-                  {service.description}
-                </p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="mt-6 rounded-full border-white/30 text-xs font-semibold text-primary transition group-hover:border-primary group-hover:text-primary"
-                >
-                  <a href={service.href}>{service.cta}</a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </section>
+        <SeeAlso />
       </FadeIn>
 
       <FadeIn>
@@ -515,41 +481,31 @@ export default function Page() {
       <FadeIn>
         <ManagerCTASection />
       </FadeIn>
-
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-12">
           <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
             Часто ищут
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
+          <div className="rounded-xl border border-foreground/10 bg-white/5 p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
               {[
-                "Банковские гарантии на исполнение контракта",
-                "Банковские гарантии на участие в тендере",
-                "Банковские гарантии на гарантийное обеспечение (ГО)",
-                "Банковские гарантии на авансовый платёж",
-                "Банковские гарантии по закрытой закупке",
-                "Банковские гарантии по коммерческой закупке",
-              ].map((t, i) => (
-                <Link
-                  key={i}
-                  href="/#application"
-                  className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
-                >
-                  {t}
-                </Link>
-              ))}
-            </div>
-
-            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
-              {[
-                "Банковские гарантии для ИП",
-                "Банковские гарантии для ООО",
-                "Банковские гарантии 44-ФЗ",
-                "Банковские гарантии 223-ФЗ",
-                "Экспресс-гарантии",
-                "Налоговые банковские гарантии",
+                "открытие спецсчета",
+                "банки для открытия спецсчетов",
+                "открытие спецсчетов для торгов",
+                "открытие спецсчета для участия",
+                "расчетно кассовое обслуживание",
+                "расчетно кассовое обслуживание банки",
+                "кассовое обслуживание клиентов",
+                "расчетно кассовое обслуживание клиентов",
+                "рко",
+                "рко для ип",
+                "рко для юридических лиц",
+                "тарифы рко",
+                "рко для бизнеса",
+                "рко для малого бизнеса",
+                "специальные счета для бизнеса",
+                "специальные счета для юридических лиц",
               ].map((t, i) => (
                 <Link
                   key={i}

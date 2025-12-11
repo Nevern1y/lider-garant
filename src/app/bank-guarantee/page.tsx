@@ -26,6 +26,7 @@ import TopApplicationForm from "@/components/topApplicationForm";
 import GuaranteeCalculator from "@/components/GuaranteeCalculator";
 import WhyUs from "@/components/Why-us";
 import DealFeed from "@/components/deal-feed";
+import SeeAlso from "@/components/see-also";
 
 const guarantees = [
   {
@@ -111,45 +112,6 @@ export default function BankGuaranteePage() {
     "Кубань Кредит",
     "Газстрансбанк",
     "Сбербанк",
-  ];
-
-  const related = [
-    {
-      title: "Кредитирование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      href: "/credits",
-      img: "/finance-products/guarantee.png",
-    },
-    {
-      title: "ВЭД",
-      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
-      href: "/ved",
-      img: "/finance-products/money.png",
-    },
-    {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-      img: "/finance-products/hands.png",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-      img: "/finance-products/four.png",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-      img: "/finance-products/proverka.png",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
-      href: "/tender-support",
-      img: "/finance-products/calculator-hand.png",
-    },
   ];
 
   const deals = Array.from({ length: 24 }).map((_, i) => ({
@@ -459,7 +421,7 @@ export default function BankGuaranteePage() {
               </p>
               <a
                 href="#earn"
-                className="inline-flex h-12 items-center rounded-full border border-primary/40 px-8 text-sm font-medium text-primary backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg"
+                className="h-12 btn-three px-6 py-2 text-sm font-semibold"
               >
                 Начать зарабатывать
               </a>
@@ -491,7 +453,7 @@ export default function BankGuaranteePage() {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="py-2">
               <DealFeed deals={deals} />
             </div>
           </section>
@@ -517,7 +479,7 @@ export default function BankGuaranteePage() {
               {banks.slice(0, visibleOffers).map((bank, i) => (
                 <div
                   key={i}
-                  className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5 hover:-translate-y-1 hover:border-primary/70 transition-all"
+                  className="relative hover:shadow-xl hover:shadow-primary/10 flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5 hover:-translate-y-1 hover:border-primary/70 transition-all"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="mb-1 text-2xl font-semibold text-primary">
@@ -560,7 +522,7 @@ export default function BankGuaranteePage() {
                 <AccordionItem
                   key={i}
                   value={`item-${i}`}
-                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                  className="overflow-hidden hover:shadow-xl hover:shadow-primary/10 rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
                 >
                   <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                     {item.q}
@@ -589,49 +551,7 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <section className="mx-auto w-full max-w-7xl py-12">
-            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-              Смотрите также
-            </h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              {related.map((item) => (
-                <div
-                  key={item.title}
-                  className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 hover:shadow-lg"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="pr-24 md:pr-32">
-                      <h3 className="mb-3 text-lg font-semibold text-foreground">
-                        {item.title}
-                      </h3>
-                      <p className="mb-6 text-sm leading-relaxed text-foreground/75">
-                        {item.desc}
-                      </p>
-                    </div>
-                    {item.img && (
-                      <Image
-                        src={item.img}
-                        alt={item.title}
-                        width={240}
-                        height={240}
-                        sizes="(min-width: 768px) 240px, 192px"
-                        className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
-                      />
-                    )}
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-between gap-3">
-                    <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
-                      Узнать больше
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <h3 className="text-sm text-foreground/70 text-center mt-6">
-              Ответим на ваши вопросы с 7:00 до 23:00 по московскому времени
-            </h3>
-          </section>
+          <SeeAlso />
         </FadeIn>
 
         <FadeIn>
@@ -641,7 +561,7 @@ export default function BankGuaranteePage() {
             </h2>
 
             <div className="grid gap-8 md:grid-cols-3">
-              <div className="group rounded-2xl border border-foreground/10 bg-white/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+              <div className="group hover:border-primary/60 rounded-2xl border border-foreground/10 bg-white/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white">
                   <ShieldCheck className="h-7 w-7" />
                 </div>

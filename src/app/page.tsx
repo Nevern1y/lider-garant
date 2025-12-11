@@ -227,7 +227,7 @@ export default function Home() {
             </p>
             <a
               href="#earn"
-              className="inline-flex h-12 items-center rounded-full border border-primary/40 px-8 text-sm font-medium text-primary backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg"
+              className="btn-three h-12 px-6 text-sm font-semibold"
             >
               Начать зарабатывать
             </a>

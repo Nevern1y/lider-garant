@@ -99,7 +99,7 @@ export default function NewsRibbon() {
                 <Button
                   asChild
                   size="sm"
-                  className="h-9 rounded-full px-4 text-xs font-medium bg-primary"
+                  className="h-9 rounded-full px-4 text-xs font-medium bg-primary/5 border border-primary text-primary hover:text-white hover:bg-primary"
                 >
                   <a href="#">Читать полностью →</a>
                 </Button>

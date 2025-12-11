@@ -16,44 +16,12 @@ import {
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
 import DealFeed from "@/components/deal-feed";
+import SeeAlso from "@/components/see-also";
 
 export default function Page() {
   const TOTAL_OFFERS = 17;
   const [visibleOffers, setVisibleOffers] = useState(6);
-  const [visibleDeals] = useState(12);
 
-  const related = [
-    {
-      title: "Кредитирование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      href: "/credits",
-    },
-    {
-      title: "ВЭД",
-      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
-      href: "/ved",
-    },
-    {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
-      href: "/tender-support",
-    },
-  ];
   const banks = [
     "Реалист",
     "Банк Казани",
@@ -233,7 +201,7 @@ export default function Page() {
               placeholder="Поиск по банку"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-10 w-full md:w-1/3 rounded-full border border-foreground/15 px-4 text-sm"
+              className="h-10 w-full md:w-1/3 text-foreground rounded-full border border-foreground/15 px-4 text-sm"
             />
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6 backdrop-blur-xl shadow-[0_0_30px_-15px_rgba(0,0,0,0.25)]">
@@ -253,7 +221,7 @@ export default function Page() {
                         Удорожание в год: от 16,4%
                       </div>
                     </div>
-                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-primary text-primary-foreground">
+                    <Button className="shrink-0 text-primary rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary hover:text-white cursor-pointer">
                       Подать заявку
                     </Button>
                   </div>
@@ -273,7 +241,7 @@ export default function Page() {
                 onClick={() =>
                   setVisibleOffers((v) => Math.min(v + 6, TOTAL_OFFERS))
                 }
-                className="rounded-full px-6 py-2 text-sm text-foreground/80 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="h-12 btn-three"
               >
                 Показать еще
               </Button>
@@ -336,7 +304,7 @@ export default function Page() {
         >
           <div className="grid items-stretch gap-10 md:grid-cols-2">
             <div>
-              <h2 className="mb-4 text-2xl font-semibold text-foreground">
+              <h2 className="mb-4 text-2xl font-semibold text-primary">
                 Подберем самые выгодные предложения
               </h2>
               <p className="mb-6 text-sm text-foreground/70">
@@ -423,31 +391,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl py-12 md:py-16">
-          <h2 className="mb-8 text-2xl font-bold text-primary md:text-3xl">
-            Смотрите также
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((item) => (
-              <div
-                key={item.title}
-                className="group relative hover:border-primary overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
-              >
-                <div className="mb-2 text-lg font-semibold text-foreground">
-                  {item.title}
-                </div>
-                <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm border-2 border-primary text-primary transition-all hover:bg-primary hover:text-white"
-                >
-                  <a href={item.href}>Подробнее</a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </section>
+        <SeeAlso />
       </FadeIn>
 
       <section className="mx-auto mt-2 w-full max-w-7xl py-8">
@@ -484,7 +428,7 @@ export default function Page() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                className="overflow-hidden hover:border-primary/50 hover:shadow-primary/10 shadow-xl rounded-2xl border border-foreground/10 bg-white/5 px-4  transition-all"
               >
                 <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                   {item.q}

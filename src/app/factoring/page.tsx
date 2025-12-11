@@ -3,6 +3,7 @@ import BankLogosSlider from "@/components/BankLogosSlider";
 import DealFeed from "@/components/deal-feed";
 import FadeIn from "@/components/FadeIn";
 import ManagerCTASection from "@/components/ManagerCTASection";
+import SeeAlso from "@/components/see-also";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -18,47 +19,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Page() {
-  const related = [
-    {
-      title: "Банковские гарантии",
-      desc: "44-ФЗ, 223-ФЗ, 185-ФЗ (615 ПП), коммерческие закупки, налоговые гарантии.",
-      btn: "Узнать лимит",
-      href: "/bank-guarantee",
-    },
-    {
-      title: "Льготное кредитование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      btn: "Подобрать условия",
-      href: "/business-credit",
-    },
-    {
-      title: "Финансирование контракта",
-      desc: "Онлайн-заявка за минуту, бесплатное сравнение ставок, лучшие условия получения кредита.",
-      btn: "Подобрать кредит",
-      href: "/credits",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом 0%.",
-      btn: "Узнать больше",
-      href: "/leasing",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3-й тендер — победа! Штат специалистов по цене одного. Спецсчёт, ЕРУЗ, закрытые секции.",
-      btn: "Подробнее",
-      href: "/tender",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все: от реквизитов и отчётности до контактов и кадровых рисков.",
-      btn: "Подробнее",
-      href: "/check",
-    },
-  ];
   const TOTAL_OFFERS = 25;
   const [visibleOffers, setVisibleOffers] = useState(8);
-  const [visibleDeals] = useState(12);
 
   const banks = [
     "Реалист",
@@ -277,7 +239,7 @@ export default function Page() {
                 filteredBanks.slice(0, visibleOffers).map((bank, i) => (
                   <div
                     key={i}
-                    className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5"
+                    className="relative flex items-center hover:border-primary/50 hover:shadow-primary/20 shadow-2xl transition-all gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5"
                   >
                     <div className="min-w-0 flex-1">
                       <div className="mb-1 text-2xl font-semibold text-primary">
@@ -288,7 +250,7 @@ export default function Page() {
                         1.8%
                       </div>
                     </div>
-                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-primary text-primary-foreground">
+                    <Button className="shrink-0 text-primary rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary hover:text-white cursor-pointer">
                       Подать заявку
                     </Button>
                   </div>
@@ -308,7 +270,7 @@ export default function Page() {
                 onClick={() =>
                   setVisibleOffers((v) => Math.min(v + 6, TOTAL_OFFERS))
                 }
-                className="rounded-full px-6 py-2 text-sm text-foreground/80 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="h-12 btn-three"
               >
                 Показать еще
               </Button>
@@ -409,31 +371,7 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl py-12 md:py-16">
-          <h2 className="mb-8 text-2xl font-bold text-primary md:text-3xl">
-            Смотрите также
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((item) => (
-              <div
-                key={item.title}
-                className="group relative hover:border-primary overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
-              >
-                <div className="mb-2 text-lg font-semibold text-foreground">
-                  {item.title}
-                </div>
-                <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm border-2 border-primary text-primary transition-all hover:bg-primary hover:text-white"
-                >
-                  <a href={item.href}>Подробнее</a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </section>
+        <SeeAlso />
       </FadeIn>
 
       <section className="mx-auto mt-2 w-full max-w-7xl py-8">
@@ -470,7 +408,7 @@ export default function Page() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                className="overflow-hidden rounded-2xl hover:border-primary/50 hover:shadow-primary/10 shadow-xl border border-foreground/10 bg-white/5 px-4  transition-all"
               >
                 <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                   {item.q}

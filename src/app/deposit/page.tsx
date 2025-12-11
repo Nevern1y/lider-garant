@@ -209,9 +209,7 @@ export default function DepositsPage() {
               {filtered.slice(0, visible).map((o) => (
                 <article
                   key={o.id}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 
-            hover:border-[var(--primary)]/30 hover:shadow-[0_0_25px_var(--primary-glow)]
-            transition-all"
+                  className="bg-white/5 hover:border-primary/50 hover:shadow-primary/10 shadow-2xl backdrop-blur-xl border border-white/10 rounded-2xl p-5 transition-all"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -264,23 +262,18 @@ export default function DepositsPage() {
                     ))}
                   </div>
 
-                  <button
-                    className="w-full mt-5 py-3 rounded-xl bg-primary
-              font-semibold shadow-[0_0_20px_var(--primary-glow)]
-              text-white hover:brightness-110 hover:-translate-y-0.5 transition-all"
-                  >
+                  <button className="shrink-0 text-primary rounded-xl px-4 py-2 text-xs font-semibold shadow-sm  hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary hover:text-white cursor-pointer mt-6 w-full transition-all">
                     Подать заявку
                   </button>
                 </article>
               ))}
             </div>
 
-            {/* Show more */}
             <div className="mt-6 text-center">
               {visible < filtered.length ? (
                 <button
                   onClick={() => setVisible(filtered.length)}
-                  className="px-5 py-2 rounded-xl border border-dashed border-white/15 text-[var(--foreground-secondary)] hover:border-[var(--primary)]/50 hover:text-white transition-all"
+                  className="h-12 btn-three"
                 >
                   Показать еще
                 </button>
@@ -288,7 +281,7 @@ export default function DepositsPage() {
                 filtered.length > 8 && (
                   <button
                     onClick={() => setVisible(8)}
-                    className="px-5 py-2 rounded-xl border border-dashed border-white/15 text-[var(--foreground-secondary)] hover:border-[var(--primary)]/50 hover:text-white transition-all"
+                    className="h-12 btn-three"
                   >
                     Свернуть
                   </button>
@@ -434,7 +427,7 @@ export default function DepositsPage() {
                 <AccordionItem
                   key={i}
                   value={`item-${i}`}
-                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                  className="overflow-hidden rounded-2xl border border-foreground/10 shadow-2xl hover:shadow-primary/10 bg-white/5 px-4 hover:border-primary transition-all"
                 >
                   <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                     {item.q}
@@ -472,34 +465,20 @@ export default function DepositsPage() {
               Часто ищут
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
+            <div className="rounded-xl border border-foreground/10 bg-white/5 p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
                 {[
-                  "Банковские гарантии на исполнение контракта",
-                  "Банковские гарантии на участие в тендере",
-                  "Банковские гарантии на гарантийное обеспечение (ГО)",
-                  "Банковские гарантии на авансовый платёж",
-                  "Банковские гарантии по закрытой закупке",
-                  "Банковские гарантии по коммерческой закупке",
-                ].map((t, i) => (
-                  <Link
-                    key={i}
-                    href="/#application"
-                    className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
-                  >
-                    {t}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="rounded-xl border border-foreground/10 bg-white/5 p-6 space-y-2">
-                {[
-                  "Банковские гарантии для ИП",
-                  "Банковские гарантии для ООО",
-                  "Банковские гарантии 44-ФЗ",
-                  "Банковские гарантии 223-ФЗ",
-                  "Экспресс-гарантии",
-                  "Налоговые банковские гарантии",
+                  "депозиты для малого и среднего бизнеса",
+                  "корпоративные депозиты",
+                  "депозит для малого бизнеса",
+                  "депозит для среднего бизнеса",
+                  "депозиты для юридических лиц",
+                  "депозиты для юрлиц",
+                  "депозиты для ИП",
+                  "депозиты для ООО",
+                  "депозит для корпоративных клиентов",
+                  "депозиты для крупного бизнеса",
+                  "депозиты для компаний",
                 ].map((t, i) => (
                   <Link
                     key={i}

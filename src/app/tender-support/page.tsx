@@ -95,10 +95,7 @@ export default function Page() {
               <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
                 Бесплатная консультация специалиста — узнайте про закупки все!
               </p>
-              <Button
-                asChild
-                className="h-11 rounded-xl px-6 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0 bg-linear-to-r from-indigo-500 via-sky-500 to-emerald-500"
-              >
+              <Button asChild className="h-11 btn-three">
                 <a href="#tender-support-form">Свяжитесь со мной!</a>
               </Button>
             </div>

@@ -141,7 +141,7 @@ export default function ApplicationFormSection() {
                 <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
                   <Button
                     type="submit"
-                    className="h-12 rounded-full px-8 text-sm font-semibold uppercase tracking-wide bg-primary"
+                    className="h-12 btn-three px-6 text-sm font-semibold"
                   >
                     Оставить заявку
                   </Button>

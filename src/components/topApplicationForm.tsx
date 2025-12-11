@@ -163,7 +163,7 @@ export default function TopApplicationForm() {
 
               <Button
                 type="submit"
-                className="mt-4 md:mt-6 w-full rounded-lg md:rounded-xl px-4 md:px-6 py-3 md:py-6 bg-primary text-sm md:text-base"
+                className="mt-4 btn-three h-12 w-full"
                 size="lg"
               >
                 Отправить

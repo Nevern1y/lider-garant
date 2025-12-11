@@ -49,10 +49,10 @@ export default function ManagerCTASection() {
               {cards.map(({ icon: Icon, title, desc, link, cta }) => (
                 <div
                   key={title}
-                  className="group hover:shadow-xl hover:shadow-primary/10 rounded-2xl border border-foreground/10 bg-white/[0.03] 
+                  className="group hover:shadow-xl hover:border-primary/50 hover:shadow-primary/10  rounded-2xl border border-foreground/10 bg-white/[0.03] 
                   p-4 sm:p-5   
                   backdrop-blur-xl transition-all duration-300 
-                  sm:hover:-translate-y-1 sm:hover:border-white/25"
+                  sm:hover:-translate-y-1 "
                 >
                   <div className="flex items-center gap-3">
                     <span className="inline-flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-2xl bg-white/55 text-foreground">

@@ -17,43 +17,11 @@ import {
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
 import DealFeed from "@/components/deal-feed";
+import SeeAlso from "@/components/see-also";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
   const [visibleOffers, setVisibleOffers] = useState(6);
-  const [visibleDeals] = useState(12);
-  const related = [
-    {
-      title: "Кредитирование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      href: "/credits",
-    },
-    {
-      title: "ВЭД",
-      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
-      href: "/ved",
-    },
-    {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
-      href: "/tender-support",
-    },
-  ];
 
   const banks = [
     "Реалист",
@@ -434,10 +402,8 @@ export default function Page() {
             ].map((t, i) => (
               <div
                 key={i}
-                className="relative overflow-hidden hover:border-primary rounded-3xl border border-white/20 bg-gradient-to-br from-indigo-50/20 via-sky-50/10 to-emerald-50/10 p-6 text-sm text-foreground/90 backdrop-blur-md shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                className="relative overflow-hidden hover:border-primary/50 hover:shadow-primary/10 rounded-3xl border border-white/20 bg-white/5 p-6 text-sm text-foreground/90 backdrop-blur-md shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-to-br from-indigo-400/20 via-sky-400/20 to-emerald-400/20 blur-2xl" />
-
                 <h3 className="mb-2 text-base font-semibold text-primary">
                   {t}
                 </h3>
@@ -466,7 +432,7 @@ export default function Page() {
                 key={i}
                 className="group relative flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md shadow-[0_0_30px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.35)]"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-500 text-white text-sm font-bold shadow-md">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white text-sm font-bold shadow-md">
                   {i + 1}
                 </div>
                 <p className="text-sm text-foreground/85 leading-relaxed">
@@ -481,7 +447,7 @@ export default function Page() {
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-6">
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-foreground">
+            <h3 className="text-2xl font-semibold text-primary">
               Подобрано 25 предложений
             </h3>
             <span className="text-sm text-foreground/60">
@@ -503,7 +469,7 @@ export default function Page() {
                 filteredBanks.slice(0, visibleOffers).map((bank, i) => (
                   <div
                     key={i}
-                    className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5"
+                    className="relative flex items-center gap-4 rounded-2xl border border-foreground/10 bg-white/5 p-5 hover:border-primary/50 hover:shadow-primary/20 shadow-2xl transition-all hover:-translate-y-1"
                   >
                     <div className="min-w-0 flex-1">
                       <div className="mb-1 text-2xl font-semibold text-primary">
@@ -534,7 +500,7 @@ export default function Page() {
                 onClick={() =>
                   setVisibleOffers((v) => Math.min(v + 6, TOTAL_OFFERS))
                 }
-                className="rounded-full px-6 py-2 text-sm text-foreground/80 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="h-12 btn-three"
               >
                 Показать еще
               </Button>
@@ -637,34 +603,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl py-12">
-          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
-            Смотрите также
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((item) => (
-              <div
-                key={item.title}
-                className="group relative hover:border-primary overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 p-5 backdrop-blur-xl transition-all hover:-translate-y-0.5"
-              >
-                <div className="mb-2 text-lg font-semibold text-foreground">
-                  {item.title}
-                </div>
-                <p className="mb-5 text-sm text-foreground/70">{item.desc}</p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-xl px-4 py-2 text-sm"
-                >
-                  <a href={item.href}>Подробнее</a>
-                </Button>
-              </div>
-            ))}
-          </div>
-          <h3 className="text-sm text-foreground/70 text-center mt-6">
-            Ответим на ваши вопросы с 7:00 до 23:00 по московскому времени
-          </h3>
-        </section>
+        <SeeAlso />
       </FadeIn>
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
@@ -676,7 +615,7 @@ export default function Page() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/5 px-4 hover:border-primary transition-all"
+                className="overflow-hidden hover:border-primary/50 hover:shadow-primary/10 shadow-xl rounded-2xl border border-foreground/10 bg-white/5 px-4  transition-all"
               >
                 <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
                   {item.q}
