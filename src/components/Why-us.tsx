@@ -55,7 +55,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
         {benefits.map((item, i) => (
           <div
             key={i}
-            className="group relative flex flex-col items-center text-center gap-3 rounded-2xl border border-primary/10 bg-background/70 p-6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
+            className="group relative hover:shadow-xl hover:shadow-primary/10 flex flex-col items-center text-center gap-3 rounded-2xl border border-primary/10 bg-background/70 p-6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-primary/40"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-md group-hover:scale-110 transition-transform">
               <item.icon className="h-6 w-6" />

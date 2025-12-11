@@ -25,6 +25,7 @@ import {
 import TopApplicationForm from "@/components/topApplicationForm";
 import GuaranteeCalculator from "@/components/GuaranteeCalculator";
 import WhyUs from "@/components/Why-us";
+import DealFeed from "@/components/deal-feed";
 
 const guarantees = [
   {
@@ -372,7 +373,7 @@ export default function BankGuaranteePage() {
                 return (
                   <div
                     key={i}
-                    className="group hover:border-primary relative rounded-2xl hover:-translate-y-1 border border-foreground/10 bg-white/5 p-4 shadow-sm hover:shadow-md transition-all"
+                    className="group hover:border-primary hover:shadow-xl hover:shadow-primary/10 relative rounded-2xl hover:-translate-y-1 border border-foreground/10 bg-white/5 p-4 transition-all"
                   >
                     <div className="flex items-start gap-3">
                       <div className="min-w-0">
@@ -409,20 +410,14 @@ export default function BankGuaranteePage() {
 
         <FadeIn>
           <section className="relative mx-auto w-full max-w-7xl py-5">
-            <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-              <div className="h-112 w-md rounded-full bg-gradient-to-br from-indigo-500/30 via-sky-500/25 to-emerald-500/30 blur-[140px] opacity-70" />
-            </div>
-
-            <h2 className="mb-12 text-center text-3xl font-semibold tracking-tight text-primary md:text-4xl">
+            <h2 className="mb-16 text-center text-4xl font-semibold tracking-tight text-primary md:text-5xl">
               Кто и как зарабатывает с нами?
             </h2>
 
             <div className="grid gap-8 md:grid-cols-2">
-              <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-[0_0_55px_-5px_rgba(0,0,0,0.25)] hover:border-white/20">
-                <div className="pointer-events-none absolute -left-16 -top-16 h-52 w-52 rounded-full bg-gradient-to-br from-indigo-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
-
-                <div className="relative flex items-start gap-5">
-                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-base font-bold text-white shadow-md">
+              <div className="group relative overflow-hidden rounded-3xl hover:shadow-xl hover:shadow-primary/10  border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500 hover:border-foreground/20">
+                <div className="relative flex items-start gap-5 ">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                     A
                   </span>
                   <div>
@@ -437,11 +432,11 @@ export default function BankGuaranteePage() {
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-[0_0_55px_-5px_rgba(0,0,0,0.25)] hover:border-white/20">
-                <div className="pointer-events-none absolute -right-16 -bottom-16 h-52 w-52 rounded-full bg-gradient-to-tl from-emerald-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
+              <div className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:border-foreground/20">
+                <div className="pointer-events-none absolute  -right-16 -bottom-16 h-52 w-52 rounded-full bg-gradient-to-tl from-emerald-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
 
                 <div className="relative flex items-start gap-5">
-                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-base font-bold text-white shadow-md">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                     B
                   </span>
                   <div>
@@ -458,13 +453,16 @@ export default function BankGuaranteePage() {
               </div>
             </div>
 
-            <div className="mt-12 flex flex-col items-center gap-5 text-center">
+            <div className="mt-16 flex flex-col items-center gap-5 text-center">
               <p className="max-w-xl text-sm text-foreground/70">
                 Мы вам поможем. Оставьте заявку и начните зарабатывать.
               </p>
-              <Button asChild variant="outline" className="btn-three h-12 px-6">
-                <Link href="/#application">Начать зарабатывать</Link>
-              </Button>
+              <a
+                href="#earn"
+                className="inline-flex h-12 items-center rounded-full border border-primary/40 px-8 text-sm font-medium text-primary backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg"
+              >
+                Начать зарабатывать
+              </a>
             </div>
           </section>
         </FadeIn>
@@ -493,27 +491,8 @@ export default function BankGuaranteePage() {
                 </div>
               </div>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {deals.slice(0, visibleDeals).map((d, i) => (
-                <div
-                  key={i}
-                  className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="mb-1 text-xs text-foreground/60">
-                    Гарантии
-                  </div>
-                  <div className="mb-3 text-base font-semibold leading-snug">
-                    {d.title}
-                  </div>
-                  <div className="mb-3 h-px w-full bg-white/10" />
-                  <div className="mt-auto">
-                    <div className="text-2xl font-bold">{d.amount}</div>
-                    <div className="text-xs text-foreground/60">
-                      сумма заявки
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="">
+              <DealFeed deals={deals} />
             </div>
           </section>
         </FadeIn>

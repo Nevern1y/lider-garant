@@ -49,7 +49,7 @@ export default function ManagerCTASection() {
               {cards.map(({ icon: Icon, title, desc, link, cta }) => (
                 <div
                   key={title}
-                  className="group rounded-2xl border border-foreground/10 bg-white/[0.03] 
+                  className="group hover:shadow-xl hover:shadow-primary/10 rounded-2xl border border-foreground/10 bg-white/[0.03] 
                   p-4 sm:p-5   
                   backdrop-blur-xl transition-all duration-300 
                   sm:hover:-translate-y-1 sm:hover:border-white/25"

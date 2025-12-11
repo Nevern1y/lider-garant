@@ -16,6 +16,7 @@ import {
 } from "@radix-ui/react-accordion";
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
+import DealFeed from "@/components/deal-feed";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
@@ -493,7 +494,7 @@ export default function Page() {
               placeholder="Поиск по банку"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-10 w-full md:w-1/3 rounded-full border border-foreground/15 px-4 text-sm"
+              className="h-10 w-full md:w-1/3 rounded-full border border-foreground/15 px-4 text-sm text-foreground"
             />
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6 backdrop-blur-xl shadow-[0_0_30px_-15px_rgba(0,0,0,0.25)]">
@@ -513,7 +514,7 @@ export default function Page() {
                         1.8%
                       </div>
                     </div>
-                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary text-primary-foreground">
+                    <Button className="shrink-0 text-primary rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md bg-none border-2 border-primary hover:bg-primary hover:text-white cursor-pointer">
                       Подать заявку
                     </Button>
                   </div>
@@ -723,23 +724,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {deals.slice(0, visibleDeals).map((d, i) => (
-            <div
-              key={i}
-              className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="mb-1 text-xs text-foreground/60">Кредит</div>
-              <div className="mb-3 text-base font-semibold leading-snug">
-                {d.title}
-              </div>
-              <div className="mb-3 h-px w-full bg-white/10" />
-              <div className="mt-auto">
-                <div className="text-2xl font-bold">{d.amount}</div>
-                <div className="text-xs text-foreground/60">сумма заявки</div>
-              </div>
-            </div>
-          ))}
+        <div className="">
+          <DealFeed deals={deals} />
         </div>
       </section>
 

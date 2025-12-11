@@ -84,7 +84,7 @@ export default function NewsRibbon() {
         >
           {news.map((item, i) => (
             <SwiperSlide key={i}>
-              <article className="group h-64 flex flex-col justify-between rounded-3xl border border-foreground/10 bg-foreground/5 p-5 transition-all duration-300 hover:border-primary/30">
+              <article className="group hover:shadow-xl hover:shadow-primary/10 h-64 flex flex-col justify-between rounded-3xl border border-foreground/10 bg-foreground/5 p-5 transition-all duration-300 hover:border-primary/30">
                 <div>
                   <time className="mb-2 block text-xs text-foreground/60">
                     {item.date}

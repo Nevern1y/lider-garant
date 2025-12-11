@@ -78,7 +78,7 @@ export default function BestOffersSection() {
             {offers.map((o, i) => (
               <div
                 key={i}
-                className="group rounded-[22px] sm:rounded-[28px] border border-cyan-400/15 
+                className="group hover:shadow-xl hover:shadow-primary/10 rounded-[22px] sm:rounded-[28px] border border-cyan-400/15 
                 bg-white/[0.03] p-5 sm:p-6 shadow-sm 
                 sm:shadow-[0_15px_45px_-25px_rgba(15,23,42,0.9)]
                 transition-all duration-300 hover:border-cyan-300/40 

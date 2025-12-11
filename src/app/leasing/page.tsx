@@ -15,6 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
+import DealFeed from "@/components/deal-feed";
 
 export default function Page() {
   const TOTAL_OFFERS = 17;
@@ -468,23 +469,8 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {deals.slice(0, visibleDeals).map((d, i) => (
-            <div
-              key={i}
-              className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="mb-1 text-xs text-foreground/60">Лизинг</div>
-              <div className="mb-3 text-base font-semibold leading-snug">
-                {d.title}
-              </div>
-              <div className="mb-3 h-px w-full bg-white/10" />
-              <div className="mt-auto">
-                <div className="text-2xl font-bold">{d.amount}</div>
-                <div className="text-xs text-foreground/60">сумма заявки</div>
-              </div>
-            </div>
-          ))}
+        <div className="">
+          <DealFeed deals={deals} />
         </div>
       </section>
 
