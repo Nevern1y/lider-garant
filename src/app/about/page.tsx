@@ -1,16 +1,26 @@
 "use client";
 
 import FadeIn from "@/components/FadeIn";
+import {
+  ShieldCheck,
+  CreditCard,
+  Landmark,
+  HandCoins,
+  Car,
+  Globe,
+  ClipboardCheck,
+  UserSearch,
+} from "lucide-react";
 
 const services = [
-  "Банковские гарантии",
-  "Кредитование",
-  "Открытие счетов и РКО",
-  "Факторинг",
-  "Лизинг",
-  "ВЭД и сопровождение контрактов",
-  "Тендерное сопровождение",
-  "Проверка клиента и контрагента",
+  { label: "Банковские гарантии", Icon: ShieldCheck },
+  { label: "Кредитование", Icon: CreditCard },
+  { label: "Открытие счетов и РКО", Icon: Landmark },
+  { label: "Факторинг", Icon: HandCoins },
+  { label: "Лизинг", Icon: Car },
+  { label: "ВЭД и сопровождение контрактов", Icon: Globe },
+  { label: "Тендерное сопровождение", Icon: ClipboardCheck },
+  { label: "Проверка клиента и контрагента", Icon: UserSearch },
 ];
 
 const modules = [
@@ -95,12 +105,13 @@ export default function Page() {
             банковскими продуктами.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {services.map((service) => (
+            {services.map(({ label, Icon }) => (
               <div
-                key={service}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-foreground"
+                key={label}
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
               >
-                {service}
+                <Icon className="h-4 w-4 shrink-0 text-primary" />
+                <span>{label}</span>
               </div>
             ))}
           </div>

@@ -7,7 +7,6 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import BankLogosSlider from "@/components/BankLogosSlider";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const products = [
@@ -92,7 +91,7 @@ export default function Home() {
               <p className="max-w-sm text-sm leading-relaxed text-foreground/70 md:text-lg">
                 Все для госзакупок и личных нужд — получите предложение онлайн
               </p>
-              <div className="flex flex-col gap-5 md:flex-row items-center">
+              <div className="flex flex-col gap-5 items-start md:flex-row md:items-center">
                 <button className="learn-more">
                   <span className="circle">
                     <span className="icon arrow"></span>
@@ -139,7 +138,7 @@ export default function Home() {
             {products.map((item) => (
               <div
                 key={item.id}
-                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] hover:shadow-xl hover:shadow-primary/10 backdrop-blur-xl transition-all duration-500"
+                className="relative overflow-hidden flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 px-7 py-7 shadow-[0_0_30px_-15px_rgba(0,0,0,0.2)] hover:shadow-xl hover:shadow-primary/10 hover:border-primary backdrop-blur-xl transition-all duration-500"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="pr-24 md:pr-32">
@@ -183,7 +182,7 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="group relative overflow-hidden rounded-3xl hover:shadow-xl hover:shadow-primary/10  border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500 hover:border-foreground/20">
+            <div className="group relative overflow-hidden rounded-3xl hover:border-primary hover:shadow-xl hover:shadow-primary/10  border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500">
               <div className="relative flex items-start gap-5 ">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                   A
@@ -200,9 +199,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:border-foreground/20">
-              <div className="pointer-events-none absolute  -right-16 -bottom-16 h-52 w-52 rounded-full bg-gradient-to-tl from-emerald-500/20 to-sky-500/10 blur-3xl transition-opacity duration-700 group-hover:opacity-80" />
-
+            <div className="group relative overflow-hidden rounded-3xl border border-transparent hover:border-primary bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 hover:shadow-xl hover:shadow-primary/10">
               <div className="relative flex items-start gap-5">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white font-bold shadow-md">
                   B

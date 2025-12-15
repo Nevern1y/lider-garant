@@ -116,18 +116,15 @@ export default function Page() {
             <div className="space-y-6">
               <div className="space-y-3">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                  <span className="text-primary">Международные</span>
+                  <span className="text-foreground">Международные</span>
                   <br />
-                  <span className="text-primary">платежи для</span>
+                  <span className="text-foreground">платежи </span>
                   <br />
-                  <span className="text-primary">бизнеса.</span>
+                  <span className="text-primary">для бизнеса.</span>
                 </h1>
               </div>
 
               <div className="space-y-3">
-                <p className="text-lg text-foreground/85 font-medium">
-                  Комплексные решения по ВЭД для импортеров и экспортеров.
-                </p>
                 <p className="text-base text-foreground/75 leading-relaxed">
                   Поможем перевести деньги, получить оплату из‑за рубежа и
                   сопровождать сделки.
@@ -136,16 +133,16 @@ export default function Page() {
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
-                    <div className="h-3 w-3 rounded-full bg-primary" />
+                  <div className="h-6 w-6 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
                   </div>
                   <span className="text-base font-semibold text-foreground">
                     от 0,3%
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
-                    <div className="h-3 w-3 rounded-full bg-primary" />
+                  <div className="h-6 w-6 rounded-full flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
                   </div>
                   <span className="text-base font-semibold text-foreground">
                     от 1 дня
@@ -270,10 +267,7 @@ export default function Page() {
                 Нажмите кнопку и получите расчет. Мы найдем только самые лучшие
                 предложения по комисси и курсу.
               </p>
-              <Button
-                type="submit"
-                className="h-11 w-full rounded-xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl"
-              >
+              <Button type="submit" className="h-11 w-full btn-three">
                 Получить расчет
               </Button>
               <p className="text-xs text-foreground/60">

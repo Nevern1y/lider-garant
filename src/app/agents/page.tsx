@@ -1,6 +1,8 @@
 "use client";
 
 import FadeIn from "@/components/FadeIn";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const entrepreneurs = [
   "Быстро подберем лучшие условия по банковским гарантиям, кредитам, лизингу, страхованию.",
@@ -82,7 +84,7 @@ export default function Page() {
             {specialists.map((item, index) => (
               <div
                 key={index}
-                className="group flex flex-col gap-3 rounded-2xl border border-white/6 bg-white/3 p-6 transition-shadow hover:shadow-md"
+                className="group flex flex-col gap-3 rounded-2xl border border-white/6 bg-white/3 p-6 transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
               >
                 <div className="flex items-start gap-3">
                   <div className="shrink-0 mt-0.5 text-foreground/90">
@@ -100,7 +102,25 @@ export default function Page() {
               </div>
             ))}
           </div>
+
         </section>
+        
+          <section className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <h3 className="text-xl font-semibold text-foreground">
+                  Хотите стать агентом?
+                </h3>
+                <p className="mt-2 text-sm text-foreground/70">
+                  Зарегистрируйтесь в системе и получайте заявки, поддержку
+                  менеджера и доступ к предложениям банков-партнёров.
+                </p>
+              </div>
+              <Button asChild className="h-12 btn-three whitespace-nowrap">
+                <Link href="/register">Стать агентом</Link>
+              </Button>
+            </div>
+          </section>
       </FadeIn>
     </main>
   );

@@ -7,17 +7,13 @@ import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import Image from "next/image";
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@radix-ui/react-accordion";
+import FaqSection from "@/components/FaqSection";
 import { CheckCheck, Plus } from "lucide-react";
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
 import DealFeed from "@/components/deal-feed";
 import SeeAlso from "@/components/see-also";
+import { Label } from "@radix-ui/react-label";
 
 export default function Page() {
   const [visibleDeals] = useState(12);
@@ -204,7 +200,7 @@ export default function Page() {
           <div className="relative grid items-center gap-8 md:grid-cols-2">
             <div className="space-y-5">
               <h1 className="text-3xl font-semibold tracking-tight text-primary md:text-4xl">
-                Страхование бизнеса.
+                Страхование бизнеса
               </h1>
               <p className="max-w-2xl text-base text-foreground/80 md:text-lg">
                 Страхование деятельности юридического лица, обеспечит надежную
@@ -279,7 +275,7 @@ export default function Page() {
       <FadeIn>
         <section className="mx-auto mt-8 w-full max-w-7xl py-10">
           <h2 className="mb-6 text-center text-2xl font-bold tracking-tight text-primary md:text-3xl">
-            Виды страхования
+            Виды страхования юридических лиц
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="relative overflow-hidden hover:border-primary/50 hover:shadow-primary/30 rounded-3xl border border-white/10 bg-white/5 p-6 pr-28 md:pr-40 min-h-[180px] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
@@ -293,7 +289,7 @@ export default function Page() {
                   "СМР, Ответственность, ППГО",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -315,7 +311,7 @@ export default function Page() {
               <ul className="space-y-2 text-sm text-foreground/85">
                 {responsibility.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -337,7 +333,7 @@ export default function Page() {
               <ul className="space-y-2 text-sm text-foreground/85">
                 {propertyAndCargo.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -359,7 +355,7 @@ export default function Page() {
               <ul className="space-y-2 text-sm text-foreground/85">
                 {accidents.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="mt-1 inline-block h-3 w-3 rounded-full bg-primary" />
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -381,7 +377,7 @@ export default function Page() {
       <FadeIn>
         <section className="mx-auto mt-2 w-full max-w-7xl py-10">
           <h2 className="mb-6 text-center text-2xl font-bold tracking-tight text-primary md:text-3xl">
-            Преимущества
+            Преимущества страхования юр лиц
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {benefits.map((t, i) => (
@@ -425,42 +421,7 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-            Часто задаваемые вопросы
-          </h2>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="overflow-hidden hover:border-primary/50 hover:shadow-primary/10 shadow-xl rounded-2xl border border-foreground/10 bg-white/5 px-4 transition-all"
-              >
-                <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
-                  {item.q}
-                  <svg
-                    className="h-4 w-4 shrink-0 transition-transform duration-300"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 9l6 6 6-6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </AccordionTrigger>
-                <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FaqSection title="Вопросы по страхованию юридических лиц" items={faqs} />
       </FadeIn>
 
       <FadeIn>
@@ -509,34 +470,30 @@ export default function Page() {
                     className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
                     required
                   />
+                  <Input
+                    placeholder="ФИО"
+                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                    required
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[0-9]/g, "");
+                      e.target.value = value;
+                    }}
+                  />
                 </div>
-                <label className="flex items-start gap-3 text-xs text-foreground/70">
+                <Label className="flex items-start gap-2 cursor-pointer">
                   <input
                     type="checkbox"
+                    defaultChecked
                     required
-                    className="mt-0.5 h-4 w-4 rounded border-foreground/30"
+                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
                   />
-                  <span>
-                    Ставя галочку, я соглашаюсь на обработку персональных
-                    данных, в соответствии с
-                    <a
-                      href="/docs/agreement.pdf"
-                      target="_blank"
-                      className="mx-1 underline"
-                    >
-                      Соглашением
-                    </a>
-                    и
-                    <a
-                      href="/docs/privacy.pdf"
-                      target="_blank"
-                      className="ml-1 underline"
-                    >
-                      Политикой конфиденциальности
-                    </a>
-                    .
+                  <span className="text-xs md:text-sm ml-2">
+                    Я даю согласие на обработку{" "}
+                    <span className="font-medium text-primary">
+                      персональных данных
+                    </span>
                   </span>
-                </label>
+                </Label>
                 <Button
                   type="submit"
                   className="h-11 rounded-xl px-6 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 bg-primary"

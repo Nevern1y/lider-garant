@@ -47,7 +47,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
 
   return (
     <section className="mx-auto w-full max-w-7xl py-5">
-      <h2 className="mb-12 text-center text-2xl font-bold text-primary md:text-3xl">
+      <h2 className="mb-12 text-center text-4xl font-bold text-primary ">
         Почему работать с нами выгодно?
       </h2>
 

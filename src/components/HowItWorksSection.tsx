@@ -48,7 +48,7 @@ export default function HowItWorksSection() {
     if (intervalRef.current) window.clearInterval(intervalRef.current);
     intervalRef.current = window.setInterval(() => {
       next();
-    }, 7000);
+    }, 4000);
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
@@ -63,7 +63,7 @@ export default function HowItWorksSection() {
     if (intervalRef.current) window.clearInterval(intervalRef.current);
     intervalRef.current = window.setInterval(() => {
       next();
-    }, 7000);
+    }, 4000);
   };
   useEffect(() => {
     if (progressRef.current) window.clearInterval(progressRef.current);
@@ -75,12 +75,12 @@ export default function HowItWorksSection() {
     const start = Date.now();
     progressRef.current = window.setInterval(() => {
       const elapsed = Date.now() - start;
-      const pct = Math.min(100, (elapsed / 7000) * 100);
+      const pct = Math.min(100, (elapsed / 4000) * 100);
       setProgress(pct);
       if (pct >= 100) {
         if (progressRef.current) window.clearInterval(progressRef.current);
       }
-    }, 100);
+    }, 50);
 
     return () => {
       if (progressRef.current) window.clearInterval(progressRef.current);
@@ -97,7 +97,7 @@ export default function HowItWorksSection() {
             tabIndex={0}
             className="order-1 lg:order-0"
           >
-            <h2 className="mb-6 mt-2 text-[26px] sm:text-[32px] md:text-[42px] font-bold leading-tight text-primary">
+            <h2 className="mb-6 mt-2 text-3xl font-bold leading-tight text-primary">
               Как это работает?
             </h2>
 
@@ -127,7 +127,7 @@ export default function HowItWorksSection() {
                       className={
                         "absolute -left-5 sm:left-[-18px] top-[-18px] flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full text-[10px] sm:text-sm font-semibold shadow-lg transition-all " +
                         (i === active
-                          ? "bg-white text-background text-primary"
+                          ? "bg-primary text-white"
                           : "bg-white/10 group-hover:bg-white/20 text-primary")
                       }
                     >
@@ -137,9 +137,9 @@ export default function HowItWorksSection() {
                     <div
                       className={
                         (i === active
-                          ? "rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.9)]"
+                          ? "rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 border border-transparent hover:border-primary hover:shadow-primary/20 shadow-2xl shadow-transparent"
                           : "rounded-xl sm:rounded-2xl p-4 sm:p-5 hover:bg-white/5") +
-                        " transition-colors"
+                        " transition-all border border-transparent hover:border-primary hover:shadow-primary/20 shadow-2xl shadow-transparent"
                       }
                     >
                       <h3
@@ -185,7 +185,7 @@ export default function HowItWorksSection() {
 
               <div className="absolute bottom-4 left-4 flex items-center gap-2 sm:gap-3 rounded-full bg-black/40 px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-lg backdrop-blur-xl">
                 <Image
-                  src="/logos/10.svg"
+                  src="/logos/40.png"
                   alt="Банк"
                   width={28}
                   height={28}
@@ -199,7 +199,7 @@ export default function HowItWorksSection() {
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
                 <Image
-                  src="/logos/3.svg"
+                  src="/logos/41.jpg"
                   alt="Банк"
                   width={28}
                   height={28}

@@ -13,21 +13,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import WhyUs from "@/components/Why-us";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@radix-ui/react-accordion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import FaqSection from "@/components/FaqSection";
 
 export default function DepositsPage() {
   const [query, setQuery] = useState("");
   const [bankFilter, setBankFilter] = useState("all"); // <-- default "all"
   const [termFilter, setTermFilter] = useState("all"); // <-- default "all"
-  const [visible, setVisible] = useState(8);
+  const [visible, setVisible] = useState(9);
 
   const banks = [
     "Реалист",
@@ -98,18 +93,21 @@ export default function DepositsPage() {
       <div className="max-w-7xl mx-auto px-4">
         <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr,360px] gap-8 shadow-[0_0_30px_rgb(34,211,238,0.15)]">
           <div className="flex flex-col gap-6">
-            <span className="inline-block text-primary font-bold text-4xl lg:text-5xl tracking-tight">
-              Депозиты для бизнеса в Москве
+            <span className="inline-block font-bold text-4xl lg:text-5xl tracking-tight text-foreground">
+              Депозиты для бизнеса в <span className="text-primary">Москве</span>
             </span>
 
             <p className="text-xl">
               Подайте заявки на открытие вклада для юридических лиц и ИП в
-              несколько банков. Выберите лучшие депозиты для малого и среднего
-              бизнеса под высокий процент в 2026 году! — ставка до 16,7%
+              несколько банков.
+              <br />
+              Выберите лучшие депозиты для малого и среднего бизнеса под высокий
+              процент в 2026 году!
             </p>
 
-            <p className="text-[var(--foreground-secondary)] text-sm mt-2">
+            <div className="text-[var(--foreground-secondary)] text-sm mt-2">
               <ul className="space-y-1 text-[var(--foreground)] text-base">
+                <li className="list-disc marker:text-primary">Ставка до 16,7%</li>
                 <li className="list-disc marker:text-primary">
                   Сумма от 1 до 1 000 000 000 ₽
                 </li>
@@ -117,7 +115,7 @@ export default function DepositsPage() {
                   Срок от 8 до 365 дней
                 </li>
               </ul>
-            </p>
+            </div>
 
             <div className="flex flex-wrap gap-4 mt-4">
               <button className="h-12 btn-three">Подать заявку</button>
@@ -125,9 +123,9 @@ export default function DepositsPage() {
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                ["Сумма", "до 500 млн ₽"],
+                ["Сумма", "до 1 млрд ₽"],
                 ["Срок", "от 8 до 365 дней"],
-                ["Комиссия", "до 23,65%"],
+                ["Ставка", "до 16,7%"],
               ].map(([label, val]) => (
                 <div
                   key={label}
@@ -153,6 +151,9 @@ export default function DepositsPage() {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr,340px] gap-10">
           <section>
+            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
+              Предложения по депозитам
+            </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
               <div className="flex gap-4 flex-wrap items-center">
                 {/* Bank select (shadcn) */}
@@ -278,9 +279,9 @@ export default function DepositsPage() {
                   Показать еще
                 </button>
               ) : (
-                filtered.length > 8 && (
+                filtered.length > 9 && (
                   <button
-                    onClick={() => setVisible(8)}
+                    onClick={() => setVisible(9)}
                     className="h-12 btn-three"
                   >
                     Свернуть
@@ -385,74 +386,43 @@ export default function DepositsPage() {
         </div>
 
         <FadeIn>
-          <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-            <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-              Вопросы по депозитам
-            </h2>
-            <Accordion type="single" collapsible className="space-y-3">
-              {[
-                {
-                  q: "Что такое депозит?",
-                  a: "Депозит — это вклад в банк под фиксированную или плавающую процентную ставку, который приносит доход через определённый срок.",
-                },
-                {
-                  q: "Какие бывают виды депозитов?",
-                  a: "Срочные депозиты, депозиты до востребования, накопительные счета, депозиты с возможностью пополнения и снятия, а также валютные депозиты.",
-                },
-                {
-                  q: "Чем отличается вклад от накопительного счёта?",
-                  a: "Вклад имеет фиксированный срок и ставку, а накопительный счёт позволяет свободно пополнять и снимать деньги, но с гибкой ставкой.",
-                },
-                {
-                  q: "Какой минимальный срок открывают депозиты?",
-                  a: "Обычно от 1 месяца до 36 месяцев, в зависимости от условий банка.",
-                },
-                {
-                  q: "Можно ли снимать деньги раньше срока?",
-                  a: "Да, но в большинстве случаев ставка пересчитывается на минимальную. Некоторые банки позволяют частичное снятие без потери процентов.",
-                },
-                {
-                  q: "Уплачиваются ли налоги с дохода по депозитам?",
-                  a: "Да, налог взимается с дохода, превышающего необлагаемый лимит. Банк удерживает налог автоматически.",
-                },
-                {
-                  q: "Насколько безопасны депозиты?",
-                  a: "Депозиты защищены системой страхования вкладов — до 1,4 млн рублей на одного человека в одном банке.",
-                },
-                {
-                  q: "Можно ли открыть депозит онлайн?",
-                  a: "Да, большинство банков позволяют открыть депозит полностью онлайн — через приложение или личный кабинет.",
-                },
-              ].map((item, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`item-${i}`}
-                  className="overflow-hidden rounded-2xl border border-foreground/10 shadow-2xl hover:shadow-primary/10 bg-white/5 px-4 hover:border-primary transition-all"
-                >
-                  <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
-                    {item.q}
-                    <svg
-                      className="h-4 w-4 shrink-0 transition-transform duration-300"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6 9l6 6 6-6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </AccordionTrigger>
-                  <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </section>
+          <FaqSection
+            title="Вопросы по депозитам"
+            items={[
+              {
+                q: "Что такое депозит?",
+                a: "Депозит — это вклад в банк под фиксированную или плавающую процентную ставку, который приносит доход через определённый срок.",
+              },
+              {
+                q: "Какие бывают виды депозитов?",
+                a: "Срочные депозиты, депозиты до востребования, накопительные счета, депозиты с возможностью пополнения и снятия, а также валютные депозиты.",
+              },
+              {
+                q: "Чем отличается вклад от накопительного счёта?",
+                a: "Вклад имеет фиксированный срок и ставку, а накопительный счёт позволяет свободно пополнять и снимать деньги, но с гибкой ставкой.",
+              },
+              {
+                q: "Какой минимальный срок открывают депозиты?",
+                a: "Обычно от 1 месяца до 36 месяцев, в зависимости от условий банка.",
+              },
+              {
+                q: "Можно ли снимать деньги раньше срока?",
+                a: "Да, но в большинстве случаев ставка пересчитывается на минимальную. Некоторые банки позволяют частичное снятие без потери процентов.",
+              },
+              {
+                q: "Уплачиваются ли налоги с дохода по депозитам?",
+                a: "Да, налог взимается с дохода, превышающего необлагаемый лимит. Банк удерживает налог автоматически.",
+              },
+              {
+                q: "Насколько безопасны депозиты?",
+                a: "Депозиты защищены системой страхования вкладов — до 1,4 млн рублей на одного человека в одном банке.",
+              },
+              {
+                q: "Можно ли открыть депозит онлайн?",
+                a: "Да, большинство банков позволяют открыть депозит полностью онлайн — через приложение или личный кабинет.",
+              },
+            ]}
+          />
         </FadeIn>
 
         <FadeIn>
@@ -468,17 +438,17 @@ export default function DepositsPage() {
             <div className="rounded-xl border border-foreground/10 bg-white/5 p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
                 {[
-                  "депозиты для малого и среднего бизнеса",
+                  "Депозиты для малого и среднего бизнеса",
                   "корпоративные депозиты",
-                  "депозит для малого бизнеса",
-                  "депозит для среднего бизнеса",
-                  "депозиты для юридических лиц",
-                  "депозиты для юрлиц",
-                  "депозиты для ИП",
-                  "депозиты для ООО",
-                  "депозит для корпоративных клиентов",
-                  "депозиты для крупного бизнеса",
-                  "депозиты для компаний",
+                  "Депозит для малого бизнеса",
+                  "Депозит для среднего бизнеса",
+                  "Депозиты для юридических лиц",
+                  "Депозиты для юрлиц",
+                  "Депозиты для ИП",
+                  "Депозиты для ООО",
+                  "Депозит для корпоративных клиентов",
+                  "Депозиты для крупного бизнеса",
+                  "Депозиты для компаний",
                 ].map((t, i) => (
                   <Link
                     key={i}

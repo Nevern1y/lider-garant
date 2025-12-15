@@ -15,15 +15,15 @@ const cards = [
     icon: Phone,
     title: "Позвоните нам",
     desc: "Звонок бесплатный по России.",
-    link: "tel:+7 800 000 00 00",
-    cta: "+7 800 000 00 00",
+    link: "tel:+7(965)284-14-15 ",
+    cta: "+7(965)284-14-15 ",
   },
   {
     icon: MessageSquareText,
     title: "Напишите нам",
     desc: "Отвечаем на почту в рабочее время.",
-    link: "mailto:client@lider-garant.ru",
-    cta: "client@lider-garant.ru",
+    link: "mailto:info@lider-garant.ru",
+    cta: "info@lider-garant.ru",
   },
 ];
 
@@ -31,8 +31,8 @@ export default function ManagerCTASection() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-5">
       <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-foreground/15">
-        <div className="relative grid gap-10 px-5 sm:px-8 md:px-14 py-10 sm:py-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
+        <div className="relative grid gap-10 py-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="px-5">
             <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-foreground/70">
               Всегда на связи
             </p>
@@ -55,7 +55,7 @@ export default function ManagerCTASection() {
                   sm:hover:-translate-y-1 "
                 >
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-2xl bg-white/55 text-foreground">
+                    <span className="inline-flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-2xl bg-primary text-white">
                       <Icon className="h-4 w-4 xs:h-5 xs:w-5" />
                     </span>
                     <div className="text-[13px] sm:text-sm font-semibold">
@@ -67,8 +67,7 @@ export default function ManagerCTASection() {
                   </p>
                   <Button
                     asChild
-                    size="lg"
-                    className="mt-4 sm:mt-5 w-full justify-center rounded-2xl text-[10px] xs:text-[11px]  hover:bg-primary bg-none text-primary border-2 border-primary hover:text-white sm:text-xs font-semibold uppercase tracking-wide whitespace-normal break-words text-center"
+                    className="mt-4 h-12 w-full rounded-2xl border-2 border-primary bg-transparent text-primary text-[11px] font-semibold uppercase tracking-wide hover:bg-primary hover:text-white whitespace-nowrap"
                   >
                     <a href={link}>{cta}</a>
                   </Button>
@@ -77,22 +76,38 @@ export default function ManagerCTASection() {
             </div>
           </div>
 
-          <div className="order-first lg:order-0 rounded-2xl sm:rounded-3xl border border-foreground/10 bg-white/5 p-5 sm:p-6 text-center text-foreground/80 backdrop-blur-2xl">
-            <div className="text-[10px] sm:text-[12px] font-semibold uppercase tracking-[0.25em] text-foreground/60">
-              Ваш менеджер
+          <div
+            className="order-first lg:order-0 rounded-2xl sm:rounded-3xl
+             border border-foreground/10 bg-white/5
+             p-6 sm:p-7 text-center text-foreground/80
+             backdrop-blur-2xl min-h-[340px]
+             grid grid-rows-[auto_minmax(0,1fr)_auto] mx-5"
+          >
+            <div className="pt-1">
+              <div className="text-[10px] sm:text-[12px] font-semibold uppercase tracking-[0.25em] text-foreground/60">
+                Ваш менеджер
+              </div>
+
+              <p className="mt-1 text-3xl font-semibold text-primary">
+                Лидер Гарант
+              </p>
             </div>
-            <p className="mt-3 sm:mt-4 text-[24px] sm:text-3xl font-semibold text-primary">
-              Лидер Гарант
-            </p>
-            <p className="mt-3 sm:mt-4 text-[12px] sm:text-sm leading-relaxed text-foreground/75">
-              Следит за сроками, помогает с документами и держит связь удобным
-              для вас способом. Решаем вопросы даже вне рабочего времени.
-            </p>
-            <div className="mt-5 sm:mt-6 flex flex-col items-center gap-2.5 text-[11px] sm:text-sm">
-              <div className="rounded-2xl border border-foreground/10 bg-white/10 px-3 py-2 text-foreground">
+
+            <div className="flex items-center justify-center px-4">
+              <p className="text-[12px] sm:text-sm leading-relaxed text-foreground/75 max-w-[36ch]">
+                Следит за сроками, помогает с документами и держит связь удобным
+                для вас способом. Решаем вопросы даже вне рабочего времени,
+                консультируем по любым нюансам, помогаем подготовить документы и
+                выбрать оптимальные решения. Всегда на связи, чтобы вы были
+                уверены в каждом шаге.
+              </p>
+            </div>
+
+            <div className="mt-4 pb-1 flex flex-col items-center gap-3 text-[11px] sm:text-sm">
+              <div className="w-full rounded-2xl border border-foreground/10 bg-white/10 px-3 py-3 text-foreground">
                 График: 07:00 — 23:00 (МСК)
               </div>
-              <div className="rounded-2xl border border-foreground/10 bg-white/10 px-3 py-2 text-foreground">
+              <div className="w-full rounded-2xl border border-foreground/10 bg-white/10 px-3 py-3 text-foreground">
                 Каналы: телефон, почта, мессенджеры
               </div>
             </div>

@@ -29,26 +29,44 @@ export default function SiteFooter() {
                 className="row-span-2 h-15 mb-25 mt-20 w-auto logo-dark-footer"
               />
             </div>
-            <address className="not-italic text-sm text-foreground/70">
-              ООО Лидер‑Гарант, 129085, г. Москва, Проспект мира 105
+            <address className="not-italic text-sm text-foreground/70 space-y-1">
+              <div>ООО Лидер‑Гарант</div>
+              <div>129085, г. Москва, Проспект мира 105</div>
             </address>
-            <div className="text-sm text-foreground/70">
-              Служба поддержки
-              <div>+7(965)284-14-15 Ежедневно с 7 до 20 Мск</div>
-              <a href="mailto:info@lider-garant.ru" className="link-gradient">
-                info@lider-garant.ru
-              </a>
+
+            <div className="text-sm text-foreground/70 mt-2 space-y-1">
+              <div className="font-semibold">Служба поддержки</div>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href="tel:+79652841415"
+                  className="text-primary hover:underline"
+                >
+                  +7(965)284-14-15
+                </a>
+                <span>Ежедневно с 7 до 20 Мск</span>
+              </div>
+              <div>
+                <a
+                  href={`mailto:${"info@lider-garant.ru"
+                    .split("@")
+                    .join("&#64;")}`}
+                  className="text-primary hover:underline"
+                >
+                  info@lider-garant.ru
+                </a>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
+
+            <div className="flex items-center gap-4 mt-3">
               <ThemeToggle />
               <a
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=""
                 title="Telegram"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
               >
-                <Send className="h-7 w-7 hover:text-primary transition-colors" />
+                <Send className="h-6 w-6 text-primary" />
               </a>
             </div>
           </div>

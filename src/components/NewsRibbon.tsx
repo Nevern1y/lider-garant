@@ -42,22 +42,16 @@ const news = [
 export default function NewsRibbon() {
   return (
     <section className="relative mx-auto w-full max-w-7xl px-6 py-5 overflow-hidden">
-      <div className="relative rounded-[32px] border border-foreground/10 p-8 md:p-12 bg-white/5 backdrop-blur-xl">
+      <div className="relative rounded-4xl border border-foreground/10 p-8 md:p-12 bg-white/5 backdrop-blur-xl">
         <h2 className="mb-10 text-center text-3xl font-semibold text-primary md:text-4xl">
           Новости компании
         </h2>
 
-        <div className="absolute top-6 right-6 flex gap-3 z-10">
-          <button
-            className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-white/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
-            aria-label="Предыдущая новость"
-          >
+        <div className="absolute top-6 right-6 z-10 isolate flex gap-3">
+          <button className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full bg-primary backdrop-blur-xl border border-white/10 text-white shadow-lg transition-all hover:bg-white/10 hover:text-primary hover:border-primary">
             ←
           </button>
-          <button
-            className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 bg-white/5 text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/30"
-            aria-label="Следующая новость"
-          >
+          <button className="news-swiper-button-next flex h-10 w-10 items-center justify-center rounded-full bg-primary backdrop-blur-xl border border-white/10 text-white shadow-lg transition-all hover:bg-white/10 hover:text-primary hover:border-primary">
             →
           </button>
         </div>
@@ -84,7 +78,7 @@ export default function NewsRibbon() {
         >
           {news.map((item, i) => (
             <SwiperSlide key={i}>
-              <article className="group hover:shadow-xl hover:shadow-primary/10 h-64 flex flex-col justify-between rounded-3xl border border-foreground/10 bg-foreground/5 p-5 transition-all duration-300 hover:border-primary/30">
+              <article className="group hover:shadow-xl hover:shadow-primary/10 h-64 flex flex-col justify-between rounded-3xl border border-transparent bg-black/2 backdrop-blur-2xl p-5 transition-all duration-300 hover:border-primary">
                 <div>
                   <time className="mb-2 block text-xs text-foreground/60">
                     {item.date}

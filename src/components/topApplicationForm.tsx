@@ -93,16 +93,19 @@ export default function TopApplicationForm() {
               className="w-full max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border border-foreground/20 bg-white/5 p-5 md:p-10 lg:p-12 shadow-2xl relative mt-4 md:-mt-8 lg:-mt-12 md:-mb-8 lg:-mb-12"
               aria-label="Форма получения банковской гарантии"
             >
-              <h3 className="mb-4 md:mb-6 text-xl md:text-2xl font-bold leading-tight text-primary">
-                Получить гарантию
+              <h3 className="mb-1 text-xl md:text-2xl font-bold leading-tight text-primary">
+                Получение банковской гарантии
               </h3>
+              <p className="mb-4 text-xs md:text-sm text-foreground/70">
+                Оставьте запрос на получение БГ
+              </p>
 
               <div className="space-y-2 md:space-y-3">
                 <Label htmlFor="guarantee-type" className="text-xs md:text-sm">
                   Вид гарантии
                 </Label>
                 <Select name="guarantee-type" required>
-                  <SelectTrigger className="w-full bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base">
+                  <SelectTrigger className="w-full bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm text-black rounded-md">
                     <SelectValue placeholder="Выберите тип" />
                   </SelectTrigger>
                   <SelectContent>
@@ -127,8 +130,12 @@ export default function TopApplicationForm() {
                   type="text"
                   name="fullname"
                   placeholder="ФИО"
-                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base"
+                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md"
                   required
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/[0-9]/g, "");
+                    e.target.value = value;
+                  }}
                 />
               </div>
 
@@ -140,19 +147,20 @@ export default function TopApplicationForm() {
                   key={phoneKey}
                   id="phone"
                   name="phone"
-                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 h-10 md:h-11 rounded-full text-sm md:text-base"
+                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md"
                   required
                 />
               </div>
 
               <div className="mt-3 md:mt-4 space-y-2 md:space-y-3">
-                <Label className="flex items-start gap-2 md:gap-3 cursor-pointer">
+                <Label className="flex items-start gap-2 cursor-pointer">
                   <input
                     type="checkbox"
+                    defaultChecked
                     required
-                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20 shrink-0"
+                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
                   />
-                  <span className="text-xs md:text-sm">
+                  <span className="text-xs md:text-sm ml-2">
                     Я даю согласие на обработку{" "}
                     <span className="font-medium text-primary">
                       персональных данных
@@ -166,7 +174,7 @@ export default function TopApplicationForm() {
                 className="mt-4 btn-three h-12 w-full"
                 size="lg"
               >
-                Отправить
+                Получить БГ
               </Button>
             </form>
           </div>

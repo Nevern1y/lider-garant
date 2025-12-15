@@ -9,16 +9,10 @@ export default function SeeAlso() {
       img: "/finance-products/guarantee.png",
     },
     {
-      title: "ВЭД",
+      title: "Международные платежи",
       desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
       href: "/ved",
       img: "/finance-products/money.png",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-      img: "/finance-products/four.png",
     },
     {
       title: "Страхование",
@@ -34,15 +28,21 @@ export default function SeeAlso() {
     },
     {
       title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
+      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника. ",
       href: "/tender-support",
       img: "/finance-products/calculator-hand.png",
+    },
+    {
+      title: "Лизинг для юридических лиц",
+      desc: "Финансируем новое и бу с авансом от 0 %",
+      href: "/tender-support",
+      img: "/finance-products/four.png",
     },
   ];
   return (
     <>
       <section className="mx-auto w-full max-w-7xl py-12">
-        <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
+        <h2 className="mb-6 text-4xl font-bold text-primary text-center">
           Смотрите также
         </h2>
         <div className="grid gap-6 md:grid-cols-3">

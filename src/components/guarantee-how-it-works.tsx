@@ -95,7 +95,7 @@ export default function GuaranteeHowItWorksSection() {
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
-      <h2 className="mb-6 mt-2 text-[26px] sm:text-[32px] md:text-[42px] font-bold leading-tight text-primary text-center">
+      <h2 className="mb-6 mt-2 text-4xl font-bold leading-tight text-primary text-center">
         Как это работает?
       </h2>
       <div className="relative overflow-hidden rounded-3xl sm:rounded-4xl border border-foreground/10">
@@ -132,8 +132,8 @@ export default function GuaranteeHowItWorksSection() {
                       className={
                         "absolute -left-5 sm:left-[-18px] top-[-18px] flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full text-[10px] sm:text-sm font-semibold shadow-lg transition-all " +
                         (i === active
-                          ? "bg-white text-primary"
-                          : "bg-white/10 text-foreground/10 group-hover:bg-white/20")
+                          ? "bg-primary text-white"
+                          : "bg-white/10 group-hover:bg-white/20 text-primary")
                       }
                     >
                       {i + 1}
@@ -142,9 +142,9 @@ export default function GuaranteeHowItWorksSection() {
                     <div
                       className={
                         (i === active
-                          ? "rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.9)]"
+                          ? "rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 border border-transparent hover:border-primary hover:shadow-primary/20 shadow-2xl shadow-transparent"
                           : "rounded-xl sm:rounded-2xl p-4 sm:p-5 hover:bg-white/5") +
-                        " transition-colors"
+                        " transition-all border border-transparent hover:border-primary hover:shadow-primary/20 shadow-2xl shadow-transparent"
                       }
                     >
                       <h3
@@ -190,7 +190,7 @@ export default function GuaranteeHowItWorksSection() {
 
               <div className="absolute bottom-4 left-4 flex items-center gap-2 sm:gap-3 rounded-full bg-black/40 px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-lg backdrop-blur-xl">
                 <Image
-                  src="/logos/10.svg"
+                  src="/logos/40.png"
                   alt="Банк"
                   width={28}
                   height={28}
@@ -204,7 +204,7 @@ export default function GuaranteeHowItWorksSection() {
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
                 <Image
-                  src="/logos/3.svg"
+                  src="/logos/41.jpg"
                   alt="Банк"
                   width={28}
                   height={28}

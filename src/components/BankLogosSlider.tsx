@@ -37,7 +37,7 @@ export default function BankLogosSlider() {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-6 py-12">
-      <div className="overflow-hidden rounded-[32px] border border-foreground/10">
+      <div className="overflow-hidden rounded-4xl border border-foreground/10">
         <div className="px-6 py-8 md:px-12">
           <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl">
             Наши партнёры

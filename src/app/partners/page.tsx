@@ -2,6 +2,7 @@
 
 import FadeIn from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const advantages = [
   {
@@ -61,16 +62,16 @@ export default function Page() {
 
       <FadeIn>
         <section className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-2xl font-semibold text-primary">
             Преимущества работы
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {advantages.map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/80"
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-foreground/80 transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
               >
-                <p className="text-base font-semibold text-foreground">
+                <p className="text-base font-semibold text-primary">
                   {item.title}
                 </p>
                 <p className="mt-3">{item.description}</p>
@@ -82,7 +83,7 @@ export default function Page() {
 
       <FadeIn>
         <section className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-2xl font-semibold text-primary">
             Наша задача - связать Банки с Клиентами по всей стране, для быстрого
             и удобного получения банковских продуктов
           </h2>
@@ -96,13 +97,32 @@ export default function Page() {
 
       <FadeIn>
         <section className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-2xl font-semibold text-primary">
             Платформа разработана с учетом:
           </h2>
           <div className="mt-5 space-y-3 text-sm text-foreground/80">
             {platform.map((text) => (
               <p key={text}>{text}</p>
             ))}
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <h3 className="text-xl font-semibold text-primary">
+                Хотите стать партнером?
+              </h3>
+              <p className="mt-2 text-sm text-foreground/70">
+                Оставьте заявку на сотрудничество — мы свяжемся с вами и обсудим
+                условия интеграции и поток клиентов.
+              </p>
+            </div>
+            <Button asChild className="h-12 btn-three whitespace-nowrap">
+              <Link href="/contacts">Стать партнером</Link>
+            </Button>
           </div>
         </section>
       </FadeIn>

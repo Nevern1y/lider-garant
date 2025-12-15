@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { Pencil } from "lucide-react";
 import { toast } from "sonner";
 import FadeIn from "@/components/FadeIn";
@@ -79,11 +78,12 @@ export default function GuaranteeCalculator() {
                   key={type.value}
                   type="button"
                   onClick={() => setGuaranteeType(type.value)}
-                  className={`rounded-lg md:rounded-xl px-2 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold transition-all hover:bg-primary hover:-translate-y-1 hover:text-white cursor-pointer ${
-                    guaranteeType === type.value
-                      ? "border-2 border-primary bg-primary text-white"
-                      : "border-2 border-primary text-primary"
-                  }`}
+                  className={`rounded-lg md:rounded-xl px-2 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold transition-all hover:-translate-y-1 cursor-pointer
+                    ${
+                      guaranteeType === type.value
+                        ? "border-2 border-teal-400 bg-teal-400 text-white"
+                        : "border-2 border-teal-400 text-teal-600 bg-transparent"
+                    }`}
                 >
                   {type.label}
                 </button>
@@ -120,22 +120,22 @@ export default function GuaranteeCalculator() {
                 value={amount}
                 onChange={handleAmountChange}
                 className="
-    w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary
-    [&::-webkit-slider-thumb]:appearance-none
-    [&::-webkit-slider-thumb]:h-5
-    [&::-webkit-slider-thumb]:w-5
-    [&::-webkit-slider-thumb]:rounded-full
-    [&::-webkit-slider-thumb]:bg-primary
-    [&::-webkit-slider-thumb]:cursor-pointer
-    [&::-moz-range-thumb]:h-5
-    [&::-moz-range-thumb]:w-5
-    [&::-moz-range-thumb]:rounded-full
-    [&::-moz-range-thumb]:bg-primary
-    [&::-moz-range-thumb]:border-0
-    [&::-moz-range-thumb]:cursor-pointer
-  "
+      w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-400
+      [&::-webkit-slider-thumb]:appearance-none
+      [&::-webkit-slider-thumb]:h-5
+      [&::-webkit-slider-thumb]:w-5
+      [&::-webkit-slider-thumb]:rounded-full
+      [&::-webkit-slider-thumb]:bg-teal-400
+      [&::-webkit-slider-thumb]:cursor-pointer
+      [&::-moz-range-thumb]:h-5
+      [&::-moz-range-thumb]:w-5
+      [&::-moz-range-thumb]:rounded-full
+      [&::-moz-range-thumb]:bg-teal-400
+      [&::-moz-range-thumb]:border-0
+      [&::-moz-range-thumb]:cursor-pointer
+    "
                 style={{
-                  background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${
+                  background: `linear-gradient(to right, var(--teal, #14b8a6) 0%, var(--teal, #14b8a6) ${
                     ((amount - 10000) / (1000000000 - 10000)) * 100
                   }%, #e5e7eb ${
                     ((amount - 10000) / (1000000000 - 10000)) * 100
@@ -180,22 +180,22 @@ export default function GuaranteeCalculator() {
                 value={months}
                 onChange={handleMonthsChange}
                 className="
-    w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary
-    [&::-webkit-slider-thumb]:appearance-none
-    [&::-webkit-slider-thumb]:h-5
-    [&::-webkit-slider-thumb]:w-5
-    [&::-webkit-slider-thumb]:rounded-full
-    [&::-webkit-slider-thumb]:bg-primary
-    [&::-webkit-slider-thumb]:cursor-pointer
-    [&::-moz-range-thumb]:h-5
-    [&::-moz-range-thumb]:w-5
-    [&::-moz-range-thumb]:rounded-full
-    [&::-moz-range-thumb]:bg-primary
-    [&::-moz-range-thumb]:border-0
-    [&::-moz-range-thumb]:cursor-pointer
-  "
+      w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-400
+      [&::-webkit-slider-thumb]:appearance-none
+      [&::-webkit-slider-thumb]:h-5
+      [&::-webkit-slider-thumb]:w-5
+      [&::-webkit-slider-thumb]:rounded-full
+      [&::-webkit-slider-thumb]:bg-teal-400
+      [&::-webkit-slider-thumb]:cursor-pointer
+      [&::-moz-range-thumb]:h-5
+      [&::-moz-range-thumb]:w-5
+      [&::-moz-range-thumb]:rounded-full
+      [&::-moz-range-thumb]:bg-teal-400
+      [&::-moz-range-thumb]:border-0
+      [&::-moz-range-thumb]:cursor-pointer
+    "
                 style={{
-                  background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${
+                  background: `linear-gradient(to right, var(--teal, #14b8a6) 0%, var(--teal, #14b8a6) ${
                     ((months - 1) / (120 - 1)) * 100
                   }%, #e5e7eb ${
                     ((months - 1) / (120 - 1)) * 100
@@ -211,7 +211,7 @@ export default function GuaranteeCalculator() {
           </div>
 
           <div className="lg:sticky lg:top-8 lg:h-fit">
-            <div className="rounded-2xl md:rounded-3xl border border-foreground/10 bg-white/5 p-5 md:p-8 shadow-xl">
+            <div className="rounded-2xl md:rounded-3xl border border-white/10 bg-white/5 p-5 md:p-8 shadow-xl">
               <div className="mb-6 space-y-2 md:space-y-3 border-b border-gray-200 pb-6">
                 <div className="flex justify-between text-xs md:text-sm">
                   <span className="">Сумма гарантии:</span>
@@ -250,30 +250,52 @@ export default function GuaranteeCalculator() {
                     type="text"
                     placeholder="ФИО"
                     value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
+                    onChange={(e) =>
+                      setFullname(e.target.value.replace(/\d/g, ""))
+                    }
                     className="bg-white border-gray-300 px-4 py-3 md:py-6 text-sm md:text-base"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
+                  {/* Phone input styled as rectangular input like others */}
                   <PhoneInput
                     key={phoneKey}
                     placeholder="+7 (___) ___-__-__"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="bg-white border-gray-300 px-4 py-3 md:py-6 h-10 md:h-11 rounded-full text-sm md:text-base"
+                    className="bg-white border-gray-300 px-4 py-3 md:py-6 text-sm md:text-base"
                     required
                   />
                 </div>
 
-                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3 md:p-4">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <Switch checked={discount} onCheckedChange={setDiscount} />
+                {/* Discount row with sliding toggle */}
+                <div
+                  className="flex items-center justify-between rounded-lg border border-gray-200 bg-teal-50 p-3 md:p-4"
+                  role="group"
+                >
+                  <div className="flex items-center gap-3 md:gap-4">
+                    {/* Custom sliding switch */}
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-checked={discount}
+                      onClick={() => setDiscount((s) => !s)}
+                      className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors duration-200 focus:outline-none
+                        ${discount ? "bg-teal-400" : "bg-gray-200"}`}
+                    >
+                      <span
+                        className={`absolute left-1 h-4 w-4 rounded-full bg-white shadow transform transition-transform duration-200
+                          ${discount ? "translate-x-6" : "translate-x-0"}`}
+                      />
+                    </button>
+
                     <Label className="text-xs md:text-sm font-medium text-black cursor-pointer">
                       Скидка
                     </Label>
                   </div>
+
                   {discount && (
                     <span className="rounded bg-red-500 px-2 md:px-3 py-0.5 md:py-1 text-xs font-bold text-white">
                       -20%
@@ -281,21 +303,20 @@ export default function GuaranteeCalculator() {
                   )}
                 </div>
 
-                <div className="space-y-2 md:space-y-3">
-                  <Label className="flex items-start gap-2 md:gap-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      required
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20 shrink-0"
-                    />
-                    <span className="text-xs md:text-sm">
-                      Я даю согласие на обработку{" "}
-                      <span className="font-medium text-primary">
-                        персональных данных
-                      </span>
+                <Label className="flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    required
+                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
+                  />
+                  <span className="text-xs md:text-sm ml-2">
+                    Я даю согласие на обработку{" "}
+                    <span className="font-medium text-primary">
+                      персональных данных
                     </span>
-                  </Label>
-                </div>
+                  </span>
+                </Label>
 
                 <Button
                   type="submit"

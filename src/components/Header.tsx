@@ -221,21 +221,19 @@ export default function Header() {
                 <div className="grid gap-4 rounded-2xl border border-foreground/10 bg-foreground/5 p-5 shadow-sm backdrop-blur-md dark:bg-white/5 dark:border-white/10">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/10 text-foreground/70">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
                         <Smartphone className="h-5 w-5" />
                       </div>
                       <a
-                        href="tel:+79999999999"
-                        className="text-lg font-semibold tracking-tight text-foreground/70"
+                        href="tel:+79652841415"
+                        className="text-lg font-semibold tracking-tight text-primary whitespace-nowrap"
                       >
-                        +7 (999) 999-99-99
+                        +7(965)284-14-15
                       </a>
                     </div>
-                    <div className="rounded-xl bg-foreground/15 p-1.5 text-foreground shadow-sm dark:bg-black/50">
-                      <ThemeToggle />
-                    </div>
+                    
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center flex-wrap gap-3 justify-between">
                     <button
                       onClick={() => {
                         setMobileOpen(false);
@@ -245,6 +243,9 @@ export default function Header() {
                     >
                       Обратный звонок
                     </button>
+                    <div className="rounded-xl bg-foreground/15 p-1.5 text-foreground shadow-sm dark:bg-black/50">
+                      <ThemeToggle />
+                    </div>
                   </div>
                   <Link
                     href="#login"

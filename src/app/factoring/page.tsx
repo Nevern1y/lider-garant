@@ -8,12 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import WhyUs from "@/components/Why-us";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@radix-ui/react-accordion";
+import FaqSection from "@/components/FaqSection";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -164,18 +159,7 @@ export default function Page() {
           <div className="relative grid items-center gap-8 md:grid-cols-2">
             <div className="space-y-5">
               <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl space-y-1 leading-tight">
-                <span className="block text-primary">Международные</span>
-                <span className="block text-white">платежи для</span>
-                <span className="block text-primary">бизнеса.</span>
-
-                <span className="block text-foreground/90 mt-4 md:mt-5 text-lg md:text-xl font-normal">
-                  Комплексные решения по ВЭД для импортеров и экспортеров.
-                </span>
-
-                <span className="block text-foreground/70 text-base md:text-lg font-normal">
-                  Поможем перевести деньги, получить оплату из-за рубежа и
-                  сопровождать сделки.
-                </span>
+                ФАКТОРИНГ
               </h1>
 
               <div className="max-w-2xl text-base text-foreground/80 md:text-lg">
@@ -399,41 +383,7 @@ export default function Page() {
       </section>
 
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-            Вопросы по факторингу
-          </h2>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="overflow-hidden rounded-2xl hover:border-primary/50 hover:shadow-primary/10 shadow-xl border border-foreground/10 bg-white/5 px-4  transition-all"
-              >
-                <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
-                  {item.q}
-                  <svg
-                    className="h-4 w-4 shrink-0 transition-transform duration-300"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 9l6 6 6-6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </AccordionTrigger>
-                <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+        <FaqSection title="Вопросы по факторингу" items={faqs} />
       </FadeIn>
 
       <FadeIn>

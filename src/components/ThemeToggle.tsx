@@ -31,13 +31,16 @@ export default function ThemeToggle() {
       <button
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         aria-label="Toggle theme"
-        className="relative flex h-6 w-11 items-center rounded-full transition-colors
-        duration-300 bg-primary"
+        className={`relative flex h-6 w-12 items-center rounded-full 
+          bg-primary/10 dark:bg-primary/20 
+          transition-colors duration-300
+          hover:bg-primary/20 dark:hover:bg-primary/30
+          focus:outline-none focus:ring-2 focus:ring-primary`}
       >
         <span
-          className={`absolute left-1 h-4 w-4 rounded-full bg-white 
-          transition-all duration-300
-          ${theme === "dark" ? "translate-x-5" : "translate-x-0"}`}
+          className={`absolute left-1 h-4 w-4 rounded-full bg-white shadow-md
+            transition-all duration-300
+            ${theme === "dark" ? "translate-x-6" : "translate-x-0"}`}
         />
       </button>
 

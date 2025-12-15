@@ -8,16 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import "swiper/css";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@radix-ui/react-accordion";
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
 import DealFeed from "@/components/deal-feed";
 import SeeAlso from "@/components/see-also";
+import { CheckCheck } from "lucide-react";
+import { Label } from "@radix-ui/react-label";
+import FaqSection from "@/components/FaqSection";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
@@ -68,6 +65,7 @@ export default function Page() {
   const [search, setSearch] = useState("");
   const [minAmount, setMinAmount] = useState<number | "">("");
   const [maxAmount, setMaxAmount] = useState<number | "">("");
+  const [showAll, setShowAll] = useState(false);
 
   const filteredBanks = banks
     .map((bank, i) => ({
@@ -333,6 +331,8 @@ export default function Page() {
     },
   ];
 
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, 7);
+
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 md:py-16">
       <FadeIn>
@@ -340,7 +340,7 @@ export default function Page() {
           <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
 
-          <div className="relative grid items-center gap-6 md:grid-cols-2">
+          <div className="relative grid items-start gap-6 md:grid-cols-2">
             <div className="space-y-5">
               <h1 className="text-4xl font-semibold tracking-tight text-primary">
                 Кредиты для бизнеса
@@ -364,12 +364,43 @@ export default function Page() {
               </Button>
             </div>
 
-            <div className="relative hidden aspect-4/3 overflow-hidden rounded-2xl md:block">
+            <div className="relative hidden h-[360px] w-full overflow-hidden rounded-3xl md:flex items-center justify-center">
+              <div className="absolute bottom-2 right-5 space-y-3 z-20">
+                <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                    <CheckCheck className="h-3 w-3" />
+                  </div>
+                  <span className="text-sm font-medium text-white">
+                    Одна заявка — множество предложений
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                    <CheckCheck className="h-3 w-3" />
+                  </div>
+                  <span className="text-sm font-medium text-white">
+                    Одобрение и выдача кредита онлайн
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-lg bg-background/60 border border-white/10 px-3 py-2 backdrop-blur-md">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+                    <CheckCheck className="h-3 w-3" />
+                  </div>
+                  <span className="text-sm font-medium text-white">
+                    Все виды банковских гарантий
+                  </span>
+                </div>
+              </div>
+
               <Image
                 src="/credit-bg.jpeg"
-                alt="Кредит для бизнеса"
-                fill
-                className="object-cover object-center"
+                alt=""
+                width={640}
+                height={640}
+                sizes="(min-width: 1024px) 520px, 380px"
+                className="h-72 w-auto md:h-80 lg:h-88 object-contain rounded-2xl"
                 priority
               />
             </div>
@@ -387,8 +418,8 @@ export default function Page() {
 
       <FadeIn>
         <section className="mx-auto mt-8 w-full max-w-7xl py-10">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-primary md:text-3xl">
-            Доступные виды кредита
+          <h2 className="mb-8 text-4xl text-center font-bold tracking-tight text-primary">
+            Виды кредита для бизнеса
           </h2>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -415,13 +446,12 @@ export default function Page() {
           </div>
         </section>
       </FadeIn>
-
       <FadeIn>
         <section className="mx-auto mt-6 w-full max-w-7xl py-12">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-primary md:text-3xl">
+          <h2 className="mb-8 text-4xl font-bold tracking-tight text-primary text-center">
             Выгоднее и проще, чем напрямую в банк
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 grid-cols-1">
             {[
               "Предложение по кредиту (одобрение согласно публикации протокола)",
               "Минимум документооборота (нужны только скан-копии и КП)",
@@ -430,7 +460,7 @@ export default function Page() {
             ].map((t, i) => (
               <div
                 key={i}
-                className="group relative flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md shadow-[0_0_30px_-12px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.35)]"
+                className="group relative flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md hover:shadow-primary/10 shadow-xl transition-all duration-300 hover:border-primary"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white text-sm font-bold shadow-md">
                   {i + 1}
@@ -440,6 +470,97 @@ export default function Page() {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="mx-auto mt-2 w-full max-w-7xl py-12">
+          <div className="grid items-stretch gap-10 md:grid-cols-2">
+            <div>
+              <h2 className="mb-4 text-2xl font-semibold text-primary">
+                Подберем самые выгодные предложения
+              </h2>
+              <p className="mb-6 text-sm text-foreground/70">
+                Заполните форму, выберите среди предложений банков лучшее,
+                получите кредит и заключайте контракт.
+              </p>
+              <form
+                className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-[0_0_30px_-15px_rgba(0,0,0,0.25)]"
+                action="#"
+                method="post"
+              >
+                <div className="grid gap-4">
+                  <Input
+                    type="text"
+                    name="inn"
+                    placeholder="ИНН"
+                    inputMode="numeric"
+                    pattern="^(\\d{10}|\\d{12})$"
+                    title="ИНН должен содержать 10 или 12 цифр"
+                    required
+                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                  />
+                  <Input
+                    type="number"
+                    name="amount"
+                    placeholder="Сумма"
+                    inputMode="numeric"
+                    min={1}
+                    step={1000}
+                    title="Укажите сумму больше 0"
+                    required
+                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                  />
+                  <PhoneInput
+                    name="phone"
+                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                    required
+                  />
+                  <Input
+                    placeholder="ФИО"
+                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
+                    required
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[0-9]/g, "");
+                      e.target.value = value;
+                    }}
+                  />
+                </div>
+
+                <Label className="flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    required
+                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
+                  />
+                  <span className="text-xs md:text-sm ml-2">
+                    Я даю согласие на обработку{" "}
+                    <span className="font-medium text-primary">
+                      персональных данных
+                    </span>
+                  </span>
+                </Label>
+
+                <Button
+                  type="submit"
+                  className="h-11 rounded-xl px-6 text-sm font-semibold bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 "
+                >
+                  Отправить заявку
+                </Button>
+              </form>
+            </div>
+            <div className="relative hidden min-h-[280px] overflow-hidden rounded-3xl border border-foreground/10 md:block">
+              <Image
+                src="/good-deal.jpg"
+                alt="s"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </div>
           </div>
         </section>
       </FadeIn>
@@ -510,137 +631,25 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto mt-2 w-full max-w-7xl py-12">
-          <div className="grid items-stretch gap-10 md:grid-cols-2">
-            <div>
-              <h2 className="mb-4 text-2xl font-semibold text-primary">
-                Подберем самые выгодные предложения
-              </h2>
-              <p className="mb-6 text-sm text-foreground/70">
-                Заполните форму, выберите среди предложений банков лучшее,
-                получите кредит и заключайте контракт.
-              </p>
-              <form
-                className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-[0_0_30px_-15px_rgba(0,0,0,0.25)]"
-                action="#"
-                method="post"
-              >
-                <div className="grid gap-4">
-                  <Input
-                    type="text"
-                    name="inn"
-                    placeholder="ИНН"
-                    inputMode="numeric"
-                    pattern="^(\\d{10}|\\d{12})$"
-                    title="ИНН должен содержать 10 или 12 цифр"
-                    required
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                  />
-                  <Input
-                    type="number"
-                    name="amount"
-                    placeholder="Сумма"
-                    inputMode="numeric"
-                    min={1}
-                    step={1000}
-                    title="Укажите сумму больше 0"
-                    required
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                  />
-                  <PhoneInput
-                    name="phone"
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm"
-                    required
-                  />
-                </div>
-                <label className="flex items-start gap-3 text-xs text-foreground/70">
-                  <input
-                    type="checkbox"
-                    required
-                    className="mt-0.5 h-4 w-4 rounded border-foreground/30"
-                  />
-                  <span>
-                    Ставя галочку, я соглашаюсь на обработку персональных
-                    данных, в соответствии с
-                    <a
-                      href="/docs/agreement.pdf"
-                      target="_blank"
-                      className="mx-1 underline"
-                    >
-                      Соглашением
-                    </a>
-                    и
-                    <a
-                      href="/docs/privacy.pdf"
-                      target="_blank"
-                      className="ml-1 underline"
-                    >
-                      Политикой конфиденциальности
-                    </a>
-                    .
-                  </span>
-                </label>
-                <Button
-                  type="submit"
-                  className="h-11 rounded-xl px-6 text-sm font-semibold bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 "
-                >
-                  Отправить заявку
-                </Button>
-              </form>
-            </div>
-            <div className="relative hidden min-h-[280px] overflow-hidden rounded-3xl border border-foreground/10 md:block">
-              <Image
-                src="/good-deal.jpg"
-                alt="s"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
-          </div>
-        </section>
-      </FadeIn>
-
-      <FadeIn>
         <SeeAlso />
       </FadeIn>
       <FadeIn>
-        <section className="mx-auto w-full max-w-7xl px-0 py-10 md:py-14">
-          <h2 className="mb-6 text-2xl font-bold text-primary md:text-3xl text-center">
-            Вопросы по кредитам для бизнеса
-          </h2>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="overflow-hidden hover:border-primary/50 hover:shadow-primary/10 shadow-xl rounded-2xl border border-foreground/10 bg-white/5 px-4  transition-all"
+        <FaqSection
+          title="Вопросы по кредитам для бизнеса"
+          items={visibleFaqs}
+          titleClassName="mb-6 text-4xl font-bold text-primary text-center"
+        >
+          {faqs.length > 7 && (
+            <div className="mt-4 text-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="btn-three h-12 font-semibold"
               >
-                <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-foreground/90 transition-colors [&[data-state=open]>svg]:rotate-180">
-                  {item.q}
-                  <svg
-                    className="h-4 w-4 shrink-0 transition-transform duration-300"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 9l6 6 6-6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </AccordionTrigger>
-                <AccordionContent className="overflow-hidden pb-4 text-sm text-foreground/70 transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:max-h-0 data-[state=open]:opacity-100 data-[state=open]:max-h-40">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
+                {showAll ? "Скрыть" : "Показать все"}
+              </button>
+            </div>
+          )}
+        </FaqSection>
       </FadeIn>
 
       <section className="mx-auto mt-2 w-full max-w-7xl py-8">
@@ -674,7 +683,7 @@ export default function Page() {
 
       <FadeIn>
         <section className="mx-auto w-full max-w-7xl py-12">
-          <h2 className="mb-10 text-2xl font-bold text-primary md:text-3xl">
+          <h2 className="mb-10 text-4xl font-bold text-primary text-center">
             Часто ищут
           </h2>
 
@@ -718,7 +727,7 @@ export default function Page() {
                 <Link
                   key={i}
                   href="/#application"
-                  className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
+                  className="block nav-link link-gradient"
                 >
                   {t}
                 </Link>

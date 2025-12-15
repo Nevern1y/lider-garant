@@ -16,30 +16,53 @@ import { Button } from "@/components/ui/button";
 
 type FormValues = {
   product: string;
+  name: string;
+  phone: string;
   inn: string;
   amount: string;
 };
 
 export default function ApplicationFormSection() {
   const form = useForm<FormValues>({
-    defaultValues: { product: "Кредиты", inn: "", amount: "" },
+    defaultValues: {
+      product: "Кредиты",
+      name: "",
+      phone: "",
+      inn: "",
+      amount: "",
+    },
     mode: "onChange",
   });
 
   const onSubmit = (values: FormValues) => {
-    const isInnValid = /^\d{10}|\d{12}$/.test(values.inn);
+    const isInnValid = /^\d{10}$|^\d{12}$/.test(values.inn);
+    const phoneDigits = values.phone.replace(/\D/g, "");
     const amountNum = Number(values.amount.replace(/\s/g, ""));
+
+    if (!values.name) {
+      toast.error("Введите имя");
+      return;
+    }
+
+    if (phoneDigits.length !== 11) {
+      toast.error("Введите корректный номер телефона");
+      return;
+    }
 
     if (!isInnValid) {
       toast.error("ИНН должен содержать 10 или 12 цифр");
       return;
     }
+
     if (!amountNum || amountNum <= 0) {
       toast.error("Укажите сумму больше 0");
       return;
     }
+
     toast.success("Заявка отправлена", {
-      description: `${values.product}: ${amountNum.toLocaleString("ru-RU")} ₽`,
+      description: `${values.name}, ${
+        values.product
+      } — ${amountNum.toLocaleString("ru-RU")} ₽`,
     });
   };
 
@@ -54,10 +77,6 @@ export default function ApplicationFormSection() {
   return (
     <section id="application" className="mx-auto w-full max-w-7xl py-5">
       <div className="relative overflow-hidden rounded-[32px] border border-foreground/10">
-        <div className="pointer-events-none absolute inset-0 opacity-70">
-          <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-sky-500/30 blur-[160px]" />
-          <div className="absolute -bottom-28 -right-12 h-80 w-80 rounded-full bg-emerald-400/25 blur-[150px]" />
-        </div>
         <div className="relative grid items-center gap-10 px-6 py-10 md:px-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <h3 className="mb-6 text-3xl font-semibold leading-tight text-primary md:text-[40px]">
@@ -72,7 +91,7 @@ export default function ApplicationFormSection() {
                   className={`rounded-full px-5 py-2 text-sm font-semibold transition-all border ${
                     form.watch("product") === p
                       ? "bg-primary text-white  border-transparent shadow-[0_20px_45px_-25px_rgba(16,185,129,1)]"
-                      : "bg-foreground/5 text-foreground/70 border-foreground/10 hover:bg-foreground/10"
+                      : "bg-white/5 text-foreground/70 border-foreground/10 hover:bg-white/10"
                   }`}
                 >
                   {p}
@@ -88,6 +107,70 @@ export default function ApplicationFormSection() {
                 <div className="grid gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
+                    name="name"
+                    rules={{ required: "Введите имя" }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+                          Имя
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Ваше имя"
+                            {...field}
+                            className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Телефон */}
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    rules={{
+                      required: "Введите телефон",
+                      validate: (v) =>
+                        v.replace(/\D/g, "").length === 11 ||
+                        "Введите корректный номер",
+                    }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+                          Телефон
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="+7 (___) ___-__-__"
+                            {...field}
+                            className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                            onChange={(e) => {
+                              const digits = e.target.value.replace(/\D/g, "");
+
+                              let formatted = "+7";
+                              if (digits.length > 1)
+                                formatted += ` (${digits.slice(1, 4)}`;
+                              if (digits.length >= 4)
+                                formatted += `) ${digits.slice(4, 7)}`;
+                              if (digits.length >= 7)
+                                formatted += `-${digits.slice(7, 9)}`;
+                              if (digits.length >= 9)
+                                formatted += `-${digits.slice(9, 11)}`;
+
+                              field.onChange(formatted);
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
                     name="inn"
                     render={({ field }) => (
                       <FormItem>
@@ -100,7 +183,7 @@ export default function ApplicationFormSection() {
                             placeholder="Введите ИНН"
                             maxLength={12}
                             {...field}
-                            className="h-12 rounded-full border border-foreground/10 bg-foreground/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                            className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
                           />
                         </FormControl>
                         <FormMessage />
@@ -121,7 +204,7 @@ export default function ApplicationFormSection() {
                             type="text"
                             placeholder="Сумма"
                             {...field}
-                            className="h-12 rounded-full border border-foreground/10 bg-foreground/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                            className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
                             onChange={(e) => {
                               const raw = e.target.value.replace(/[^\d]/g, "");
                               const formatted = raw.replace(
@@ -138,7 +221,7 @@ export default function ApplicationFormSection() {
                   />
                 </div>
 
-                <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+                <div className="flex flex-col items-start gap-4">
                   <Button
                     type="submit"
                     className="h-12 btn-three px-6 text-sm font-semibold"
