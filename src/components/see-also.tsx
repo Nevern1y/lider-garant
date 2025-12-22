@@ -35,7 +35,7 @@ export default function SeeAlso() {
     {
       title: "Лизинг для юридических лиц",
       desc: "Финансируем новое и бу с авансом от 0 %",
-      href: "/tender-support",
+      href: "/leasing",
       img: "/finance-products/four.png",
     },
   ];

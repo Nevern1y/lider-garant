@@ -17,6 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import FaqSection from "@/components/FaqSection";
+import SeeAlso from "@/components/see-also";
 
 export default function DepositsPage() {
   const [query, setQuery] = useState("");
@@ -94,7 +95,8 @@ export default function DepositsPage() {
         <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr,360px] gap-8 shadow-[0_0_30px_rgb(34,211,238,0.15)]">
           <div className="flex flex-col gap-6">
             <span className="inline-block font-bold text-4xl lg:text-5xl tracking-tight text-foreground">
-              Депозиты для бизнеса в <span className="text-primary">Москве</span>
+              Депозиты для бизнеса в{" "}
+              <span className="text-primary">Москве</span>
             </span>
 
             <p className="text-xl">
@@ -107,7 +109,9 @@ export default function DepositsPage() {
 
             <div className="text-[var(--foreground-secondary)] text-sm mt-2">
               <ul className="space-y-1 text-[var(--foreground)] text-base">
-                <li className="list-disc marker:text-primary">Ставка до 16,7%</li>
+                <li className="list-disc marker:text-primary">
+                  Ставка до 16,7%
+                </li>
                 <li className="list-disc marker:text-primary">
                   Сумма от 1 до 1 000 000 000 ₽
                 </li>
@@ -423,6 +427,10 @@ export default function DepositsPage() {
               },
             ]}
           />
+        </FadeIn>
+
+        <FadeIn>
+          <SeeAlso />
         </FadeIn>
 
         <FadeIn>
