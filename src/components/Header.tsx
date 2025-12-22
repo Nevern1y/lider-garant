@@ -26,12 +26,16 @@ const financeItems = [
   { label: "Лизинг", href: "/leasing" },
   { label: "Факторинг", href: "/factoring" },
   { label: "Страхование", href: "/insurance" },
-  { label: "ВЭД", href: "/ved" },
+  { label: "Международные платежи", href: "/ved" },
   { label: "РКО и спецсчета", href: "/rko" },
   { label: "Депозиты", href: "/deposit" },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  onOpenCallModal?: () => void;
+}
+
+export default function Header({ onOpenCallModal }: HeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -102,7 +106,7 @@ export default function Header() {
                 8 (800) 000-00-00
               </a>
               <button
-                onClick={() => setModalOpen(true)}
+                onClick={onOpenCallModal || (() => setModalOpen(true))}
                 className="text-xs font-medium text-brand nav-link link-gradient"
               >
                 Обратный звонок
@@ -231,13 +235,12 @@ export default function Header() {
                         +7(965)284-14-15
                       </a>
                     </div>
-                    
                   </div>
                   <div className="flex items-center flex-wrap gap-3 justify-between">
                     <button
                       onClick={() => {
                         setMobileOpen(false);
-                        setModalOpen(true);
+                        onOpenCallModal?.();
                       }}
                       className="text-sm font-medium text-primary underline underline-offset-4"
                     >

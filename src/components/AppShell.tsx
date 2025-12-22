@@ -1,12 +1,27 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
+import ContactMultiButton from "@/components/ContactMultiButton";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [modalOpen, setModalOpen] = useState(false);
   const hideChrome =
     pathname?.startsWith("/login") || pathname?.startsWith("/register");
 
@@ -29,9 +44,42 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Header />
+      <Header onOpenCallModal={() => setModalOpen(true)} />
       {children}
       <SiteFooter />
+      <ContactMultiButton onOpenCallModal={() => setModalOpen(true)} />
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="sm:max-w-md border-none">
+          <DialogHeader>
+            <DialogTitle className="text-primary">
+              Заказать обратный звонок
+            </DialogTitle>
+            <DialogDescription>
+              Оставьте телефон — перезвоним в течение 15 минут.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-3 py-2">
+            <div className="grid gap-1">
+              <Label htmlFor="name">Имя</Label>
+              <Input id="name" placeholder="Иван Иванович Иванов" />
+            </div>
+            <div className="grid gap-1">
+              <Label htmlFor="phone">Телефон</Label>
+              <PhoneInput
+                id="phone"
+                name="phone"
+                className="h-11 rounded-full"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={() => setModalOpen(false)} className="btn-three">
+              Отправить
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

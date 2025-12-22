@@ -4,6 +4,7 @@ import DealFeed from "@/components/deal-feed";
 import FadeIn from "@/components/FadeIn";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import ManagerCTASection from "@/components/ManagerCTASection";
+import SeeAlso from "@/components/see-also";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,11 +25,9 @@ import {
   FileText,
 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 
 export default function Page() {
-  const [visibleDeals] = useState(12);
-
   const advantages = [
     {
       icon: <Rocket className="h-8 w-8 text-primary" />,
@@ -36,24 +35,27 @@ export default function Page() {
       description: "Переводим деньги за 1-3 дня по всему мира",
     },
     {
-      icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Безопасность",
-      description: "Полная защита ваших финансовых операций",
-    },
-    {
       icon: <DollarSign className="h-8 w-8 text-primary" />,
       title: "Низкие комиссии",
       description: "От 0,3% - лучшие условия на рынке",
     },
     {
+      icon: <Shield className="h-8 w-8 text-primary" />,
+      title: "Надежно",
+      description:
+        "Выкупаем товар без российского следа, из любых стран в любой валюте",
+    },
+    {
       icon: <Globe className="h-8 w-8 text-primary" />,
       title: "Международный охват",
-      description: "Работаем с 50+ странами мира",
+      description:
+        "8 компаний-партнёров в странах ЕС и Азии, что позволяет индивидуально подбирать компанию-плательщика, исходя из запроса клиента",
     },
     {
       icon: <Phone className="h-8 w-8 text-primary" />,
       title: "Поддержка 24/7",
-      description: "Наши менеджеры всегда на связи",
+      description:
+        "Предоставляем полную юридическую поддержку и оперативно работаем с запросами банков",
     },
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
@@ -77,78 +79,6 @@ export default function Page() {
       icon: <Globe className="h-12 w-12 text-primary" />,
       title: "Доступность",
       description: "Работаем с 50+ странами по всему миру",
-    },
-  ];
-
-  const offers = [
-    {
-      country: "Индонезия",
-      rate: "Курс — Инвестбанк",
-      term: "Срок 3–7 дней",
-      fee: "Комиссия 2,5%",
-    },
-    {
-      country: "Гонконг",
-      rate: "Курс — ЦБ",
-      term: "Срок 2–4 дня",
-      fee: "Комиссия 2,3%",
-    },
-    {
-      country: "ОАЭ",
-      rate: "Курс — ЦБ",
-      term: "Срок 2–7 дней",
-      fee: "Комиссия 2,3%",
-    },
-    {
-      country: "Турция",
-      rate: "Курс — ЦБ",
-      term: "Срок 2–7 дней",
-      fee: "Комиссия 2,5%",
-    },
-    {
-      country: "Эстония",
-      rate: "Курс — ЦБ",
-      term: "Срок 2–7 дней",
-      fee: "Комиссия 2,9%",
-    },
-    {
-      country: "Сингапур",
-      rate: "Курс — Инвестбанк",
-      term: "Срок 3–7 дней",
-      fee: "Комиссия 2,4%",
-    },
-  ];
-
-  const related = [
-    {
-      title: "Кредитирование бизнеса",
-      desc: "Кредитование для осуществления текущих операционных и иных расходов.",
-      href: "/credits",
-    },
-    {
-      title: "ВЭД",
-      desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
-      href: "/ved",
-    },
-    {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-    },
-    {
-      title: "Лизинг",
-      desc: "Финансируем новое и с пробегом с авансом от 0%.",
-      href: "/leasing",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-    },
-    {
-      title: "Тендерное сопровождение",
-      desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника.Специальный счет, ЕРУЗ, аккредитация на закрытые секции.",
-      href: "/tender-support",
     },
   ];
 
@@ -178,6 +108,62 @@ export default function Page() {
     ][i % 7],
   }));
 
+  const faqs = [
+    "оплата международных платежей",
+    "платежный агент",
+    "международные расчеты",
+    "услуга международных платежей",
+    "платформа международных платежей",
+    "переводы за границу",
+    "переводы за рубеж",
+    "вэд платежи",
+    "международные переводы",
+    "перевод денег за границу",
+    "международные платежи и расчеты",
+    "международные банковские платежи",
+    "проведение международных платежей",
+    "получать международные платежи",
+    "платежи в международной торговле",
+    "перевод зарубеж",
+    "международные платежи для бизнеса",
+    "принимать международные платежи",
+    "сервисы международных платежей",
+    "международные трансграничные платежи",
+    "международные онлайн платежи",
+    "платформа трансграничных платежей",
+    "трансграничная система платежей",
+    "денежные переводы зарубеж",
+    "валютные переводы",
+    "банковский платежный агент",
+    "услуги платежного агента",
+    "оплата через платежного агента",
+    "платежный агент перевод",
+    "платежный агент поставщик",
+    "платежный агент вэд",
+    "платежи в китай",
+    "платежи в европу",
+    "платежи в турцию",
+    "платежи в индию",
+    "платежи в иран",
+    "платежи в оаэ",
+    "платежи в дубай",
+    "платежи в японию",
+    "платежи в корею",
+    "валютные денежные переводы",
+    "переводы за границу из россии",
+    "денежный перевод за границу",
+    "перевод валюты за границу",
+    "перевод средств за рубеж",
+    "международные денежные переводы",
+    "валютные платежи",
+    "валютные платежи за границу",
+    "проведение валютных платежей",
+    "международные переводы",
+    "международные денежные переводы",
+    "международный банковский перевод",
+    "проведение международных расчетов",
+  ];
+
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 md:py-16">
       <FadeIn>
@@ -205,8 +191,8 @@ export default function Page() {
 
               <div className="space-y-3">
                 <p className="text-base text-foreground/75 leading-relaxed">
-                  Поможем перевести деньги, получить оплату из‑за рубежа и
-                  сопровождать сделки.
+                  Поможем перевести деньги, получить оплату из‑за рубежа без
+                  ограничения по суммам в любой валюте.
                 </p>
               </div>
 
@@ -432,8 +418,34 @@ export default function Page() {
           </div>
         </section>
       </FadeIn>
+
+      <FadeIn>
+        <SeeAlso />
+      </FadeIn>
       <FadeIn>
         <ManagerCTASection />
+      </FadeIn>
+
+      <FadeIn>
+        <section className="mx-auto w-full max-w-7xl py-12">
+          <h2 className="mb-10 text-4xl text-center font-bold text-primary ">
+            Часто ищут
+          </h2>
+
+          <div className="rounded-xl border border-foreground/10 bg-white/5 p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
+              {faqs.map((t, i) => (
+                <Link
+                  key={i}
+                  href="/#application"
+                  className="block nav-link link-gradient"
+                >
+                  {t}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </FadeIn>
     </main>
   );
