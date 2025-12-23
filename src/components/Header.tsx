@@ -138,14 +138,18 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
             <div className="grid gap-3 py-2">
               <div className="grid gap-1">
                 <Label htmlFor="name">Имя</Label>
-                <Input id="name" placeholder="Иван Иванович Иванов" />
+                <Input
+                  id="name"
+                  placeholder="Иван Иванович Иванов"
+                  className="text-white"
+                />
               </div>
               <div className="grid gap-1">
                 <Label htmlFor="phone">Телефон</Label>
                 <PhoneInput
                   id="phone"
                   name="phone"
-                  className="h-11 rounded-full"
+                  className="h-11 rounded-full text-white"
                 />
               </div>
             </div>
@@ -159,7 +163,7 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetContent side="right" className="p-0 w-[92vw] max-w-sm">
-            <div className="flex h-[100dvh] flex-col overflow-y-auto bg-background p-5">
+            <div className="flex h-dvh flex-col overflow-y-auto bg-background p-5">
               <div className="mb-4 flex items-center justify-between">
                 <Link
                   href="/"
