@@ -19,6 +19,7 @@ import {
 import { Smartphone, Menu, X } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import CustomSelect from "./ui/my-select";
+import { toast } from "sonner";
 
 const financeItems = [
   { label: "Гарантии", href: "/bank-guarantee" },
@@ -38,6 +39,79 @@ interface HeaderProps {
 export default function Header({ onOpenCallModal }: HeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    phone: "",
+  });
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { name: "", phone: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Пожалуйста, введите ваше имя";
+      valid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Пожалуйста, введите номер телефона";
+      valid = false;
+    } else if (formData.phone.replace(/\D/g, "").length < 11) {
+      newErrors.phone = "Номер телефона должен содержать минимум 11 цифр";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+    // Clear error when user starts typing
+    if (errors[id as keyof typeof errors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [id]: "",
+      }));
+    }
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      phone: value,
+    }));
+    if (errors.phone) {
+      setErrors((prev) => ({
+        ...prev,
+        phone: "",
+      }));
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validateForm()) {
+      // Show success toast
+      toast.success("Заявка отправлена! Мы перезвоним вам в течение 15 минут.");
+      console.log("Form submitted:", formData);
+      setModalOpen(false);
+      // Reset form
+      setFormData({ name: "", phone: "" });
+      setErrors({ name: "", phone: "" });
+    } else {
+      // Show error toast
+      toast.error("Пожалуйста, заполните все поля корректно");
+    }
+  };
 
   return (
     <>
@@ -125,40 +199,61 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
           </button>
         </div>
 
-        <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-          <DialogContent className="sm:max-w-md border-none">
-            <DialogHeader>
-              <DialogTitle className="text-primary">
-                Заказать обратный звонок
-              </DialogTitle>
-              <DialogDescription>
-                Оставьте телефон — перезвоним в течение 15 минут.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-3 py-2">
-              <div className="grid gap-1">
-                <Label htmlFor="name">Имя</Label>
-                <Input
-                  id="name"
-                  placeholder="Иван Иванович Иванов"
-                  className="text-white"
-                />
+        <Dialog
+          open={modalOpen}
+          onOpenChange={(open) => {
+            setModalOpen(open);
+            if (!open) {
+              // Reset form when dialog is closed
+              setFormData({ name: "", phone: "" });
+              setErrors({ name: "", phone: "" });
+            }
+          }}
+        >
+          <form onSubmit={handleSubmit}>
+            <DialogContent className="sm:max-w-md border-none">
+              <DialogHeader>
+                <DialogTitle className="text-primary">
+                  Заказать обратный звонок
+                </DialogTitle>
+                <DialogDescription className="text-foreground/70">
+                  Оставьте телефон — перезвоним в течение 15 минут.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-2">
+                <div className="grid gap-1">
+                  <Label htmlFor="name">Имя</Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Иван Иванович Иванов"
+                    className="text-white bg-background/80 border-white/20"
+                  />
+                  {errors.name && (
+                    <p className="text-sm text-red-400">{errors.name}</p>
+                  )}
+                </div>
+                <div className="grid gap-1">
+                  <Label htmlFor="phone">Телефон</Label>
+                  <PhoneInput
+                    id="phone"
+                    value={formData.phone}
+                    placeholder="+7 (___) ___-__-__"
+                    className="h-11 bg-background/80 border-white/20 text-white [&_input]:placeholder:text-white/60"
+                  />
+                  {errors.phone && (
+                    <p className="text-sm text-red-400">{errors.phone}</p>
+                  )}
+                </div>
               </div>
-              <div className="grid gap-1">
-                <Label htmlFor="phone">Телефон</Label>
-                <PhoneInput
-                  id="phone"
-                  name="phone"
-                  className="h-11 rounded-full text-white"
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button onClick={() => setModalOpen(false)} className="btn-three">
-                Отправить
-              </Button>
-            </DialogFooter>
-          </DialogContent>
+              <DialogFooter>
+                <Button type="submit" className="btn-three w-full">
+                  Отправить
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </form>
         </Dialog>
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
