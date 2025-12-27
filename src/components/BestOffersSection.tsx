@@ -86,7 +86,7 @@ export default function BestOffersSection() {
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-foreground/10 text-xs sm:text-sm font-semibold text-foreground/90">
+                    <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-white/10 text-xs sm:text-sm font-semibold text-foreground/90">
                       {o.bank[0]}
                     </div>
                     <div>
@@ -104,21 +104,21 @@ export default function BestOffersSection() {
                 </div>
 
                 <div className="mt-5 sm:mt-6 grid grid-cols-3 gap-2 sm:gap-3 text-center text-[10px] sm:text-xs font-medium">
-                  <div className="rounded-xl sm:rounded-2xl bg-foreground/8 px-2 sm:px-3 py-3 sm:py-4">
+                  <div className="rounded-xl sm:rounded-2xl bg-white/8 px-2 sm:px-3 py-3 sm:py-4">
                     <div className="text-foreground/50">Ставка</div>
                     <div className="mt-1 text-[11px] sm:text-sm font-semibold text-foreground">
                       {o.rate}
                     </div>
                   </div>
 
-                  <div className="rounded-xl sm:rounded-2xl bg-foreground/8 px-2 sm:px-3 py-3 sm:py-4">
+                  <div className="rounded-xl sm:rounded-2xl bg-white/8 px-2 sm:px-3 py-3 sm:py-4">
                     <div className="text-foreground/50">Сумма</div>
                     <div className="mt-1 text-[11px] sm:text-sm font-semibold text-foreground">
                       {o.amount}
                     </div>
                   </div>
 
-                  <div className="rounded-xl sm:rounded-2xl bg-foreground/8 px-2 sm:px-3 py-3 sm:py-4">
+                  <div className="rounded-xl sm:rounded-2xl bg-white/8 px-2 sm:px-3 py-3 sm:py-4">
                     <div className="text-foreground/50">Срок</div>
                     <div className="mt-1 text-[11px] sm:text-sm font-semibold text-foreground">
                       {o.term}

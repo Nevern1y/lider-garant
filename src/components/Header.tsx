@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Smartphone, Menu, X } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -37,8 +38,8 @@ interface HeaderProps {
 }
 
 export default function Header({ onOpenCallModal }: HeaderProps) {
-  const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -54,6 +55,9 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
 
     if (!formData.name.trim()) {
       newErrors.name = "Пожалуйста, введите ваше имя";
+      valid = false;
+    } else if (/\d/.test(formData.name)) {
+      newErrors.name = "Имя не должно содержать цифры";
       valid = false;
     }
 
@@ -75,7 +79,6 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
       ...prev,
       [id]: value,
     }));
-    // Clear error when user starts typing
     if (errors[id as keyof typeof errors]) {
       setErrors((prev) => ({
         ...prev,
@@ -84,7 +87,8 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
     }
   };
 
-  const handlePhoneChange = (value: string) => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setFormData((prev) => ({
       ...prev,
       phone: value,
@@ -99,18 +103,30 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      // Show success toast
-      toast.success("Заявка отправлена! Мы перезвоним вам в течение 15 минут.");
-      console.log("Form submitted:", formData);
-      setModalOpen(false);
-      // Reset form
-      setFormData({ name: "", phone: "" });
-      setErrors({ name: "", phone: "" });
-    } else {
-      // Show error toast
-      toast.error("Пожалуйста, заполните все поля корректно");
+    if (!formData.name.trim()) {
+      toast.error("Пожалуйста, введите ваше имя");
+      return;
     }
+    if (/\d/.test(formData.name)) {
+      toast.error("Имя не должно содержать цифры");
+      return;
+    }
+    if (!formData.phone.trim()) {
+      toast.error("Пожалуйста, введите номер телефона");
+      return;
+    }
+    if (formData.phone.replace(/\D/g, "").length < 11) {
+      toast.error("Номер телефона должен содержать минимум 11 цифр");
+      return;
+    }
+
+    // Show success toast
+    toast.success("Заявка отправлена! Мы перезвоним вам в течение 15 минут.");
+    console.log("Form submitted:", formData);
+    // Reset form and close dialog
+    setFormData({ name: "", phone: "" });
+    setErrors({ name: "", phone: "" });
+    setModalOpen(false);
   };
 
   return (
@@ -174,17 +190,63 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
 
             <div className="flex flex-col items-start leading-tight">
               <a
-                href="tel:+78000000000"
+                href="tel:+79652841415"
                 className="text-[15px] font-semibold text-foreground hover:opacity-80 transition"
               >
-                8 (800) 000-00-00
+                +7(965)284-14-15
               </a>
-              <button
-                onClick={onOpenCallModal || (() => setModalOpen(true))}
-                className="text-xs font-medium text-brand nav-link link-gradient"
-              >
-                Обратный звонок
-              </button>
+              <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+                <DialogTrigger asChild>
+                  <button className="text-xs font-medium text-brand nav-link link-gradient">
+                    Обратный звонок
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md border-none">
+                  <form onSubmit={handleSubmit}>
+                    <DialogHeader>
+                      <DialogTitle className="text-primary">
+                        Заказать обратный звонок
+                      </DialogTitle>
+                      <DialogDescription>
+                        Оставьте телефон — перезвоним в течение 15 минут.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-2">
+                      <div className="grid gap-1">
+                        <Label htmlFor="name">Имя</Label>
+                        <Input
+                          id="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Иван Иванович Иванов"
+                          className="text-white bg-background/80 border-white/20"
+                        />
+                        {errors.name && (
+                          <p className="text-sm text-red-400">{errors.name}</p>
+                        )}
+                      </div>
+                      <div className="grid gap-1">
+                        <Label htmlFor="phone">Телефон</Label>
+                        <PhoneInput
+                          id="phone"
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          placeholder="+7 (___) ___-__-__"
+                          className="h-11 bg-background/80 border-white/20 text-white "
+                        />
+                        {errors.phone && (
+                          <p className="text-sm text-red-400">{errors.phone}</p>
+                        )}
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit" className="btn-three w-full">
+                        Отправить
+                      </Button>
+                    </DialogFooter>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
 
             <button className="btn-three py-2 px-6">Личный кабинет</button>
@@ -198,63 +260,6 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
             <Menu className="h-6 w-6" />
           </button>
         </div>
-
-        <Dialog
-          open={modalOpen}
-          onOpenChange={(open) => {
-            setModalOpen(open);
-            if (!open) {
-              // Reset form when dialog is closed
-              setFormData({ name: "", phone: "" });
-              setErrors({ name: "", phone: "" });
-            }
-          }}
-        >
-          <form onSubmit={handleSubmit}>
-            <DialogContent className="sm:max-w-md border-none">
-              <DialogHeader>
-                <DialogTitle className="text-primary">
-                  Заказать обратный звонок
-                </DialogTitle>
-                <DialogDescription className="text-foreground/70">
-                  Оставьте телефон — перезвоним в течение 15 минут.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-2">
-                <div className="grid gap-1">
-                  <Label htmlFor="name">Имя</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Иван Иванович Иванов"
-                    className="text-white bg-background/80 border-white/20"
-                  />
-                  {errors.name && (
-                    <p className="text-sm text-red-400">{errors.name}</p>
-                  )}
-                </div>
-                <div className="grid gap-1">
-                  <Label htmlFor="phone">Телефон</Label>
-                  <PhoneInput
-                    id="phone"
-                    value={formData.phone}
-                    placeholder="+7 (___) ___-__-__"
-                    className="h-11 bg-background/80 border-white/20 text-white [&_input]:placeholder:text-white/60"
-                  />
-                  {errors.phone && (
-                    <p className="text-sm text-red-400">{errors.phone}</p>
-                  )}
-                </div>
-              </div>
-              <DialogFooter>
-                <Button type="submit" className="btn-three w-full">
-                  Отправить
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </form>
-        </Dialog>
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetContent side="right" className="p-0 w-[92vw] max-w-sm">

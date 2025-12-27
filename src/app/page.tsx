@@ -26,7 +26,7 @@ export default function Home() {
     },
     {
       id: "logistics",
-      title: "Логистическое кредитование бизнеса",
+      title: "Льготное кредитование бизнеса",
       desc: "Кредитование для текущих операционных и иных расходов (логистика, оборот).",
       btn: "Подобрать условия",
       img: "/finance-products/three.png",
@@ -124,12 +124,8 @@ export default function Home() {
       <FadeIn>
         <section
           id="products"
-          className="relative overflow-hidden mx-auto w-full max-w-7xl py-5"
+          className="relative mx-auto w-full max-w-7xl pb-15"
         >
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-primary/15 blur-[120px] opacity-70" />
-          </div>
-
           <h2 className="mb-14 text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
             <span className="text-primary">Финансовые продукты</span>
           </h2>

@@ -55,7 +55,6 @@ const PhoneInput = React.forwardRef<HTMLInputElement, Props>(
       const formatted = formatByDigits(digits);
       setInner(formatted);
 
-      // build a synthetic event with formatted value so existing handlers keep working
       const synthetic = {
         ...e,
         target: { ...e.target, value: formatted },

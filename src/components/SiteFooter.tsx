@@ -64,9 +64,9 @@ export default function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Telegram"
-                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                className="p-3 rounded-2xl bg-primary"
               >
-                <Send className="h-6 w-6 text-primary" />
+                <Send className="h-6 w-6 text-white" />
               </a>
             </div>
           </div>

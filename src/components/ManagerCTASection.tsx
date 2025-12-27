@@ -49,8 +49,8 @@ export default function ManagerCTASection() {
               {cards.map(({ icon: Icon, title, desc, link, cta }) => (
                 <div
                   key={title}
-                  className="group hover:shadow-xl hover:border-primary/50 hover:shadow-primary/10  rounded-2xl border border-foreground/10 bg-white/[0.03] 
-                  p-4 sm:p-5   
+                  className="group relative hover:shadow-xl hover:border-primary/50 hover:shadow-primary/10  rounded-2xl border border-foreground/10 bg-white/[0.03] 
+                  pb-19 pt-5 px-5    
                   backdrop-blur-xl transition-all duration-300 
                   sm:hover:-translate-y-1 "
                 >
@@ -67,7 +67,7 @@ export default function ManagerCTASection() {
                   </p>
                   <Button
                     asChild
-                    className="mt-4 h-12 w-full rounded-2xl border-2 border-primary bg-transparent text-primary text-[11px] font-semibold uppercase tracking-wide hover:bg-primary hover:text-white whitespace-nowrap"
+                    className="absolute bottom-5 left-4 right-4 sm:left-5 sm:right-5 h-10 rounded-2xl border-2 border-primary bg-transparent text-primary text-[11px] font-semibold uppercase tracking-wide hover:bg-primary hover:text-white whitespace-nowrap"
                   >
                     <a href={link}>{cta}</a>
                   </Button>
@@ -79,7 +79,7 @@ export default function ManagerCTASection() {
           <div
             className="order-first lg:order-0 rounded-2xl sm:rounded-3xl
              border border-foreground/10 bg-white/5
-             p-6 sm:p-7 text-center text-foreground/80
+             p-6 sm:p-7 text-left text-foreground/80
              backdrop-blur-2xl min-h-[340px]
              grid grid-rows-[auto_minmax(0,1fr)_auto] mx-5"
           >
@@ -93,7 +93,7 @@ export default function ManagerCTASection() {
               </p>
             </div>
 
-            <div className="flex items-center justify-center px-4">
+            <div className="flex items-start justify-start px-4">
               <p className="text-[12px] sm:text-sm leading-relaxed text-foreground/75 max-w-[36ch]">
                 Следит за сроками, помогает с документами и держит связь удобным
                 для вас способом. Решаем вопросы даже вне рабочего времени,
@@ -103,7 +103,7 @@ export default function ManagerCTASection() {
               </p>
             </div>
 
-            <div className="mt-4 pb-1 flex flex-col items-center gap-3 text-[11px] sm:text-sm">
+            <div className="mt-4 pb-1 flex flex-col items-start gap-3 text-[11px] sm:text-sm">
               <div className="w-full rounded-2xl border border-foreground/10 bg-white/10 px-3 py-3 text-foreground">
                 График: 07:00 — 23:00 (МСК)
               </div>

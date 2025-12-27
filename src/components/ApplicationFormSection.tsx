@@ -91,7 +91,7 @@ export default function ApplicationFormSection() {
                   className={`rounded-full px-5 py-2 text-sm font-semibold transition-all border ${
                     form.watch("product") === p
                       ? "bg-primary text-white  border-transparent shadow-[0_20px_45px_-25px_rgba(16,185,129,1)]"
-                      : "bg-white/5 text-foreground/70 border-foreground/10 hover:bg-white/10"
+                      : "bg-none text-primary border-primary hover:bg-primary hover:text-white transition-all"
                   }`}
                 >
                   {p}
@@ -108,7 +108,12 @@ export default function ApplicationFormSection() {
                   <FormField
                     control={form.control}
                     name="name"
-                    rules={{ required: "Введите имя" }}
+                    rules={{
+                      required: "Введите имя",
+                      validate: (v) =>
+                        /^[а-яёa-z\s]+$/i.test(v.trim()) ||
+                        "Имя должно содержать только буквы",
+                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
@@ -119,6 +124,13 @@ export default function ApplicationFormSection() {
                             placeholder="Ваше имя"
                             {...field}
                             className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                            onChange={(e) => {
+                              const value = e.target.value.replace(
+                                /[^а-яёa-z\s]/gi,
+                                ""
+                              );
+                              field.onChange(value);
+                            }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -126,7 +138,6 @@ export default function ApplicationFormSection() {
                     )}
                   />
 
-                  {/* Телефон */}
                   <FormField
                     control={form.control}
                     name="phone"
@@ -172,6 +183,12 @@ export default function ApplicationFormSection() {
                   <FormField
                     control={form.control}
                     name="inn"
+                    rules={{
+                      required: "Введите ИНН",
+                      validate: (v) =>
+                        /^\d{10}$|^\d{12}$/.test(v) ||
+                        "ИНН должен содержать 10 или 12 цифр",
+                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
@@ -184,6 +201,10 @@ export default function ApplicationFormSection() {
                             maxLength={12}
                             {...field}
                             className="h-12 rounded-full border border-foreground/10 bg-white/10 px-4 text-foreground placeholder:text-foreground/40 focus-visible:ring-foreground/40"
+                            onChange={(e) => {
+                              const value = e.target.value.replace(/\D/g, "");
+                              field.onChange(value);
+                            }}
                           />
                         </FormControl>
                         <FormMessage />

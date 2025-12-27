@@ -78,7 +78,7 @@ export default function NewsRibbon() {
         >
           {news.map((item, i) => (
             <SwiperSlide key={i}>
-              <article className="group hover:shadow-xl hover:shadow-primary/10 h-64 flex flex-col justify-between rounded-3xl border border-transparent bg-black/2 backdrop-blur-2xl p-5 transition-all duration-300 hover:border-primary">
+              <article className="group ml-2 hover:shadow-xl hover:shadow-primary/10 h-64 flex flex-col justify-between rounded-3xl border border-transparent bg-black/2 backdrop-blur-2xl p-5 transition-all duration-300 hover:border-primary">
                 <div>
                   <time className="mb-2 block text-xs text-foreground/60">
                     {item.date}
@@ -93,7 +93,7 @@ export default function NewsRibbon() {
                 <Button
                   asChild
                   size="sm"
-                  className="h-9 rounded-full px-4 text-xs font-medium bg-primary/5 border border-primary text-primary hover:text-white hover:bg-primary"
+                  className="h-9 bg-none border-primary border text-primary hover:bg-primary hover:text-white transition-all"
                 >
                   <a href="#">Читать полностью →</a>
                 </Button>
