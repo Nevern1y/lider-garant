@@ -23,6 +23,8 @@ import {
   Globe,
   Phone,
   FileText,
+  ShoppingCart,
+  Bot,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,35 +32,35 @@ import Link from "next/link";
 export default function Page() {
   const advantages = [
     {
-      icon: <Rocket className="h-8 w-8 text-primary" />,
+      icon: "rocket.svg",
       title: "Быстрые платежи",
       description: "Переводим деньги за 1-3 дня по всему мира",
     },
     {
-      icon: <DollarSign className="h-8 w-8 text-primary" />,
+      icon: "/dollar.svg",
       title: "Низкие комиссии",
       description: "От 0,3% - лучшие условия на рынке",
     },
     {
-      icon: <Shield className="h-8 w-8 text-primary" />,
+      icon: "/shield.svg",
       title: "Надежно",
       description:
         "Выкупаем товар без российского следа, из любых стран в любой валюте",
     },
     {
-      icon: <Globe className="h-8 w-8 text-primary" />,
+      icon: "/checked.svg",
       title: "Международный охват",
       description:
         "8 компаний-партнёров в странах ЕС и Азии, что позволяет индивидуально подбирать компанию-плательщика, исходя из запроса клиента",
     },
     {
-      icon: <Phone className="h-8 w-8 text-primary" />,
+      icon: "/phone.svg",
       title: "Поддержка 24/7",
       description:
         "Предоставляем полную юридическую поддержку и оперативно работаем с запросами банков",
     },
     {
-      icon: <FileText className="h-8 w-8 text-primary" />,
+      icon: "/note.svg",
       title: "Полное сопровождение",
       description: "Поможем с документами и валютным контролем",
     },
@@ -66,19 +68,43 @@ export default function Page() {
 
   const unitedStreamAdvantages = [
     {
-      icon: <Rocket className="h-12 w-12 text-primary" />,
-      title: "Быстрый вывод",
-      description: "Выводите деньги в любую точку мира за 1-3 рабочих дня",
+      icon: "/rocket.svg",
+      title: "ПРОЗРАЧНО",
+      description:
+        "Предоставляем полную информацию о ходе сделки и комиссии уже на этапе консультации, а минимальное число посредников ускоряет процесс зачисления платежа",
     },
     {
-      icon: <Shield className="h-12 w-12 text-primary" />,
-      title: "Безопасность",
-      description: "Все операции защищены по стандарту PCI DSS",
+      icon: "/shield.svg",
+      title: "БЫСТРО",
+      description:
+        "Мы проводим платежи ежедневно и всегда имеем альтернативную компанию-плательщика, что позволяет оперативно реагировать на любые форс-мажоры",
     },
     {
-      icon: <Globe className="h-12 w-12 text-primary" />,
-      title: "Доступность",
-      description: "Работаем с 50+ странами по всему миру",
+      icon: "/checked.svg",
+      title: "НАДЁЖНО",
+      description:
+        "Все условия фиксируются в официальном договоре, в случае возврата платежа мы оперативно возвращаем средства или используем наш зарубежный счёт для быстрого решения вопроса",
+    },
+  ];
+
+  const internationalPaymentsServices = [
+    {
+      icon: "/phone.svg",
+      title: "ОПЛАТА ИНВОЙСОВ",
+      description:
+        "Оплатим инвойс по агентскому договору в случаях, когда банки отказываются напрямую принимать деньги из России",
+    },
+    {
+      icon: "/wallet.svg",
+      title: "ВЫКУП ТОВАРОВ",
+      description:
+        "В случаях, когда продавец товара за границей отказывается продавать товар российскому покупателю, выкупим товар за вас от одной из наших европейских или азиатских компаний",
+    },
+    {
+      icon: "/calculator.svg",
+      title: "ОПЛАТА УСЛУГ",
+      description:
+        "Оплатим за вас роялти, выплату дивидендов, услуги дизайна и маркетинга и т.д. (для юридических лиц)",
     },
   ];
 
@@ -321,10 +347,16 @@ export default function Page() {
                 key={index}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20"
               >
-                <div className="mb-4 flex h-8 w-8 items-center justify-center text-primary">
-                  {advantage.icon}
+                <div className="mb-4 flex h-24 w-24 items-center justify-center text-primary">
+                  <Image
+                    src={advantage.icon}
+                    alt={advantage.title}
+                    width={100}
+                    height={100}
+                    className="h-24 w-24"
+                  />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">
+                <h3 className="mb-2 text-lg font-semibold text-primary">
                   {advantage.title}
                 </h3>
                 <p className="text-sm text-foreground/70 leading-relaxed">
@@ -349,7 +381,7 @@ export default function Page() {
 
           <div className="relative z-10">
             <div className="mb-12 grid gap-8 md:grid-cols-2">
-              <h2 className="text-4xl font-bold tracking-tight text-foreground">
+              <h2 className="text-5xl font-bold tracking-tight text-foreground">
                 <span className="text-primary">Lider garant</span> - РАБОТАЕМ
                 БЫСТРЕЕ БАНКОВ
               </h2>
@@ -376,9 +408,15 @@ export default function Page() {
                   className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20"
                 >
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    {advantage.icon}
+                    <Image
+                      src={advantage.icon}
+                      alt="Icon"
+                      width={100}
+                      height={100}
+                      className="h-16 w-16"
+                    />
                   </div>
-                  <h3 className="mb-3 text-xl font-bold text-foreground">
+                  <h3 className="mb-3 text-xl font-bold text-primary">
                     {advantage.title}
                   </h3>
                   <p className="text-foreground/70 leading-relaxed">
@@ -390,9 +428,267 @@ export default function Page() {
           </div>
         </section>
       </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
+                Международные расчёты без границ — оплачиваем то, что неудобно
+                другим
+              </h2>
+              <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl mx-auto">
+                Компания United Stream помогает{" "}
+                <span className="text-primary">юридическим лицам</span> и ИП
+                легко совершать и получать платежи, предлагая следующие услуги:
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {internationalPaymentsServices.map((service, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20 text-center"
+                >
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mx-auto">
+                    <Image
+                      src={service.icon}
+                      alt={service.title}
+                      width={100}
+                      height={100}
+                      className="w-16 h-16"
+                    />
+                  </div>
+                  <h3 className="mb-4 text-xl font-bold text-primary">
+                    {service.title}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
+                Предлагаем выгодные проценты комиссии
+                <br />
+                при неизменно высоком качестве
+              </h2>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2 text-center">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md shadow-2xl">
+                <h3 className="mb-4 text-2xl font-bold text-foreground">
+                  Отправить платёж{" "}
+                  <span className="text-primary">за границу</span> из России
+                </h3>
+                <p className="mb-2 text-5xl font-bold text-primary">0,3%</p>
+                <p className="mb-4 text-lg text-foreground/70">комиссия</p>
+                <p className="text-sm text-foreground/50">
+                  *От цены инвойса без скрытых платежей. Процент комиссии
+                  зависит от страны назначения платежа
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md shadow-2xl">
+                <h3 className="mb-4 text-2xl font-bold text-foreground">
+                  Получить платёж{" "}
+                  <span className="text-primary">из-за границы</span> в Россию
+                </h3>
+                <p className="mb-2 text-5xl font-bold text-primary">от 0%</p>
+                <p className="mb-4 text-lg text-foreground/70">комиссия</p>
+                <p className="text-sm text-foreground/50">
+                  На получение экспортной выручки в валюте и рублях
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
+                Условия сотрудничества
+              </h2>
+            </div>
+
+            <div className="mb-8 flex justify-center">
+              <div className="inline-flex rounded-full bg-white/5 p-1">
+                <button className="px-6 py-2 rounded-full bg-primary text-white font-medium">
+                  ИМПОРТ (ПЛАТЕЖИ ЗА ГРАНИЦУ)
+                </button>
+                <button className="px-6 py-2 rounded-full text-foreground/70 hover:text-foreground font-medium">
+                  ЭКСПОРТ (ПЛАТЕЖИ В РОССИЮ)
+                </button>
+              </div>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-6">
+                  Международные расчёты для импортных поставок
+                </h3>
+                <p className="text-lg font-medium text-primary mb-6">
+                  Комиссия платежного агента:{" "}
+                  <span className="text-2xl">0,3%</span>
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Оплата по агентскому договору",
+                    "Оплата инвойсов в валюте контракта",
+                    "Выкуп товара от нашего имени",
+                    "Помощь с валютным контролем",
+                    "Консультации по документам",
+                    "Отслеживание платежей",
+                    "Персональный менеджер",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg
+                        className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      <span className="text-foreground/90">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
       <FadeIn>
         <HowItWorksSection />
       </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
+                ПОПУЛЯРНЫЕ НАПРАВЛЕНИЯ ПЛАТЕЖЕЙ
+              </h2>
+            </div>
+
+            <div className="max-w-3xl mx-auto mb-12">
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="text-foreground/90">От любой суммы</span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="text-foreground/90">
+                    Валюты: доллары, евро, юани, дирхамы, рубли, лиры
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="text-foreground/90">Срок: 1-3 дней</span>
+                </li>
+              </ul>
+
+              <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
+                <p className="text-center text-foreground/90 font-medium">
+                  Не находите своего направления или валюты?{" "}
+                  <a
+                    href="#contact"
+                    className="text-primary hover:underline font-semibold"
+                  >
+                    Свяжитесь с нами!
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mt-12">
+              {[
+                { name: "Южная Корея", code: "kr" },
+                { name: "Турция", code: "tr" },
+                { name: "Китай", code: "cn" },
+                { name: "Евросоюз", code: "eu" },
+                { name: "ОАЭ", code: "ae" },
+                { name: "Япония", code: "jp" },
+              ].map((country) => (
+                <div
+                  key={country.code}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center mb-3 overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-300">
+                    <span className="text-3xl">
+                      {country.code === "kr" && "🇰🇷"}
+                      {country.code === "tr" && "🇹🇷"}
+                      {country.code === "cn" && "🇨🇳"}
+                      {country.code === "eu" && "🇪🇺"}
+                      {country.code === "ae" && "🇦🇪"}
+                      {country.code === "jp" && "🇯🇵"}
+                    </span>
+                  </div>
+                  <span className="text-center text-foreground/90 font-medium text-sm md:text-base">
+                    {country.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
       <FadeIn>
         <section className="mx-auto mt-2 w-full max-w-7xl py-8">
           <div className="mb-2 flex items-end justify-between gap-4">
