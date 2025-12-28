@@ -26,9 +26,11 @@ import {
   FileText,
   ShoppingCart,
   Bot,
+  CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { GuaranteeSection } from "../../components/GuaranteeSection";
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<"import" | "export">("import");
@@ -556,9 +558,9 @@ export default function Page() {
                   <h3 className="text-2xl font-bold text-foreground mb-6">
                     Международные расчёты для импортных поставок
                   </h3>
-                  <p className="text-lg font-medium text-primary mb-6">
+                  <p className="text-lg font-medium text-foreground mb-6">
                     Комиссия платежного агента:{" "}
-                    <span className="text-2xl">0,3%</span>
+                    <span className="text-2xl text-primary">0,3%</span>
                   </p>
                   <ul className="space-y-4">
                     {[
@@ -594,19 +596,16 @@ export default function Page() {
                   <h3 className="text-2xl font-bold text-foreground mb-6">
                     Международные расчёты для экспортных поставок
                   </h3>
-                  <p className="text-lg font-medium text-primary mb-6">
+                  <p className="text-lg font-medium text-foreground mb-6">
                     Комиссия платежного агента:{" "}
-                    <span className="text-2xl">0,5%</span>
+                    <span className="text-2xl text-primary">от 0%</span>
                   </p>
                   <ul className="space-y-4">
                     {[
-                      "Прием платежей от иностранных контрагентов",
-                      "Конвертация в рубли по выгодному курсу",
-                      "Быстрый перевод на ваш расчетный счет",
-                      "Помощь с валютным контролем",
-                      "Консультации по внешнеэкономическим сделкам",
-                      "Отслеживание поступлений",
-                      "Персональный менеджер",
+                      "Конкурентоспособные условия для экспортных платежей с комиссией от 0%.",
+                      "Наша команда экспертов всегда готова помочь вам в осуществлении международных расчетов, обеспечивая безопасность как для отправителя, так и для получателя.",
+                      "Обширная сеть международных представительств в 7 странах, позволяет нам выбирать оптимальные юрисдикции для получения платежей, полностью исключая российский след.",
+                      "Берём на себя подготовку всей необходимой документации для успешного совершения сделок, позволяя вам сосредоточиться на развитии бизнеса.",
                     ].map((item, index) => (
                       <li key={index} className="flex items-start">
                         <svg
@@ -709,28 +708,25 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mt-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
               {[
-                { name: "Южная Корея", code: "kr" },
-                { name: "Турция", code: "tr" },
-                { name: "Китай", code: "cn" },
-                { name: "Евросоюз", code: "eu" },
-                { name: "ОАЭ", code: "ae" },
-                { name: "Япония", code: "jp" },
+                { name: "Южная Корея", code: "kr", img: "/korea.webp" },
+                { name: "Турция", code: "tr", img: "/turkey.webp" },
+                { name: "Китай", code: "cn", img: "/china.webp" },
+                { name: "ОАЭ", code: "ae", img: "/oae.jpg" },
+                { name: "Япония", code: "jp", img: "/japan.webp" },
               ].map((country) => (
                 <div
                   key={country.code}
                   className="flex flex-col items-center group"
                 >
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center mb-3 overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-300">
-                    <span className="text-3xl">
-                      {country.code === "kr" && "🇰🇷"}
-                      {country.code === "tr" && "🇹🇷"}
-                      {country.code === "cn" && "🇨🇳"}
-                      {country.code === "eu" && "🇪🇺"}
-                      {country.code === "ae" && "🇦🇪"}
-                      {country.code === "jp" && "🇯🇵"}
-                    </span>
+                  <div className="w-16 h-16 md:w-20 md:h-20   flex items-center justify-center mb-3 overflow-hidden transition-all duration-300">
+                    <Image
+                      src={country.img}
+                      alt={country.name}
+                      width={100}
+                      height={100}
+                    />
                   </div>
                   <span className="text-center text-foreground/90 font-medium text-sm md:text-base">
                     {country.name}
@@ -743,7 +739,142 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="grid gap-8 md:grid-cols-2 items-center">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                  Платёжные решения,{" "}
+                  <span className="text-primary">проверенные годами</span>
+                </h2>
+
+                <p className="text-base text-foreground/80 leading-relaxed">
+                  United Stream — это современная платежная система, которая
+                  позволяет быстро и безопасно выводить деньги с любых платформ
+                  и бирж. Мы работаем с 2018 года и за это время помогли тысячам
+                  клиентов по всему миру.
+                </p>
+
+                <p className="text-base text-foreground/80 leading-relaxed">
+                  Наши клиенты — это трейдеры, инвесторы и владельцы бизнеса,
+                  которые ценят скорость, надёжность и конфиденциальность. Мы
+                  предлагаем лучшие условия на рынке и индивидуальный подход к
+                  каждому клиенту.
+                </p>
+
+                <Button className="btn-three h-12">Подробнее о компании</Button>
+              </div>
+
+              <div className="relative grid grid-cols-2 gap-4">
+                <div className="relative rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/insuarance.jpg"
+                    alt="Payment interface with hand interaction"
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="relative rounded-xl overflow-hidden shadow-lg border border-primary/30">
+                  <Image
+                    src="/guarantee.png"
+                    alt="United Stream building"
+                    width={300}
+                    height={200}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0  p-3">
+                    <div className="text-white text-sm font-bold">
+                      Lider Garant
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
         <HowItWorksSection />
+      </FadeIn>
+
+      <FadeIn>
+        <GuaranteeSection />
+      </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="grid gap-8 md:grid-cols-2 items-center">
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h2 className="text-2xl font-bold text-primary">
+                    МОЖЕМ ДОСТАВИТЬ
+                  </h2>
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                    ВАШ ВЫКУПЛЕННЫЙ ТОВАР В РОССИЮ ЧЕРЕЗ НАШУ
+                    ТРАНСПОРТНО-ЛОГИСТИЧЕСКУЮ КОМПАНИЮ-ПАРТНЁРА
+                  </h3>
+                </div>
+
+                <div className="space-y-4 text-foreground/80 leading-relaxed">
+                  <p>
+                    <span className="font-semibold">ПВ Бридж</span> - это
+                    надёжная логистическая компания, специализирующаяся на
+                    перевозке грузов из Европы в Россию. Более 15 лет мы
+                    обеспечиваем бесперебойные поставки для наших клиентов.
+                  </p>
+                  <p>
+                    Наши клиенты могут быть уверены в нашей профессиональной
+                    работе и высоком качестве сервиса.
+                  </p>
+                </div>
+
+                <div>
+                  <a
+                    href="https://pv-bridge.ru"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-three h-12"
+                  >
+                    Перейти на сайт
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
+                <h3 className="mb-6 text-2xl font-bold text-foreground">
+                  Достижения компании ПВ Бридж за 2024 год:
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "100% успешно доставленных грузов",
+                    "> 1025 грузов доставлено",
+                    "> 43 стран участвующих в доставках",
+                    "> 155 постоянных клиентов",
+                  ].map((achievement, index) => (
+                    <div
+                      key={index}
+                      className="rounded-xl bg-white/5 border border-white/10 p-4 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                    >
+                      <div className="flex items-center">
+                        <div className="h-6 w-6 flex items-center justify-center mr-3">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                        </div>
+                        <p className="text-sm font-medium text-foreground">
+                          {achievement}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </FadeIn>
 
       <FadeIn>
