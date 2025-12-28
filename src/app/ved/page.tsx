@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 import {
   Rocket,
   Shield,
@@ -30,6 +31,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
+  const [activeTab, setActiveTab] = useState<"import" | "export">("import");
+
   const advantages = [
     {
       icon: "rocket.svg",
@@ -524,60 +527,110 @@ export default function Page() {
 
             <div className="mb-8 flex justify-center">
               <div className="inline-flex rounded-full bg-white/5 p-1">
-                <button className="px-6 py-2 rounded-full bg-primary text-white font-medium">
+                <button
+                  onClick={() => setActiveTab("import")}
+                  className={`px-6 py-2 rounded-full font-medium transition-colors ${
+                    activeTab === "import"
+                      ? "bg-primary text-white"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
+                >
                   ИМПОРТ (ПЛАТЕЖИ ЗА ГРАНИЦУ)
                 </button>
-                <button className="px-6 py-2 rounded-full text-foreground/70 hover:text-foreground font-medium">
+                <button
+                  onClick={() => setActiveTab("export")}
+                  className={`px-6 py-2 rounded-full font-medium transition-colors ${
+                    activeTab === "export"
+                      ? "bg-primary text-white"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
+                >
                   ЭКСПОРТ (ПЛАТЕЖИ В РОССИЮ)
                 </button>
               </div>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-6">
-                  Международные расчёты для импортных поставок
-                </h3>
-                <p className="text-lg font-medium text-primary mb-6">
-                  Комиссия платежного агента:{" "}
-                  <span className="text-2xl">0,3%</span>
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    "Оплата по агентскому договору",
-                    "Оплата инвойсов в валюте контракта",
-                    "Выкуп товара от нашего имени",
-                    "Помощь с валютным контролем",
-                    "Консультации по документам",
-                    "Отслеживание платежей",
-                    "Персональный менеджер",
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg
-                        className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="text-foreground/90">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {activeTab === "import" ? (
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground mb-6">
+                    Международные расчёты для импортных поставок
+                  </h3>
+                  <p className="text-lg font-medium text-primary mb-6">
+                    Комиссия платежного агента:{" "}
+                    <span className="text-2xl">0,3%</span>
+                  </p>
+                  <ul className="space-y-4">
+                    {[
+                      "Оплата по агентскому договору",
+                      "Оплата инвойсов в валюте контракта",
+                      "Выкуп товара от нашего имени",
+                      "Помощь с валютным контролем",
+                      "Консультации по документам",
+                      "Отслеживание платежей",
+                      "Персональный менеджер",
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <svg
+                          className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        <span className="text-foreground/90">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground mb-6">
+                    Международные расчёты для экспортных поставок
+                  </h3>
+                  <p className="text-lg font-medium text-primary mb-6">
+                    Комиссия платежного агента:{" "}
+                    <span className="text-2xl">0,5%</span>
+                  </p>
+                  <ul className="space-y-4">
+                    {[
+                      "Прием платежей от иностранных контрагентов",
+                      "Конвертация в рубли по выгодному курсу",
+                      "Быстрый перевод на ваш расчетный счет",
+                      "Помощь с валютным контролем",
+                      "Консультации по внешнеэкономическим сделкам",
+                      "Отслеживание поступлений",
+                      "Персональный менеджер",
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <svg
+                          className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        <span className="text-foreground/90">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </section>
-      </FadeIn>
-
-      <FadeIn>
-        <HowItWorksSection />
       </FadeIn>
 
       <FadeIn>
@@ -593,7 +646,7 @@ export default function Page() {
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <svg
-                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -609,7 +662,7 @@ export default function Page() {
                 </li>
                 <li className="flex items-start">
                   <svg
-                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -627,7 +680,7 @@ export default function Page() {
                 </li>
                 <li className="flex items-start">
                   <svg
-                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 flex-shrink-0"
+                    className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -687,6 +740,10 @@ export default function Page() {
             </div>
           </div>
         </section>
+      </FadeIn>
+
+      <FadeIn>
+        <HowItWorksSection />
       </FadeIn>
 
       <FadeIn>

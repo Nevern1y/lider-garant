@@ -62,19 +62,26 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <div className="grid gap-3 py-2">
             <div className="grid gap-1">
               <Label htmlFor="name">Имя</Label>
-              <Input id="name" placeholder="Иван Иванович Иванов" />
+              <Input
+                id="name"
+                placeholder="Иван Иванович Иванов"
+                className="text-white"
+              />
             </div>
             <div className="grid gap-1">
               <Label htmlFor="phone">Телефон</Label>
               <PhoneInput
                 id="phone"
                 name="phone"
-                className="h-11 rounded-full"
+                className="h-11 rounded-full text-white"
               />
             </div>
           </div>
           <DialogFooter>
-            <Button onClick={() => setModalOpen(false)} className="btn-three">
+            <Button
+              onClick={() => setModalOpen(false)}
+              className="btn-three w-full"
+            >
               Отправить
             </Button>
           </DialogFooter>
