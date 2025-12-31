@@ -17,17 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-import {
-  Rocket,
-  Shield,
-  DollarSign,
-  Globe,
-  Phone,
-  FileText,
-  ShoppingCart,
-  Bot,
-  CheckCircle2,
-} from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { GuaranteeSection } from "../../components/GuaranteeSection";

@@ -72,7 +72,7 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <div className="mb-3 text-sm font-semibold text-foreground">
+            <div className="mb-3 text-sm font-semibold text-primary">
               Маркетплейс
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
@@ -120,7 +120,7 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <div className="mb-3 text-sm font-semibold text-foreground">
+            <div className="mb-3 text-sm font-semibold text-primary">
               Сервисы
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
@@ -146,7 +146,7 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <div className="mb-3 text-sm font-semibold text-foreground">
+            <div className="mb-3 text-sm font-semibold text-primary">
               Компания
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
