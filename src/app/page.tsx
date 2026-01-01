@@ -16,6 +16,7 @@ export default function Home() {
       desc: "44-ФЗ, 223-ФЗ, 185-ФЗ (615 ПП), коммерческие закупки, налоговые гарантии.",
       btn: "Узнать лимит",
       img: "/finance-products/guarantee.png",
+      link: "/guarantees",
     },
     {
       id: "credits",
@@ -30,6 +31,7 @@ export default function Home() {
       desc: "Кредитование для текущих операционных и иных расходов (логистика, оборот).",
       btn: "Подобрать условия",
       img: "/finance-products/three.png",
+      link: "/logistics",
     },
     {
       id: "ved",
@@ -37,6 +39,7 @@ export default function Home() {
       desc: "Прямые корреспондентские счета в иностранных банках и гарантийные списания комиссии.",
       btn: "Подробнее",
       img: "/finance-products/four.png",
+      link: "/ved",
     },
     {
       id: "leasing",
@@ -44,6 +47,7 @@ export default function Home() {
       desc: "Финансируем новое и с пробегом с авансом от 0%.",
       btn: "Узнать больше",
       img: "/finance-products/money.png",
+      link: "/leasing",
     },
     {
       id: "insurance",
@@ -51,6 +55,7 @@ export default function Home() {
       desc: "Экспресс-страхование контрактов свыше 30 млн рублей.",
       btn: "Узнать больше",
       img: "/finance-products/hands.png",
+      link: "/insurance",
     },
     {
       id: "factoring",
@@ -58,6 +63,7 @@ export default function Home() {
       desc: "Финансирование под уступку права требования, улучшение оборотного капитала.",
       btn: "Подробнее",
       img: "/finance-products/settings.png",
+      link: "/factoring",
     },
     {
       id: "tender",
@@ -65,6 +71,7 @@ export default function Home() {
       desc: "Каждый 3-й тендер — победа! Спецсчет, ЕРУЗ, закрытые секции.",
       btn: "Подробнее",
       img: "/finance-products/calculator-hand.png",
+      link: "/tender",
     },
     {
       id: "checking",
@@ -72,6 +79,7 @@ export default function Home() {
       desc: "Все — от реквизитов и отчетности до контактов и кадровых рисков.",
       btn: "Подробнее",
       img: "/finance-products/proverka.png",
+      link: "/checking",
     },
   ];
 
@@ -152,15 +160,24 @@ export default function Home() {
                       width={240}
                       height={240}
                       sizes="(min-width: 768px) 240px, 192px"
-                      className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
+                      className="pointer-events-none absolute bottom-0 right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
                     />
                   )}
                 </div>
 
                 <div className="mt-auto flex items-center justify-between gap-3">
-                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
-                    {item.btn}
-                  </button>
+                  {item.link ? (
+                    <Link
+                      href={item.link}
+                      className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0"
+                    >
+                      {item.btn}
+                    </Link>
+                  ) : (
+                    <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
+                      {item.btn}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -218,12 +235,12 @@ export default function Home() {
             <p className="max-w-xl text-sm text-foreground/70">
               Мы вам поможем. Оставьте заявку и начните зарабатывать.
             </p>
-            <a
-              href="#earn"
+            <Link
+              href="#application"
               className="btn-three h-12 px-6 text-sm font-semibold"
             >
               Начать зарабатывать
-            </a>
+            </Link>
           </div>
         </section>
       </FadeIn>

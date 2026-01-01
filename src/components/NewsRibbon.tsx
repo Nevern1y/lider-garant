@@ -95,7 +95,7 @@ export default function NewsRibbon() {
                   size="sm"
                   className="h-9 bg-none border-primary border text-primary hover:bg-primary hover:text-white transition-all"
                 >
-                  <a href="#">Читать полностью →</a>
+                  <a href="/news">Читать полностью →</a>
                 </Button>
               </article>
             </SwiperSlide>
