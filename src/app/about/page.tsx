@@ -59,7 +59,8 @@ export default function Page() {
               Цифровая интернет-площадка финансовых услуг
             </p>
             <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-              lider-garant.ru — экосистема для бизнеса и банков
+            <span className="text-primary">Lider Garant</span> — экосистема
+              для бизнеса и банков
             </h1>
             <p className="max-w-2xl text-base text-foreground/75 md:text-lg">
               Платформа обеспечивает онлайн-взаимодействие юридических лиц с

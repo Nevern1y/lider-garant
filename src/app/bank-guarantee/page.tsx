@@ -357,9 +357,11 @@ export default function BankGuaranteePage() {
                       </p>
                     </div>
 
-                    <button className="mt-4 w-full bg-primary px-4 py-3 rounded-xl text-white font-semibold hover:bg-transparent hover:text-primary border border-primary hover:border-primary transition-all cursor-pointer">
-                      Получить банковскую гарантию
-                    </button>
+                    <Link href="#form">
+                      <Button className="mt-4 w-full bg-primary px-4 py-5 rounded-xl text-white font-semibold hover:bg-transparent hover:text-primary border border-primary hover:border-primary transition-all cursor-pointer">
+                        Получить банковскую гарантию
+                      </Button>
+                    </Link>
                   </div>
                 );
               })}
@@ -419,7 +421,7 @@ export default function BankGuaranteePage() {
                 Мы вам поможем. Оставьте заявку и начните зарабатывать.
               </p>
               <a
-                href="#earn"
+                href="#form"
                 className="btn-three h-12 px-6 text-sm font-semibold"
               >
                 Начать зарабатывать

@@ -206,30 +206,30 @@ export default function Page() {
             {[
               {
                 text: "Аванс от 0%",
-                icon: <Coins size={32} className="text-primary" />,
+                icon: <Coins size={32} className="text-white" />,
               },
               {
                 text: "Экспресс рассмотрение",
-                icon: <Clock size={32} className="text-primary" />,
+                icon: <Clock size={32} className="text-white" />,
               },
               {
                 text: "Экономия на налогах",
-                icon: <HandCoins size={32} className="text-primary" />,
+                icon: <HandCoins size={32} className="text-white" />,
               },
               {
                 text: "Работаем с Б/У",
-                icon: <Truck size={32} className="text-primary" />,
+                icon: <Truck size={32} className="text-white" />,
               },
               {
                 text: "Спецпредложения и скидки",
-                icon: <Gift size={32} className="text-primary" />,
+                icon: <Gift size={32} className="text-white" />,
               },
             ].map(({ text, icon }) => (
               <div
                 key={text}
-                className="flex w-[150px] flex-col items-center gap-2 rounded-xl bg-white/5 px-4 py-4 text-center text-sm text-foreground/85 backdrop-blur-md transition hover:bg-white/10"
+                className="flex w-[150px] flex-col items-center gap-2 rounded-xl border border-primary/10 px-4 py-4 text-center text-sm text-foreground/85 backdrop-blur-md transition hover:border-primary/60"
               >
-                <div className="p-3 rounded-lg bg-white/10">{icon}</div>
+                <div className="p-3 rounded-lg bg-primary ">{icon}</div>
                 <span>{text}</span>
               </div>
             ))}
@@ -256,6 +256,7 @@ export default function Page() {
                 onSubmit={handleSubmit}
                 className="w-full max-w-lg rounded-2xl md:rounded-3xl border border-foreground/20 bg-white/5 p-6 md:p-10 shadow-2xl relative"
                 aria-label="Форма лизинга"
+                id="leasing-form"
               >
                 <h3 className="mb-2 text-xl md:text-2xl font-bold text-primary">
                   Подберем самые выгодные предложения
@@ -292,7 +293,6 @@ export default function Page() {
                       type="number"
                       name="amount"
                       placeholder="Сумма"
-                      inputMode="numeric"
                       min={1}
                       step={1000}
                       title="Укажите сумму больше 0"
@@ -451,7 +451,10 @@ export default function Page() {
       </section>
 
       <FadeIn>
-        <FaqSection title="Вопросы по лизингу для юридических лиц" items={faqs} />
+        <FaqSection
+          title="Вопросы по лизингу для юридических лиц"
+          items={faqs}
+        />
       </FadeIn>
 
       <FadeIn>

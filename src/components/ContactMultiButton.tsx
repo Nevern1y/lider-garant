@@ -62,7 +62,7 @@ const ContactMultiButton = ({ onOpenCallModal }: ContactMultiButtonProps) => {
           <Button
             onClick={() => setIsOpen(!isOpen)}
             size="icon-lg"
-            className="w-14 h-14 rounded-full shadow-lg bg-primary transition-all duration-300"
+            className="w-14 h-14 btn-three"
           >
             <Phone className="w-6 h-6" />
           </Button>

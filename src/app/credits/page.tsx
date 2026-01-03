@@ -360,7 +360,7 @@ export default function Page() {
                 </li>
               </ul>
               <Button asChild className="h-12 btn-three">
-                <Link href="/#application">Подать заявку</Link>
+                <Link href="/credits/#application">Подать заявку</Link>
               </Button>
             </div>
 
@@ -475,7 +475,10 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <section className="mx-auto mt-2 w-full max-w-7xl py-12">
+        <section
+          className="mx-auto mt-2 w-full max-w-7xl py-12"
+          id="application"
+        >
           <div className="grid items-stretch gap-10 md:grid-cols-2">
             <div>
               <h2 className="mb-4 text-2xl font-semibold text-primary">

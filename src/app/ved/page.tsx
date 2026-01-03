@@ -340,7 +340,7 @@ export default function Page() {
             {advantages.map((advantage, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20"
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary shadow-2xl hover:shadow-primary/20"
               >
                 <div className="mb-4 flex h-24 w-24 items-center justify-center text-primary">
                   <Image
@@ -400,7 +400,7 @@ export default function Page() {
               {unitedStreamAdvantages.map((advantage, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary shadow-2xl hover:shadow-primary/20"
                 >
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Image
@@ -443,7 +443,7 @@ export default function Page() {
               {internationalPaymentsServices.map((service, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/20 shadow-2xl hover:shadow-primary/20 text-center"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary shadow-2xl hover:shadow-primary/20 text-center"
                 >
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mx-auto">
                     <Image
@@ -688,12 +688,12 @@ export default function Page() {
               <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
                 <p className="text-center text-foreground/90 font-medium">
                   Не находите своего направления или валюты?{" "}
-                  <a
+                  <Link
                     href="#contact"
                     className="text-primary hover:underline font-semibold"
                   >
                     Свяжитесь с нами!
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -739,7 +739,7 @@ export default function Page() {
                 </h2>
 
                 <p className="text-base text-foreground/80 leading-relaxed">
-                  United Stream — это современная платежная система, которая
+                  Lider Garant — это современная платежная система, которая
                   позволяет быстро и безопасно выводить деньги с любых платформ
                   и бирж. Мы работаем с 2018 года и за это время помогли тысячам
                   клиентов по всему миру.
@@ -752,7 +752,11 @@ export default function Page() {
                   каждому клиенту.
                 </p>
 
-                <Button className="btn-three h-12">Подробнее о компании</Button>
+                <Link href="/about">
+                  <Button className="btn-three h-12">
+                    Подробнее о компании
+                  </Button>
+                </Link>
               </div>
 
               <div className="relative grid grid-cols-2 gap-4">
@@ -774,11 +778,6 @@ export default function Page() {
                     height={200}
                     className="w-full h-auto object-cover"
                   />
-                  <div className="absolute bottom-0 left-0 right-0  p-3">
-                    <div className="text-white text-sm font-bold">
-                      Lider Garant
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -897,7 +896,9 @@ export default function Page() {
         <SeeAlso />
       </FadeIn>
       <FadeIn>
-        <ManagerCTASection />
+        <div id="contact">
+          <ManagerCTASection />
+        </div>
       </FadeIn>
 
       <FadeIn>

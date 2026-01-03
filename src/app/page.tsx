@@ -16,7 +16,7 @@ export default function Home() {
       desc: "44-ФЗ, 223-ФЗ, 185-ФЗ (615 ПП), коммерческие закупки, налоговые гарантии.",
       btn: "Узнать лимит",
       img: "/finance-products/guarantee.png",
-      link: "/guarantees",
+      link: "/bank-guarantee",
     },
     {
       id: "credits",
@@ -24,6 +24,7 @@ export default function Home() {
       desc: "Онлайн-заявка за минуту, бесплатное сравнение ставок, получение кредита на лучших условиях.",
       btn: "Подобрать кредит",
       img: "/finance-products/two.png",
+      link: "/credits",
     },
     {
       id: "logistics",

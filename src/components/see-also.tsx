@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SeeAlso() {
   const related = [
@@ -7,36 +8,42 @@ export default function SeeAlso() {
       desc: "Кредитование для осуществления текущих операционных и иных расходов.",
       href: "/credits",
       img: "/finance-products/guarantee.png",
+      link: "/credits",
     },
     {
       title: "Международные платежи",
       desc: "Прямые корреспондентские счета в иностранных банках и гарантийные снижение комиссии на конвертацию.",
       href: "/ved",
       img: "/finance-products/money.png",
+      link: "/ved",
     },
     {
       title: "Страхование",
       desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
       href: "/insurance",
       img: "/finance-products/hands.png",
+      link: "/insurance",
     },
     {
       title: "Проверка контрагентов",
       desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
       href: "/checking",
       img: "/finance-products/proverka.png",
+      link: "/checking",
     },
     {
       title: "Тендерное сопровождение",
       desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника. ",
       href: "/tender-support",
       img: "/finance-products/calculator-hand.png",
+      link: "/tender-support",
     },
     {
       title: "Лизинг для юридических лиц",
       desc: "Финансируем новое и бу с авансом от 0 %",
       href: "/leasing",
       img: "/finance-products/four.png",
+      link: "/leasing",
     },
   ];
   return (
@@ -73,9 +80,11 @@ export default function SeeAlso() {
               </div>
 
               <div className="mt-auto flex items-center justify-between gap-3">
-                <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
-                  Узнать больше
-                </button>
+                <Link href={item.link}>
+                  <button className="inline-flex rounded-xl border border-primary px-6 py-2.5 text-sm hover:bg-primary font-semibold text-primary transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:shadow-md active:translate-y-0">
+                    Узнать больше
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

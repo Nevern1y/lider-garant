@@ -122,7 +122,9 @@ export default function DepositsPage() {
             </div>
 
             <div className="flex flex-wrap gap-4 mt-4">
-              <button className="h-12 btn-three">Подать заявку</button>
+              <Link href="#application">
+                <button className="h-12 btn-three">Подать заявку</button>
+              </Link>
             </div>
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -296,7 +298,10 @@ export default function DepositsPage() {
           </section>
 
           <FadeIn>
-            <section className="mx-auto mt-2 w-full max-w-7xl py-12">
+            <section
+              className="mx-auto mt-2 w-full max-w-7xl py-12"
+              id="application"
+            >
               <div className="grid items-stretch gap-10 md:grid-cols-2">
                 <div>
                   <h2 className="mb-4 text-2xl font-semibold text-foreground">

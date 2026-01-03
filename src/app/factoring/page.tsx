@@ -172,7 +172,7 @@ export default function Page() {
               </div>
               <div className="flex items-center gap-3">
                 <Button asChild className="h-12 btn-three">
-                  <a href="#">Получить расчёт</a>
+                  <Link href="/factoring#factoring-form">Получить расчёт</Link>
                 </Button>
               </div>
             </div>
@@ -263,7 +263,10 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <section className="mx-auto mt-2 w-full max-w-7xl py-12">
+        <section
+          className="mx-auto mt-2 w-full max-w-7xl py-12"
+          id="factoring-form"
+        >
           <div className="grid items-stretch gap-10 md:grid-cols-2">
             <div>
               <h2 className="mb-4 text-2xl font-semibold text-foreground">
