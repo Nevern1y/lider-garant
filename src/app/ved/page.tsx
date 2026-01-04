@@ -130,6 +130,15 @@ export default function Page() {
   }));
 
   const faqs = [
+    "платежи в китай",
+    "платежи в европу",
+    "платежи в турцию",
+    "платежи в индию",
+    "платежи в иран",
+    "платежи в оаэ",
+    "платежи в дубай",
+    "платежи в японию",
+    "платежи в корею",
     "оплата международных платежей",
     "платежный агент",
     "международные расчеты",
@@ -161,15 +170,6 @@ export default function Page() {
     "платежный агент перевод",
     "платежный агент поставщик",
     "платежный агент вэд",
-    "платежи в китай",
-    "платежи в европу",
-    "платежи в турцию",
-    "платежи в индию",
-    "платежи в иран",
-    "платежи в оаэ",
-    "платежи в дубай",
-    "платежи в японию",
-    "платежи в корею",
     "валютные денежные переводы",
     "переводы за границу из россии",
     "денежный перевод за границу",
@@ -542,9 +542,9 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 items-center">
+            <div className="gap-8 flex justify-center items-center">
               {activeTab === "import" ? (
-                <div>
+                <div className="text-center">
                   <h3 className="text-2xl font-bold text-foreground mb-6">
                     Международные расчёты для импортных поставок
                   </h3>
@@ -552,7 +552,7 @@ export default function Page() {
                     Комиссия платежного агента:{" "}
                     <span className="text-2xl text-primary">0,3%</span>
                   </p>
-                  <ul className="space-y-4">
+                  <ul className="space-y-4 text-left inline-block">
                     {[
                       "Оплата по агентскому договору",
                       "Оплата инвойсов в валюте контракта",
@@ -564,7 +564,7 @@ export default function Page() {
                     ].map((item, index) => (
                       <li key={index} className="flex items-start">
                         <svg
-                          className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
+                          className="h-6 w-6 text-primary mr-3 mt-0.5 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -582,7 +582,7 @@ export default function Page() {
                   </ul>
                 </div>
               ) : (
-                <div>
+                <div className="text-center">
                   <h3 className="text-2xl font-bold text-foreground mb-6">
                     Международные расчёты для экспортных поставок
                   </h3>
@@ -590,7 +590,7 @@ export default function Page() {
                     Комиссия платежного агента:{" "}
                     <span className="text-2xl text-primary">от 0%</span>
                   </p>
-                  <ul className="space-y-4">
+                  <ul className="space-y-4 text-left inline-block">
                     {[
                       "Конкурентоспособные условия для экспортных платежей с комиссией от 0%.",
                       "Наша команда экспертов всегда готова помочь вам в осуществлении международных расчетов, обеспечивая безопасность как для отправителя, так и для получателя.",
@@ -599,7 +599,7 @@ export default function Page() {
                     ].map((item, index) => (
                       <li key={index} className="flex items-start">
                         <svg
-                          className="h-6 w-6 text-emerald-500 mr-3 mt-0.5 shrink-0"
+                          className="h-6 w-6 text-primary mr-3 mt-0.5 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -617,6 +617,235 @@ export default function Page() {
                   </ul>
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/5 via-sky-500/5 to-emerald-500/5 p-8 md:p-12 my-12">
+          <div className="relative z-10">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
+                Как это работает / Импорт
+              </h2>
+              <p className="text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto">
+                Переводите оплату поставщикам из любых стран
+              </p>
+            </div>
+
+            {/* Flow Diagram */}
+            <div className="mb-16 overflow-x-auto">
+              <div className="flex justify-center items-center min-w-max px-4">
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="flex flex-col items-center text-center w-20 md:w-24">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-primary"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs md:text-sm font-medium text-foreground">
+                      Заказчик в России
+                    </span>
+                  </div>
+
+                  <svg
+                    className="w-4 h-4 md:w-6 md:h-6 text-primary shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+
+                  <div className="flex flex-col items-center text-center w-20 md:w-24">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-primary"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs md:text-sm font-medium text-foreground">
+                      Получатель платежа
+                    </span>
+                  </div>
+
+                  <svg
+                    className="w-4 h-4 md:w-6 md:h-6 text-primary shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+
+                  <div className="flex flex-col items-center text-center w-20 md:w-24">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-primary"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs md:text-sm font-medium text-foreground">
+                      Договор купли-продажи
+                    </span>
+                  </div>
+
+                  <svg
+                    className="w-4 h-4 md:w-6 md:h-6 text-primary shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+
+                  <div className="flex flex-col items-center text-center w-20 md:w-24">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-primary"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs md:text-sm font-medium text-foreground">
+                      Отправитель платежа
+                    </span>
+                  </div>
+
+                  <svg
+                    className="w-4 h-4 md:w-6 md:h-6 text-primary shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+
+                  <div className="flex flex-col items-center text-center w-20 md:w-24">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-primary"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs md:text-sm font-medium text-foreground">
+                      Поставщик за рубежом
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">1</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">
+                  Заключаем агентский договор или договор купли-продажи с вашим
+                  бизнесом в России от имени нашей иностранной компании со
+                  счётом в российском банке
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">2</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">
+                  Ваш поставщик из Китая, Европы или другой страны выставляет
+                  счёт на нашу иностранную компанию-плательщика без российского
+                  следа, зарегистрированную в Дубае, Гонконге или ЕС
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">3</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">
+                  На основании полученного счёта наша иностранная компания
+                  выставляет счёт вашей российской компании в рублях, включая
+                  наше агентское вознаграждение
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">4</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">
+                  После получения оплаты от вашей компании, мы осуществляем
+                  платеж вашему поставщику в Китае, Европе или другой стране
+                  через нашу компанию-плательщика (ОАЭ, Гонконг или ЕС)
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -810,8 +1039,10 @@ export default function Page() {
 
                 <div className="space-y-4 text-foreground/80 leading-relaxed">
                   <p>
-                    <span className="font-semibold">ПВ Бридж</span> - это
-                    надёжная логистическая компания, специализирующаяся на
+                    <span className="font-semibold text-primary">
+                      ЛЖ Логистик
+                    </span>{" "}
+                    - это надёжная логистическая компания, специализирующаяся на
                     перевозке грузов из Европы в Россию. Более 15 лет мы
                     обеспечиваем бесперебойные поставки для наших клиентов.
                   </p>
@@ -820,22 +1051,11 @@ export default function Page() {
                     работе и высоком качестве сервиса.
                   </p>
                 </div>
-
-                <div>
-                  <a
-                    href="https://pv-bridge.ru"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-three h-12"
-                  >
-                    Перейти на сайт
-                  </a>
-                </div>
               </div>
 
               <div className="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
                 <h3 className="mb-6 text-2xl font-bold text-foreground">
-                  Достижения компании ПВ Бридж за 2024 год:
+                  Достижения компании ЛЖ Логистик за 2024 год:
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
