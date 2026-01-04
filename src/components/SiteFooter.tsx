@@ -175,6 +175,11 @@ export default function SiteFooter() {
                   Партнерам
                 </Link>
               </li>
+              <li>
+                <Link href="/documents" className="nav-link link-gradient">
+                  Документы
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

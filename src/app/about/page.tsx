@@ -2,49 +2,85 @@
 
 import FadeIn from "@/components/FadeIn";
 import {
-  ShieldCheck,
-  CreditCard,
-  Landmark,
-  HandCoins,
-  Car,
-  Globe,
-  ClipboardCheck,
-  UserSearch,
+  Shield,
+  Database,
+  Users,
+  FileText,
+  Clock,
+  Lock,
+  CheckCircle,
+  BarChart,
 } from "lucide-react";
 
-const services = [
-  { label: "Банковские гарантии", Icon: ShieldCheck },
-  { label: "Кредитование", Icon: CreditCard },
-  { label: "Открытие счетов и РКО", Icon: Landmark },
-  { label: "Факторинг", Icon: HandCoins },
-  { label: "Лизинг", Icon: Car },
-  { label: "ВЭД и сопровождение контрактов", Icon: Globe },
-  { label: "Тендерное сопровождение", Icon: ClipboardCheck },
-  { label: "Проверка клиента и контрагента", Icon: UserSearch },
-];
-
-const modules = [
+const features = [
   {
-    title: "Портал клиентов",
+    title: "Сбор и обработка информации",
     description:
-      "Регистрация, вход, выбор партнёра и создание заявки, обмен документами, заключение договора, оплата услуги и получение финансового продукта.",
+      "Предназначена для сбора, получения, обработки, хранения и предоставления информации о субъектах малого и среднего бизнеса (МСБ), потенциально нуждающихся в финансовой поддержке.",
+    Icon: Database,
   },
   {
-    title: "Портал агентов",
+    title: "Разработка ПО и консалтинг",
     description:
-      "Регистрация, заключение агентского договора, ввод данных, заполнение форм, выбор партнёра и создание заявки, сопровождение клиента.",
+      "Разрабатывает компьютерное программное обеспечение, занимается консультативной деятельностью в области компьютерных технологий, деятельностью по созданию и использованию баз данных и информационных ресурсов.",
+    Icon: FileText,
   },
   {
-    title: "Кабинеты администраторов",
+    title: "Решение для целевых групп",
     description:
-      "Управление площадкой, банками-партнёрами и агентами, настройка витрины услуг, мониторинг сделок и SLA.",
+      "Решает задачи для двух целевых групп Банков и участников/победителей государственных и коммерческих аукционов и тендеров, а также их агентов.",
+    Icon: Users,
   },
 ];
 
-const integrations = [
-  "ЕГРЮЛ, Росстат, ФНС, ФССП, МВД, ФНС и Росфинмониторинг",
-  "Портал закупок, ФНС, сервисы госорганов",
-  "Банки: ПСБ, Альфа-Банк, Уралсиб, Реалист и другие",
+const capabilities = [
+  {
+    title: "Единая информационная база",
+    description:
+      "Создание единой информационной базы о субъектах МСБ потенциально нуждающихся в финансовой поддержке, предусматривающей структуризацию данных по каналам поступления информации.",
+    Icon: Database,
+  },
+  {
+    title: "Информационный центр",
+    description:
+      "Создание единого информационного центра подачи, формирования заявок на гарантию, кредит (в том числе прямое кредитование субъекта МСБ), или поручительство.",
+    Icon: FileText,
+  },
+  {
+    title: "История взаимодействий",
+    description:
+      "Организация единой информационной базы данных по истории взаимодействия субъектов МСБ с участниками взаимодействия и партнерами.",
+    Icon: BarChart,
+  },
+  {
+    title: "Многоканальность",
+    description:
+      "Организация многоканальности поступления заявок от субъектов МСБ, участников взаимодействия, партнёров.",
+    Icon: Users,
+  },
+  {
+    title: "Автоматизация процессов",
+    description:
+      "Автоматизация бизнес-процессов прохождения и рассмотрения заявок.",
+    Icon: CheckCircle,
+  },
+  {
+    title: "Контроль сроков",
+    description: "Автоматизация контроля сроков прохождения заявки.",
+    Icon: Clock,
+  },
+  {
+    title: "Стандарты работы",
+    description:
+      "Обеспечение соблюдения стандартов работы с заявками МСБ за счет минимизации ручных операций по обработке заявок МСБ.",
+    Icon: Shield,
+  },
+  {
+    title: "Стандартизация отчетности",
+    description:
+      "Автоматизация и стандартизация отчётности для участников взаимодействия.",
+    Icon: BarChart,
+  },
 ];
 
 export default function Page() {
@@ -59,62 +95,75 @@ export default function Page() {
               Цифровая интернет-площадка финансовых услуг
             </p>
             <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-            <span className="text-primary">Lider Garant</span> — экосистема
-              для бизнеса и банков
+              <span className="text-primary">Lider Garant</span> — финансовая
+              платформа
             </h1>
             <p className="max-w-2xl text-base text-foreground/75 md:text-lg">
-              Платформа обеспечивает онлайн-взаимодействие юридических лиц с
-              банками, микрокредитными и факторинговыми компаниями, а также с
-              другими участниками финансового рынка по всей России.
+              Управления заявками обращающихся за финансовой помощью в рамках
+              системы, предназначенной для предоставления гарантий, кредитов и
+              поручительств субъектам и Банкам в едином информационном
+              пространстве по единым стандартам.
             </p>
           </div>
         </section>
       </FadeIn>
 
       <FadeIn>
-        <section className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-foreground/10 bg-white/5 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-foreground">
-              Автоматизация процесса
-            </h2>
-            <p className="mt-3 text-sm text-foreground/75">
-              От подачи заявки до принятия решений и подписания документов в
-              электронном виде посредством электронной подписи. Каждое действие
-              отслеживается и фиксируется.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-foreground/10 bg-white/5 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-foreground">
-              Архитектура
-            </h2>
-            <p className="mt-3 text-sm text-foreground/75">
-              Сайт состоит из страниц услуг, личного кабинета клиентов и
-              агентов, а также административных кабинетов площадки и
-              банков-партнёров.
-            </p>
-          </div>
+        <section className="grid gap-6 md:grid-cols-3">
+          {features.map(({ title, description, Icon }) => (
+            <div
+              key={title}
+              className="rounded-3xl border border-foreground/10 bg-white/5 p-6 shadow-sm transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
+            >
+              <Icon className="h-8 w-8 text-primary mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-3">
+                {title}
+              </h3>
+              <p className="text-sm text-foreground/75">{description}</p>
+            </div>
+          ))}
         </section>
       </FadeIn>
 
       <FadeIn>
         <section className="rounded-3xl border border-foreground/10 bg-white/5 p-6 md:p-8">
           <h2 className="text-2xl font-semibold text-primary md:text-3xl">
-            Основные услуги платформы
+            Возможности платформы
           </h2>
           <p className="mt-3 text-sm text-foreground/70">
-            Все сервисы доступны через единый интерфейс и интегрированы с
-            банковскими продуктами.
+            Комплексное решение для автоматизации и стандартизации финансовых
+            процессов.
           </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {services.map(({ label, Icon }) => (
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map(({ title, description, Icon }) => (
               <div
-                key={label}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
+                key={title}
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition-all hover:border-primary hover:shadow-[0_0_24px_rgba(34,211,238,0.25)]"
               >
-                <Icon className="h-4 w-4 shrink-0 text-primary" />
-                <span>{label}</span>
+                <Icon className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                <div>
+                  <h4 className="font-medium text-foreground mb-1">{title}</h4>
+                  <p className="text-xs text-foreground/70">{description}</p>
+                </div>
               </div>
             ))}
+          </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className="rounded-3xl border border-foreground/10 bg-gradient-to-br from-primary/10 to-primary/5 p-6 md:p-8">
+          <div className="flex items-center gap-3 mb-4">
+            <Lock className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
+              Надежность и безопасность
+            </h2>
+          </div>
+          <div className="space-y-4">
+            <p className="text-base text-foreground/80">
+              Соблюдаем 152-ФЗ. Для передачи данных используем средства
+              криптографической защиты информации отвечающие классу защиты КС-2
+            </p>
           </div>
         </section>
       </FadeIn>

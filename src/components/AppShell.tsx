@@ -5,6 +5,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
 import ContactMultiButton from "@/components/ContactMultiButton";
+import CookieConsent from "@/components/CookieConsent";
 import {
   Dialog,
   DialogContent,
@@ -48,6 +49,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {children}
       <SiteFooter />
       <ContactMultiButton onOpenCallModal={() => setModalOpen(true)} />
+      <CookieConsent />
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="sm:max-w-md border-none">
