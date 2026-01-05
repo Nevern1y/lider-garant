@@ -43,11 +43,11 @@ export default function NewsRibbon() {
   return (
     <section className="relative mx-auto w-full max-w-7xl px-6 py-5 overflow-hidden">
       <div className="relative rounded-4xl border border-foreground/10 p-8 md:p-12 bg-white/5 backdrop-blur-xl">
-        <h2 className="mb-10 text-center text-3xl font-semibold text-primary md:text-4xl">
+        <h2 className="mb-10 mt-5 text-center text-3xl font-semibold text-primary md:text-4xl">
           Новости компании
         </h2>
 
-        <div className="absolute top-6 right-6 z-10 isolate flex gap-3">
+        <div className="absolute top-2 right-6 z-10 isolate flex gap-3 md:top-6 md:right-6">
           <button className="news-swiper-button-prev flex h-10 w-10 items-center justify-center rounded-full bg-primary backdrop-blur-xl border border-white/10 text-white shadow-lg transition-all hover:bg-white/10 hover:text-primary hover:border-primary">
             ←
           </button>

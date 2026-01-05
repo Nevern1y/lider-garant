@@ -14,7 +14,9 @@ export default function DocumentsPage() {
         </p>
 
         <Link
-          href="/privacy-policy"
+          href="/политика-конфиденциальности.txt"
+          target="_blank"
+          rel="noopener noreferrer"
           className="learn-more inline-flex items-center text-base font-medium transition-all"
         >
           <div className="circle">
