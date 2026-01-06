@@ -78,17 +78,17 @@ export default function SiteFooter() {
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
                 <Link href="/bank-guarantee" className="nav-link link-gradient">
-                  Банковская гарантия
+                  Банковские гарантии
                 </Link>
               </li>
               <li>
                 <Link href="/credits" className="nav-link link-gradient">
-                  Кредиты
+                  Кредиты для бизнеса
                 </Link>
               </li>
               <li>
                 <Link href="/factoring" className="nav-link link-gradient">
-                  Факторинг
+                  Факторинг для бизнеса
                 </Link>
               </li>
               <li>
@@ -98,17 +98,17 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link href="/ved" className="nav-link link-gradient">
-                  ВЭД
+                  Международные платежи
                 </Link>
               </li>
               <li>
                 <Link href="/leasing" className="nav-link link-gradient">
-                  Лизинг
+                  Лизинг для юрлиц
                 </Link>
               </li>
               <li>
                 <Link href="/insurance" className="nav-link link-gradient">
-                  Страхование
+                  Страхование СМР
                 </Link>
               </li>
               <li>

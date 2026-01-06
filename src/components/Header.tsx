@@ -23,11 +23,11 @@ import CustomSelect from "./ui/my-select";
 import { toast } from "sonner";
 
 const financeItems = [
-  { label: "Гарантии", href: "/bank-guarantee" },
-  { label: "Кредиты", href: "/credits" },
-  { label: "Лизинг", href: "/leasing" },
-  { label: "Факторинг", href: "/factoring" },
-  { label: "Страхование", href: "/insurance" },
+  { label: "Банковские гарантии", href: "/bank-guarantee" },
+  { label: "Кредиты для бизнеса", href: "/credits" },
+  { label: "Лизинг для юрлиц", href: "/leasing" },
+  { label: "Факторинг для бизнеса", href: "/factoring" },
+  { label: "Страхование СМР", href: "/insurance" },
   { label: "Международные платежи", href: "/ved" },
   { label: "РКО и спецсчета", href: "/rko" },
   { label: "Депозиты", href: "/deposit" },

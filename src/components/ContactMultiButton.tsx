@@ -22,7 +22,7 @@ const ContactMultiButton = ({ onOpenCallModal }: ContactMultiButtonProps) => {
     },
     {
       icon: MessageCircle,
-      label: "WhatsApp",
+      label: "MAX",
       action: () => {
         window.open("https://wa.me/79652841415", "_blank");
       },
