@@ -435,7 +435,7 @@ export default function DepositsPage() {
         </FadeIn>
 
         <FadeIn>
-          <SeeAlso />
+          <SeeAlso currentPage="deposit" />
         </FadeIn>
 
         <FadeIn>

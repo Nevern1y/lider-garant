@@ -539,7 +539,7 @@ export default function BankGuaranteePage() {
         </FadeIn>
 
         <FadeIn>
-          <SeeAlso />
+          <SeeAlso currentPage="bank-guarantee" />
         </FadeIn>
 
         <FadeIn>

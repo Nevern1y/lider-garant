@@ -1,14 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SeeAlso() {
-  const related = [
+interface SeeAlsoProps {
+  currentPage?: string;
+}
+
+export default function SeeAlso({ currentPage }: SeeAlsoProps) {
+  const allServices = [
     {
-      title: "Кредитирование бизнеса",
+      title: "Банковская гарантия",
+      desc: "44‑ФЗ, 223‑ФЗ, 185‑ФЗ (615 ПП), коммерческие закупки, налоговые гарантии.",
+      href: "/bank-guarantee",
+      img: "/finance-products/guarantee.png",
+      link: "/bank-guarantee",
+    },
+    {
+      title: "Кредит для бизнеса",
       desc: "Кредитование для осуществления текущих операционных и иных расходов.",
       href: "/credits",
-      img: "/finance-products/guarantee.png",
+      img: "/finance-products/money.png",
       link: "/credits",
+    },
+    {
+      title: "Страхование СМР",
+      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
+      href: "/insurance",
+      img: "/finance-products/hands.png",
+      link: "/insurance",
     },
     {
       title: "Международные платежи",
@@ -18,20 +36,6 @@ export default function SeeAlso() {
       link: "/ved",
     },
     {
-      title: "Страхование",
-      desc: "Экспресс страхование крупных контрактов свыше 1млрд рублей.",
-      href: "/insurance",
-      img: "/finance-products/hands.png",
-      link: "/insurance",
-    },
-    {
-      title: "Проверка контрагентов",
-      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
-      href: "/checking",
-      img: "/finance-products/proverka.png",
-      link: "/checking",
-    },
-    {
       title: "Тендерное сопровождение",
       desc: "Каждый 3‑й тендер — победа! Штат опытных специалистов по цене одного сотрудника. ",
       href: "/tender-support",
@@ -39,13 +43,37 @@ export default function SeeAlso() {
       link: "/tender-support",
     },
     {
-      title: "Лизинг для юридических лиц",
+      title: "Факторинг для бизнеса",
+      desc: "Финансирование под уступку денежного требования.",
+      href: "/factoring",
+      img: "/finance-products/three.png",
+      link: "/factoring",
+    },
+    {
+      title: "Проверка контрагентов",
+      desc: "Все от реквизитов и отчетности,до контактов и кадровых рисков.",
+      href: "/counterparty-check",
+      img: "/finance-products/proverka.png",
+      link: "/counterparty-check",
+    },
+    {
+      title: "Лизинг для юрлиц",
       desc: "Финансируем новое и бу с авансом от 0 %",
       href: "/leasing",
       img: "/finance-products/four.png",
       link: "/leasing",
     },
   ];
+
+  // Filter out current page and show all other services
+  const related = allServices.filter(
+    (service) => service.href !== `/${currentPage}`
+  );
+
+  return <SeeAlsoSection related={related} />;
+}
+
+function SeeAlsoSection({ related }: { related: any[] }) {
   return (
     <>
       <section className="mx-auto w-full max-w-7xl py-12">
@@ -74,7 +102,7 @@ export default function SeeAlso() {
                     width={240}
                     height={240}
                     sizes="(min-width: 768px) 240px, 192px"
-                    className="pointer-events-none absolute bottom-[0px] right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
+                    className="pointer-events-none absolute bottom-0 right-[-20px] md:right-[-80px] h-48 w-48 md:h-60 md:w-60 object-contain transition-transform duration-300 hover:scale-105"
                   />
                 )}
               </div>

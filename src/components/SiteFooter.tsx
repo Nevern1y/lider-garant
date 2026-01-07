@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
-import { Send } from "lucide-react";
+import { Send, MessageCircle } from "lucide-react";
 
 export default function SiteFooter() {
   return (
@@ -67,6 +67,15 @@ export default function SiteFooter() {
                 className="p-3 rounded-2xl bg-primary"
               >
                 <Send className="h-6 w-6 text-white" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="VK"
+                className="p-3 rounded-2xl bg-primary"
+              >
+                <MessageCircle className="h-6 w-6 text-white" />
               </a>
             </div>
           </div>

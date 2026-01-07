@@ -449,7 +449,7 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <SeeAlso />
+        <SeeAlso currentPage="rko" />
       </FadeIn>
 
       <FadeIn>

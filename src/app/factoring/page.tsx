@@ -358,7 +358,7 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <SeeAlso />
+        <SeeAlso currentPage="factoring" />
       </FadeIn>
 
       <section className="mx-auto mt-2 w-full max-w-7xl py-8">

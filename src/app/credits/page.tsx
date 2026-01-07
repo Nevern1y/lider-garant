@@ -634,7 +634,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <SeeAlso />
+        <SeeAlso currentPage="credits" />
       </FadeIn>
       <FadeIn>
         <FaqSection

@@ -1113,7 +1113,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <SeeAlso />
+        <SeeAlso currentPage="ved" />
       </FadeIn>
       <FadeIn>
         <div id="contact">

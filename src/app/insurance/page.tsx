@@ -421,7 +421,10 @@ export default function Page() {
         </section>
       </FadeIn>
       <FadeIn>
-        <FaqSection title="Вопросы по страхованию юридических лиц" items={faqs} />
+        <FaqSection
+          title="Вопросы по страхованию юридических лиц"
+          items={faqs}
+        />
       </FadeIn>
 
       <FadeIn>
@@ -517,7 +520,7 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <SeeAlso />
+        <SeeAlso currentPage="insurance" />
       </FadeIn>
 
       <FadeIn>
