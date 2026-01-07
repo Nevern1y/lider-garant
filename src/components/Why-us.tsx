@@ -14,7 +14,8 @@ interface WhyUsProps {
     | "deposits"
     | "ved"
     | "rko"
-    | "guarantee";
+    | "guarantee"
+    | "vacancies";
 }
 
 export default function WhyUs({ variant }: WhyUsProps) {
@@ -27,6 +28,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
     deposits: "депозиты",
     ved: "ВЭД и международные платежи",
     rko: "РКО и спецсчета",
+    vacancies: "работы в нашей компании",
   };
 
   const specialWord = firstWordMap[variant];
@@ -48,7 +50,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
   return (
     <section className="mx-auto w-full max-w-7xl py-5">
       <h2 className="mb-12 text-center text-4xl font-bold text-primary ">
-        Почему работать с нами выгодно?
+        Почему выбрать нас для {specialWord}?
       </h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">

@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import { Send, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function SiteFooter() {
+  const pathname = usePathname();
+
   return (
     <footer className="border-t border-foreground/10 bg-background/80">
       <style>{`
@@ -187,6 +191,16 @@ export default function SiteFooter() {
               <li>
                 <Link href="/documents" className="nav-link link-gradient">
                   Документы
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/vacancies"
+                  className={`nav-link link-gradient ${
+                    pathname === "/vacancies" ? "active" : ""
+                  }`}
+                >
+                  Вакансии
                 </Link>
               </li>
             </ul>

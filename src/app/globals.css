@@ -134,6 +134,10 @@
 .link-gradient:focus-visible {
   color: var(--primary);
 }
+.link-gradient.active {
+  color: var(--primary);
+  font-weight: 600;
+}
 
 /* Animations */
 @keyframes fade-up {
