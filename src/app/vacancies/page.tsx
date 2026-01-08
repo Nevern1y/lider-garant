@@ -6,8 +6,23 @@ import Image from "next/image";
 import Link from "next/link";
 import WhyUs from "@/components/Why-us";
 import { MessageCircle, Phone, Send } from "lucide-react";
+import { useState } from "react";
+import VacancyModal from "@/components/VacancyModal";
 
 export default function Page() {
+  const [selectedVacancy, setSelectedVacancy] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openVacancyModal = (vacancy: any) => {
+    setSelectedVacancy(vacancy);
+    setIsModalOpen(true);
+  };
+
+  const closeVacancyModal = () => {
+    setIsModalOpen(false);
+    setSelectedVacancy(null);
+  };
+
   const vacancies = [
     {
       id: 1,
@@ -169,7 +184,8 @@ export default function Page() {
             {vacancies.map((vacancy) => (
               <div
                 key={vacancy.id}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20 hover:-translate-y-1"
+                onClick={() => openVacancyModal(vacancy)}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20 hover:-translate-y-1 cursor-pointer"
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
@@ -192,12 +208,9 @@ export default function Page() {
                     <span className="text-lg text-foreground/60">
                       {vacancy.salary}
                     </span>
-                    <Link
-                      href="#vacancy-form"
-                      className="text-primary font-medium hover:text-primary/80 transition-colors inline-flex items-center gap-1"
-                    >
+                    <span className="text-primary font-medium hover:text-primary/80 transition-colors inline-flex items-center gap-1">
                       Подробнее →
-                    </Link>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -342,6 +355,12 @@ export default function Page() {
           </div>
         </section>
       </FadeIn>
+
+      <VacancyModal
+        vacancy={selectedVacancy}
+        open={isModalOpen}
+        onClose={closeVacancyModal}
+      />
     </main>
   );
 }

@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { loginApi, type LoginData } from "@/api/auth";
 
 const schema = z.object({
   email: z.string().email("Введите корректный email"),
@@ -26,14 +27,32 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onChange",
     defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = (values: FormValues) => {
-    console.log("login submit", values);
+  const onSubmit = async (values: FormValues) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const result = await loginApi(values as LoginData);
+      if (result.success) {
+        console.log("Login successful:", result);
+      } else {
+        setError(result.message || "Ошибка входа");
+      }
+    } catch (err) {
+      setError("Произошла ошибка при входе");
+      console.error("Login error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const [show, setShow] = useState(false);
@@ -47,6 +66,11 @@ export default function LoginPage() {
               <h1 className="mb-6 text-3xl font-semibold text-foreground">
                 Вход
               </h1>
+              {error && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -78,7 +102,9 @@ export default function LoginPage() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground">Пароль</FormLabel>
+                        <FormLabel className="text-foreground">
+                          Пароль
+                        </FormLabel>
                         <FormControl>
                           <div className="relative">
                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
@@ -93,7 +119,11 @@ export default function LoginPage() {
                               onClick={() => setShow((v) => !v)}
                               className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/60 hover:text-foreground transition-colors"
                             >
-                              {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                              {show ? (
+                                <EyeOff className="h-4 w-4" />
+                              ) : (
+                                <Eye className="h-4 w-4" />
+                              )}
                             </button>
                           </div>
                         </FormControl>
@@ -116,13 +146,16 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     className="h-11 w-full rounded-full bg-primary text-white shadow-md hover:shadow-lg transition-all"
-                    disabled={form.formState.isSubmitting}
+                    disabled={isLoading}
                   >
-                    Войти
+                    {isLoading ? "Вход..." : "Войти"}
                   </Button>
                   <p className="text-sm text-foreground/70 text-center">
                     Нет аккаунта?{" "}
-                    <Link href="/register" className="link-gradient font-medium">
+                    <Link
+                      href="/register"
+                      className="link-gradient font-medium"
+                    >
                       Зарегистрироваться
                     </Link>
                   </p>
@@ -131,8 +164,6 @@ export default function LoginPage() {
             </div>
 
             <div className="relative hidden lg:block rounded-3xl border border-foreground/10 bg-background/40 overflow-hidden min-h-[260px] md:min-h-[360px]">
-              <div className="absolute -top-10 -right-10 h-40 w-40 bg-primary/20 blur-3xl rounded-full" />
-              <div className="absolute -bottom-10 -left-10 h-40 w-40 bg-secondary/20 blur-3xl rounded-full" />
               <LottieHero src="/Login.json" className="absolute inset-0" />
             </div>
           </div>
