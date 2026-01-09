@@ -32,7 +32,7 @@ export default function Home() {
       desc: "Кредитование для текущих операционных и иных расходов (логистика, оборот).",
       btn: "Подобрать условия",
       img: "/finance-products/three.png",
-      link: "/logistics",
+      link: "/credits",
     },
     {
       id: "ved",
@@ -72,7 +72,7 @@ export default function Home() {
       desc: "Каждый 3-й тендер — победа! Спецсчет, ЕРУЗ, закрытые секции.",
       btn: "Подробнее",
       img: "/finance-products/calculator-hand.png",
-      link: "/tender",
+      link: "/tender-support",
     },
     {
       id: "checking",
@@ -80,7 +80,7 @@ export default function Home() {
       desc: "Все — от реквизитов и отчетности до контактов и кадровых рисков.",
       btn: "Подробнее",
       img: "/finance-products/proverka.png",
-      link: "/checking",
+      link: "/counterparty-check",
     },
   ];
 
@@ -105,7 +105,7 @@ export default function Home() {
                   <span className="circle">
                     <span className="icon arrow"></span>
                   </span>
-                  <Link href="/login" className="button-text">
+                  <Link href="/voyti" className="button-text">
                     Войти
                   </Link>
                 </button>

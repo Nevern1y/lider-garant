@@ -61,25 +61,29 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 mt-3">
+            <div className="flex items-center gap-2 mt-3">
               <ThemeToggle />
               <a
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Telegram"
-                className="p-3 rounded-2xl bg-primary"
+                className="rounded-2xl"
               >
-                <Send className="h-6 w-6 text-white" />
+                <img src="/tg-logo.webp" alt="" className="w-12 h-12" />
               </a>
               <a
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="VK"
-                className="p-3 rounded-2xl bg-primary"
+                className="rounded-2xl"
               >
-                <MessageCircle className="h-6 w-6 text-white" />
+                <img
+                  src="/vk-logo.webp"
+                  alt=""
+                  className="w-10 h-10 rounded-2xl"
+                />
               </a>
             </div>
           </div>

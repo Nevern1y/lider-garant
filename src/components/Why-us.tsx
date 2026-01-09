@@ -24,7 +24,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
     guarantee: "банковской гарантии",
     leasing: "лизинга для юридических лиц",
     factoring: "факторинга для бизнеса",
-    insurance: "страхование СМР",
+    insurance: "страхования СМР",
     deposits: "депозиты",
     ved: "ВЭД и международные платежи",
     rko: "РКО и спецсчета",

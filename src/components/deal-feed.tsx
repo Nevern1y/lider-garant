@@ -26,8 +26,8 @@ export default function DealFeed({ deals }: { deals: Deal[] }) {
       }}
     >
       {deals.map((d, i) => (
-        <SwiperSlide key={i} className="pb-30 pt-10 px-2">
-          <div className="w-full hover:border-primary/50 rounded-3xl border hover:shadow-xl hover:shadow-primary/10 border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-all duration-300 hover:-translate-y-1 ">
+        <SwiperSlide key={i} className="pb-5 pt-2 px-2">
+          <div className="w-full hover:border-primary/50 rounded-3xl border hover:shadow-lg hover:shadow-primary/20 border-white/10 bg-white/5 p-5 text-sm text-foreground/85 backdrop-blur-md flex h-full min-h-[180px] flex-col transition-all duration-300 hover:-translate-y-1 ">
             <div className="mb-3 text-base font-semibold leading-snug">
               {d.title}
             </div>

@@ -27,65 +27,69 @@ export default function Page() {
     {
       id: 1,
       title: "Рекрутер",
-      salary: "от 55 000 до 75 000 Р",
-      image: "/help-manager.jpg",
+      salary: "от 55 000 до 75 000 ₽",
+      image: "/vacansies/businessman-office-talking-phone.jpg",
       description: "Подбор персонала для различных отделов компании",
     },
     {
       id: 2,
       title: "Специалист call-центра",
-      salary: "от 50 000 до 75 000 Р",
-      image: "/application-form-women.png",
+      salary: "от 50 000 до 75 000 ₽",
+      image:
+        "/vacansies/young-customer-service-girl-with-headset-her-workplace-isolated-white-wall.jpg",
       description: "Консультирование клиентов по финансовым продуктам",
     },
     {
       id: 3,
       title: "Менеджер по работе с клиентами B2B",
-      salary: "от 75 000 до 135 000 Р",
-      image: "/good-deal.jpg",
+      salary: "от 75 000 до 135 000 ₽",
+      image: "/vacansies/happy-bearded-man-suit-talking-phone.jpg",
       description:
         "Работа с корпоративными клиентами, развитие партнерских отношений",
     },
     {
       id: 4,
       title: "Руководитель отдела продаж",
-      salary: "от 95 000 до 165 000 Р",
-      image: "/zayavka.jpg",
+      salary: "от 100 000 до 300 000 ₽",
+      image:
+        "/vacansies/horizontal-portrait-unshaven-pleasant-looking-young-businessman-sits-working-desk.jpg",
       description: "Управление командой продаж, развитие клиентской базы",
     },
     {
       id: 5,
       title: "Помощник главного кредитного аналитика",
-      salary: "от 65 000 до 95 000 Р",
-      image: "/help-manager.jpg",
+      salary: "от 45 000 до 65 000 ₽",
+      image: "/vacansies/close-up-individual-working-laptop.jpg",
       description: "Анализ кредитных заявок, оценка рисков",
     },
     {
       id: 6,
       title: "Маркетолог",
-      salary: "от 60 000 до 85 000 Р",
-      image: "/application-form-women.png",
+      salary: "от 65 000 до 135 000 ₽",
+      image:
+        "/vacansies/young-serious-finance-manager-glasses-blue-shirt-sitting-company-office.jpg",
       description: "Разработка и реализация маркетинговых стратегий",
     },
     {
       id: 7,
       title: "Помощник руководителя",
-      salary: "от 50 000 до 70 000 Р",
-      image: "/good-deal.jpg",
+      salary: "от 50 000 до 70 000 ₽",
+      image: "/vacansies/businessman-office-talking-phone.jpg",
       description: "Организационная поддержка руководителя, документооборот",
     },
     {
       id: 8,
       title: "Специалист по обучению и развитию персонала",
-      salary: "от 65 000 до 90 000 Р",
-      image: "/zayavka.jpg",
+      salary: "от 45 000 до 65 000 ₽",
+      image:
+        "/vacansies/young-customer-service-girl-with-headset-her-workplace-isolated-white-wall.jpg",
       description: "Разработка программ обучения, развитие сотрудников",
     },
     {
       id: 9,
       title: "Кредитный специалист",
-      salary: "от 70 000 до 105 000 Р",
-      image: "/help-manager.jpg",
+      salary: "от 70 000 до 105 000 ₽",
+      image: "/vacansies/happy-bearded-man-suit-talking-phone.jpg",
       description: "Оформление кредитных продуктов, консультирование клиентов",
     },
   ];
@@ -220,10 +224,6 @@ export default function Page() {
       </FadeIn>
 
       <FadeIn>
-        <WhyUs variant="vacancies" />
-      </FadeIn>
-
-      <FadeIn>
         <section className="mx-auto mt-8 w-full max-w-7xl py-10">
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-indigo-500/10 via-sky-500/10 to-emerald-500/10 p-8 md:p-12">
             <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
@@ -288,7 +288,8 @@ export default function Page() {
 
               <div className="space-y-6">
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  Расти и развивайся с Lider Garant
+                  Расти и развивайся с <br />
+                  <span className="text-primary">Lider Garant</span>
                 </h2>
 
                 <div className="space-y-4">
@@ -322,31 +323,28 @@ export default function Page() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center">
                     <a
                       href="https://wa.me/79652841415"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
-                      title="WhatsApp"
+                      title="MAX"
                     >
-                      <MessageCircle className="h-5 w-5" />
+                      <a href="https://logo-teka.com/max/">
+                        <img
+                          src="https://logo-teka.com/wp-content/uploads/2025/07/max-messenger-sign-logo.png"
+                          alt="PNG logo Max"
+                          width={47}
+                        />
+                      </a>
                     </a>
                     <a
                       href="https://t.me/+79652841415"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
                       title="Telegram"
                     >
-                      <Send className="h-5 w-5" />
-                    </a>
-                    <a
-                      href="#vacancy-form"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white hover:bg-primary/80 transition-colors"
-                      title="Написать"
-                    >
-                      <MessageCircle className="h-5 w-5" />
+                      <img src="/tg-logo.webp" alt="" className="w-15 h-15" />
                     </a>
                   </div>
                 </div>

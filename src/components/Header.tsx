@@ -49,30 +49,6 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
     phone: "",
   });
 
-  const validateForm = () => {
-    let valid = true;
-    const newErrors = { name: "", phone: "" };
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Пожалуйста, введите ваше имя";
-      valid = false;
-    } else if (/\d/.test(formData.name)) {
-      newErrors.name = "Имя не должно содержать цифры";
-      valid = false;
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Пожалуйста, введите номер телефона";
-      valid = false;
-    } else if (formData.phone.replace(/\D/g, "").length < 11) {
-      newErrors.phone = "Номер телефона должен содержать минимум 11 цифр";
-      valid = false;
-    }
-
-    setErrors(newErrors);
-    return valid;
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -123,7 +99,6 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
     // Show success toast
     toast.success("Заявка отправлена! Мы перезвоним вам в течение 15 минут.");
     console.log("Form submitted:", formData);
-    // Reset form and close dialog
     setFormData({ name: "", phone: "" });
     setErrors({ name: "", phone: "" });
     setModalOpen(false);
