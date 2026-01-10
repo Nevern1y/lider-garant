@@ -7,6 +7,7 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import BankLogosSlider from "@/components/BankLogosSlider";
+import { FullAnimation } from "@/components/HeroCardsAnimation";
 
 export default function Home() {
   const products = [
@@ -113,14 +114,7 @@ export default function Home() {
             </div>
 
             <div className="relative w-full overflow-hidden rounded-[30px] p-3 md:p-5 backdrop-blur-xl">
-              <video
-                src="/hero-fon.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full rounded-2xl object-cover"
-              />
+              <FullAnimation />
             </div>
           </div>
         </section>
