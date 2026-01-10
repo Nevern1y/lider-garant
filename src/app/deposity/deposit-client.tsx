@@ -18,8 +18,70 @@ import Link from "next/link";
 import { useState } from "react";
 import FaqSection from "@/components/FaqSection";
 import SeeAlso from "@/components/see-also";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 export default function DepositsPage() {
+  const formSchema = z.object({
+    inn: z
+      .string()
+      .min(1, "Введите ИНН")
+      .regex(/^(\d{10}|\d{12})$/, "ИНН должен содержать 10 или 12 цифр"),
+    amount: z
+      .string()
+      .min(1, "Введите сумму")
+      .refine((val) => Number(val) > 0, "Сумма должна быть больше 0"),
+    phone: z
+      .string()
+      .min(1, "Введите номер телефона")
+      .regex(
+        /^\+7[\s(]?\d{3}[\s)]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/,
+        "Введите корректный номер телефона"
+      ),
+    consent: z
+      .boolean()
+      .refine(
+        (val) => val === true,
+        "Необходимо дать согласие на обработку персональных данных"
+      ),
+  });
+
+  type FormData = z.infer<typeof formSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      inn: "",
+      amount: "",
+      phone: "",
+      consent: true,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast.success(
+        "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+      );
+
+      reset();
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+    }
+  };
+
   const [query, setQuery] = useState("");
   const [bankFilter, setBankFilter] = useState("all"); // <-- default "all"
   const [termFilter, setTermFilter] = useState("all"); // <-- default "all"
@@ -312,69 +374,115 @@ export default function DepositsPage() {
                     получите гарантию и заключайте контракт с заказчиком.
                   </p>
                   <form
-                    id="application"
+                    id="deposit-application"
                     className="space-y-4"
-                    action="#"
-                    method="post"
+                    onSubmit={handleSubmit(onSubmit)}
                   >
                     <div className="grid gap-4">
-                      <Input
-                        type="text"
-                        name="inn"
-                        placeholder="ИНН"
-                        inputMode="numeric"
-                        pattern="^(\\d{10}|\\d{12})$"
-                        title="ИНН должен содержать 10 или 12 цифр"
-                        required
-                        maxLength={12}
-                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                      />
-                      <Input
-                        type="number"
-                        name="amount"
-                        placeholder="Сумма"
-                        inputMode="numeric"
-                        min={1}
-                        step={1000}
-                        title="Укажите сумму больше 0"
-                        required
-                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                      />
-                      <PhoneInput
-                        name="phone"
-                        className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                        required
-                      />
+                      <div>
+                        <Input
+                          type="text"
+                          placeholder="ИНН"
+                          inputMode="numeric"
+                          maxLength={12}
+                          className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                            errors.inn ? "border-red-500" : ""
+                          }`}
+                          {...register("inn")}
+                        />
+                        {errors.inn && (
+                          <p className="text-red-500 text-xs mt-1 ml-4">
+                            {errors.inn.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Input
+                          type="number"
+                          placeholder="Сумма"
+                          inputMode="numeric"
+                          min={1}
+                          step={1000}
+                          className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                            errors.amount ? "border-red-500" : ""
+                          }`}
+                          {...register("amount")}
+                        />
+                        {errors.amount && (
+                          <p className="text-red-500 text-xs mt-1 ml-4">
+                            {errors.amount.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Controller
+                          name="phone"
+                          control={control}
+                          render={({ field }) => (
+                            <PhoneInput
+                              className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                                errors.phone ? "border-red-500" : ""
+                              }`}
+                              value={field.value}
+                              onChange={field.onChange}
+                            />
+                          )}
+                        />
+                        {errors.phone && (
+                          <p className="text-red-500 text-xs mt-1 ml-4">
+                            {errors.phone.message}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <label className="flex items-start gap-3 text-xs text-foreground/70">
-                      <input
-                        type="checkbox"
-                        required
-                        className="mt-0.5 h-4 w-4 rounded border-foreground/30"
-                      />
-                      <span>
-                        Ставя галочку, я соглашаюсь на обработку персональных
-                        данных, в соответствии с
-                        <a
-                          href="/docs/agreement.pdf"
-                          target="_blank"
-                          className="mx-1 underline"
-                        >
-                          Соглашением
-                        </a>
-                        и
-                        <a
-                          href="/docs/privacy.pdf"
-                          target="_blank"
-                          className="ml-1 underline"
-                        >
-                          Политикой конфиденциальности
-                        </a>
-                        .
-                      </span>
-                    </label>
-                    <Button type="submit" className="h-11 btn-three w-full">
-                      Отправить заявку
+
+                    <Controller
+                      name="consent"
+                      control={control}
+                      render={({ field }) => (
+                        <label className="flex items-start gap-3 text-xs text-foreground/70">
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="mt-0.5 h-4 w-4 rounded border-foreground/30"
+                          />
+                          <span>
+                            Ставя галочку, я соглашаюсь на обработку
+                            персональных данных, в соответствии с
+                            <a
+                              href="/docs/agreement.pdf"
+                              target="_blank"
+                              className="mx-1 underline"
+                            >
+                              Соглашением
+                            </a>
+                            и
+                            <a
+                              href="/docs/privacy.pdf"
+                              target="_blank"
+                              className="ml-1 underline"
+                            >
+                              Политикой конфиденциальности
+                            </a>
+                            .
+                          </span>
+                        </label>
+                      )}
+                    />
+                    {errors.consent && (
+                      <p className="text-red-500 text-xs mt-1 ml-4">
+                        {errors.consent.message}
+                      </p>
+                    )}
+
+                    <Button
+                      type="submit"
+                      className="h-11 btn-three w-full"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Отправка..." : "Отправить заявку"}
                     </Button>
                   </form>
                 </div>

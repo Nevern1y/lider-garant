@@ -623,7 +623,7 @@ export default function BankGuaranteePage() {
                   <Link
                     key={i}
                     href="/#application"
-                    className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
+                    className="block nav-link link-gradient"
                   >
                     {t}
                   </Link>

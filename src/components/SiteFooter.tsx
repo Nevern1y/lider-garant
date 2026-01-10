@@ -94,17 +94,26 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/bank-guarantee" className="nav-link link-gradient">
+                <Link
+                  href="/bankovskie-garantii"
+                  className="nav-link link-gradient"
+                >
                   Банковские гарантии
                 </Link>
               </li>
               <li>
-                <Link href="/credits" className="nav-link link-gradient">
+                <Link
+                  href="/kredity-dlya-biznesa"
+                  className="nav-link link-gradient"
+                >
                   Кредиты для бизнеса
                 </Link>
               </li>
               <li>
-                <Link href="/factoring" className="nav-link link-gradient">
+                <Link
+                  href="/factoring-dlya-biznesa"
+                  className="nav-link link-gradient"
+                >
                   Факторинг для бизнеса
                 </Link>
               </li>
@@ -119,12 +128,15 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/leasing" className="nav-link link-gradient">
+                <Link
+                  href="/lisig-dlya-yrlic"
+                  className="nav-link link-gradient"
+                >
                   Лизинг для юрлиц
                 </Link>
               </li>
               <li>
-                <Link href="/insurance" className="nav-link link-gradient">
+                <Link href="/strahovanie" className="nav-link link-gradient">
                   Страхование СМР
                 </Link>
               </li>
@@ -142,20 +154,23 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/news" className="nav-link link-gradient">
+                <Link href="/novosti" className="nav-link link-gradient">
                   Новости
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/counterparty-check"
+                  href="/proverka-contragentov"
                   className="nav-link link-gradient"
                 >
                   Проверка контрагента
                 </Link>
               </li>
               <li>
-                <Link href="/tender-support" className="nav-link link-gradient">
+                <Link
+                  href="/tendernoe-soprovojdenie"
+                  className="nav-link link-gradient"
+                >
                   Тендерное сопровождение
                 </Link>
               </li>
@@ -168,12 +183,12 @@ export default function SiteFooter() {
             </div>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
-                <Link href="/about" className="nav-link link-gradient">
+                <Link href="/o-proekte" className="nav-link link-gradient">
                   О компании
                 </Link>
               </li>
               <li>
-                <Link href="/contacts" className="nav-link link-gradient">
+                <Link href="/contact" className="nav-link link-gradient">
                   Контакты
                 </Link>
               </li>
@@ -188,18 +203,18 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/partners" className="nav-link link-gradient">
+                <Link href="/partneram" className="nav-link link-gradient">
                   Партнерам
                 </Link>
               </li>
               <li>
-                <Link href="/documents" className="nav-link link-gradient">
+                <Link href="/documenty" className="nav-link link-gradient">
                   Документы
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/vacancies"
+                  href="/vacancii"
                   className={`nav-link link-gradient ${
                     pathname === "/vacancies" ? "active" : ""
                   }`}

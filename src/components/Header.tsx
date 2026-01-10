@@ -3,6 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,15 +26,33 @@ import CustomSelect from "./ui/my-select";
 import { toast } from "sonner";
 
 const financeItems = [
-  { label: "Банковские гарантии", href: "/bank-guarantee" },
-  { label: "Кредиты для бизнеса", href: "/credits" },
-  { label: "Лизинг для юрлиц", href: "/leasing" },
-  { label: "Факторинг для бизнеса", href: "/factoring" },
-  { label: "Страхование СМР", href: "/insurance" },
+  { label: "Банковские гарантии", href: "/bankovskie-garantii" },
+  { label: "Кредиты для бизнеса", href: "/kredity-dlya-biznesa" },
+  { label: "Лизинг для юрлиц", href: "/lising-dlya-yrlic" },
+  { label: "Факторинг для бизнеса", href: "/factoring-dlya-biznesa" },
+  { label: "Страхование СМР", href: "/strahovanie" },
   { label: "Международные платежи", href: "/ved" },
   { label: "РКО и спецсчета", href: "/rko" },
-  { label: "Депозиты", href: "/deposit" },
+  { label: "Депозиты", href: "/deposity" },
 ];
+
+const formSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Пожалуйста, введите ваше имя")
+    .regex(/^[^0-9]*$/, "Имя не должно содержать цифры")
+    .min(2, "Имя должно содержать минимум 2 символа"),
+  phone: z
+    .string()
+    .min(1, "Пожалуйста, введите номер телефона")
+    .regex(/^[+]?[\d\s\-\(\)]+$/, "Неверный формат телефона")
+    .refine(
+      (phone) => phone.replace(/\D/g, "").length >= 11,
+      "Номер телефона должен содержать минимум 11 цифр"
+    ),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 interface HeaderProps {
   onOpenCallModal?: () => void;
@@ -40,67 +61,28 @@ interface HeaderProps {
 export default function Header({ onOpenCallModal }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+    },
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    phone: "",
-  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-    if (errors[id as keyof typeof errors]) {
-      setErrors((prev) => ({
-        ...prev,
-        [id]: "",
-      }));
-    }
-  };
+  const phoneValue = watch("phone");
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setFormData((prev) => ({
-      ...prev,
-      phone: value,
-    }));
-    if (errors.phone) {
-      setErrors((prev) => ({
-        ...prev,
-        phone: "",
-      }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim()) {
-      toast.error("Пожалуйста, введите ваше имя");
-      return;
-    }
-    if (/\d/.test(formData.name)) {
-      toast.error("Имя не должно содержать цифры");
-      return;
-    }
-    if (!formData.phone.trim()) {
-      toast.error("Пожалуйста, введите номер телефона");
-      return;
-    }
-    if (formData.phone.replace(/\D/g, "").length < 11) {
-      toast.error("Номер телефона должен содержать минимум 11 цифр");
-      return;
-    }
-
-    // Show success toast
+  const onSubmit = (data: FormData) => {
     toast.success("Заявка отправлена! Мы перезвоним вам в течение 15 минут.");
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", phone: "" });
-    setErrors({ name: "", phone: "" });
+    console.log("Form submitted:", data);
+    reset();
     setModalOpen(false);
   };
 
@@ -146,13 +128,13 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
               Агентам
             </Link>
             <Link
-              href="/partners"
+              href="/partneram"
               className="hidden xl:inline-block nav-link link-gradient"
             >
               Партнерам
             </Link>
             <Link
-              href="/about"
+              href="/o-proekte"
               className="hidden xl:inline-block nav-link link-gradient"
             >
               О проекте
@@ -177,7 +159,7 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
                   </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md border-none">
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit(onSubmit)}>
                     <DialogHeader>
                       <DialogTitle className="text-primary">
                         Заказать обратный звонок
@@ -191,26 +173,29 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
                         <Label htmlFor="name">Имя</Label>
                         <Input
                           id="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
+                          {...register("name")}
                           placeholder="Иван Иванович Иванов"
                           className="text-white bg-background/80 border-white/20"
                         />
                         {errors.name && (
-                          <p className="text-sm text-red-400">{errors.name}</p>
+                          <p className="text-sm text-red-400">
+                            {errors.name.message}
+                          </p>
                         )}
                       </div>
                       <div className="grid gap-1">
                         <Label htmlFor="phone">Телефон</Label>
                         <PhoneInput
                           id="phone"
-                          value={formData.phone}
-                          onChange={handlePhoneChange}
+                          value={phoneValue}
+                          onChange={(e) => setValue("phone", e.target.value)}
                           placeholder="+7 (___) ___-__-__"
                           className="h-11 bg-background/80 border-white/20 text-white "
                         />
                         {errors.phone && (
-                          <p className="text-sm text-red-400">{errors.phone}</p>
+                          <p className="text-sm text-red-400">
+                            {errors.phone.message}
+                          </p>
                         )}
                       </div>
                     </div>

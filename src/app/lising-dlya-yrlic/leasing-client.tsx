@@ -3,7 +3,7 @@ import FadeIn from "@/components/FadeIn";
 import BankLogosSlider from "@/components/BankLogosSlider";
 import ManagerCTASection from "@/components/ManagerCTASection";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -15,6 +15,10 @@ import SeeAlso from "@/components/see-also";
 import { Clock, Coins, Gift, HandCoins, Truck } from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 import { toast } from "sonner";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Page() {
   const TOTAL_OFFERS = 17;
@@ -68,16 +72,63 @@ export default function Page() {
 
   const [phoneKey, setPhoneKey] = useState(0);
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
+  const formSchema = z.object({
+    inn: z
+      .string()
+      .min(1, "Введите ИНН")
+      .regex(/^(\d{10}|\d{12})$/, "ИНН должен содержать 10 или 12 цифр"),
+    amount: z
+      .string()
+      .min(1, "Введите сумму")
+      .refine((val) => Number(val) > 0, "Сумма должна быть больше 0"),
+    phone: z
+      .string()
+      .min(1, "Введите номер телефона")
+      .regex(
+        /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
+        "Введите корректный номер телефона"
+      ),
+    consent: z
+      .boolean()
+      .refine(
+        (val) => val === true,
+        "Необходимо дать согласие на обработку персональных данных"
+      ),
+  });
 
-    toast.success("Заявка отправлена");
+  type FormData = z.infer<typeof formSchema>;
 
-    const form = e.currentTarget as HTMLFormElement;
-    form.reset();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      inn: "",
+      amount: "",
+      phone: "",
+      consent: true,
+    },
+  });
 
-    setPhoneKey((k) => k + 1);
-  }
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast.success(
+        "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+      );
+
+      reset();
+      setPhoneKey((k) => k + 1);
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+    }
+  };
 
   const filteredBanks = banks
     .map((bank, i) => ({
@@ -253,7 +304,7 @@ export default function Page() {
 
             <div className="flex-1 w-full lg:w-auto">
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 className="w-full max-w-lg rounded-2xl md:rounded-3xl border border-foreground/20 bg-white/5 p-6 md:p-10 shadow-2xl relative"
                 aria-label="Форма лизинга"
                 id="leasing-form"
@@ -274,14 +325,18 @@ export default function Page() {
                     <Input
                       id="inn"
                       type="text"
-                      name="inn"
                       placeholder="ИНН"
                       inputMode="numeric"
-                      pattern="^(\d{10}|\d{12})$"
-                      title="ИНН должен содержать 10 или 12 цифр"
-                      required
-                      className="bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md"
+                      className={`bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md ${
+                        errors.inn ? "border-red-500" : ""
+                      }`}
+                      {...register("inn")}
                     />
+                    {errors.inn && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.inn.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -291,64 +346,97 @@ export default function Page() {
                     <Input
                       id="amount"
                       type="number"
-                      name="amount"
                       placeholder="Сумма"
                       min={1}
                       step={1000}
-                      title="Укажите сумму больше 0"
-                      required
-                      className="bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md"
+                      className={`bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md ${
+                        errors.amount ? "border-red-500" : ""
+                      }`}
+                      {...register("amount")}
                     />
+                    {errors.amount && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.amount.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-xs md:text-sm">
                       Телефон
                     </Label>
-                    <PhoneInput
-                      key={phoneKey}
-                      id="phone"
+                    <Controller
                       name="phone"
-                      className="bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md"
-                      required
+                      control={control}
+                      render={({ field }) => (
+                        <PhoneInput
+                          key={phoneKey}
+                          id="phone"
+                          className={`bg-white border-gray-300 px-4 py-2.5 text-sm md:text-base rounded-md ${
+                            errors.phone ? "border-red-500" : ""
+                          }`}
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
                     />
+                    {errors.phone && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.phone.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="mt-3">
-                    <Label className="flex items-start gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        required
-                        className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
-                      />
-                      <span className="text-xs md:text-sm ml-2">
-                        Я соглашаюсь на обработку{" "}
-                        <span className="font-medium text-primary">
-                          персональных данных
-                        </span>{" "}
-                        в соответствии с
-                        <a
-                          href="/docs/agreement.pdf"
-                          target="_blank"
-                          className="underline mx-1"
-                        >
-                          Соглашением
-                        </a>{" "}
-                        и
-                        <a
-                          href="/docs/privacy.pdf"
-                          target="_blank"
-                          className="underline ml-1"
-                        >
-                          Политикой конфиденциальности
-                        </a>
-                        .
-                      </span>
-                    </Label>
+                    <Controller
+                      name="consent"
+                      control={control}
+                      render={({ field }) => (
+                        <Label className="flex items-start gap-2 cursor-pointer">
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30 mt-0.5"
+                          />
+                          <span className="text-xs md:text-sm ml-2">
+                            Я соглашаюсь на обработку{" "}
+                            <span className="font-medium text-primary">
+                              персональных данных
+                            </span>{" "}
+                            в соответствии с
+                            <a
+                              href="/docs/agreement.pdf"
+                              target="_blank"
+                              className="underline mx-1"
+                            >
+                              Соглашением
+                            </a>{" "}
+                            и
+                            <a
+                              href="/docs/privacy.pdf"
+                              target="_blank"
+                              className="underline ml-1"
+                            >
+                              Политикой конфиденциальности
+                            </a>
+                            .
+                          </span>
+                        </Label>
+                      )}
+                    />
+                    {errors.consent && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.consent.message}
+                      </p>
+                    )}
                   </div>
 
-                  <Button type="submit" className="mt-4 btn-three h-12 w-full">
-                    Отправить заявку
+                  <Button
+                    type="submit"
+                    className="mt-4 btn-three h-12 w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Отправка..." : "Отправить заявку"}
                   </Button>
                 </div>
               </form>
@@ -509,7 +597,7 @@ export default function Page() {
                 <Link
                   key={i}
                   href="/#application"
-                  className="block text-sm text-primary underline underline-offset-2 hover:text-primary/70 transition-colors"
+                  className="block nav-link link-gradient"
                 >
                   {t}
                 </Link>

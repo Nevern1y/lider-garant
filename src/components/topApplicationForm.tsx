@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -16,6 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const banks = [
   { name: "ВТБ Банк", logo: "/logos/22.svg", width: 44, height: 44 },
@@ -23,18 +27,65 @@ const banks = [
   { name: "Уралсиб", logo: "/logos/9.svg", width: 48, height: 44 },
 ];
 
+const formSchema = z.object({
+  guaranteeType: z.string().min(1, "Выберите тип гарантии"),
+  fullname: z
+    .string()
+    .min(2, "ФИО должно содержать минимум 2 символа")
+    .regex(/^[а-яА-ЯёЁ\s]+$/, "ФИО должно содержать только русские буквы"),
+  phone: z
+    .string()
+    .min(1, "Введите номер телефона")
+    .regex(
+      /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
+      "Введите корректный номер телефона"
+    ),
+  consent: z
+    .boolean()
+    .refine(
+      (val) => val === true,
+      "Необходимо дать согласие на обработку персональных данных"
+    ),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 export default function TopApplicationForm() {
   const [phoneKey, setPhoneKey] = useState(0);
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
 
-    toast.success("Заявка отправлена");
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+    reset,
+    setValue,
+    watch,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      guaranteeType: "",
+      fullname: "",
+      phone: "",
+      consent: true,
+    },
+  });
 
-    const form = e.currentTarget as HTMLFormElement;
-    form.reset();
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    setPhoneKey((k) => k + 1);
-  }
+      toast.success(
+        "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+      );
+
+      reset();
+      setPhoneKey((k) => k + 1);
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+    }
+  };
 
   return (
     <FadeIn>
@@ -89,7 +140,7 @@ export default function TopApplicationForm() {
 
           <div className="flex shrink-0 w-full lg:w-auto">
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-lg lg:max-w-xl rounded-2xl md:rounded-3xl border border-foreground/20 bg-white/5 p-5 md:p-10 lg:p-12 shadow-2xl relative mt-4 md:-mt-8 lg:-mt-12 md:-mb-8 lg:-mb-12"
               aria-label="Форма получения банковской гарантии"
             >
@@ -101,24 +152,41 @@ export default function TopApplicationForm() {
               </p>
 
               <div className="space-y-2 md:space-y-3">
-                <Label htmlFor="guarantee-type" className="text-xs md:text-sm">
+                <Label htmlFor="guaranteeType" className="text-xs md:text-sm">
                   Вид гарантии
                 </Label>
-                <Select name="guarantee-type" required>
-                  <SelectTrigger className="w-full bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm text-black rounded-md">
-                    <SelectValue placeholder="Выберите тип" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="tender">Участие в тендере</SelectItem>
-                    <SelectItem value="contract">
-                      Исполнение контракта
-                    </SelectItem>
-                    <SelectItem value="warranty">
-                      Исполнение гарантийных обязательств
-                    </SelectItem>
-                    <SelectItem value="advance">Возврат аванса</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Controller
+                  name="guaranteeType"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger
+                        className={`w-full bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm text-black rounded-md ${
+                          errors.guaranteeType ? "border-red-500" : ""
+                        }`}
+                      >
+                        <SelectValue placeholder="Выберите тип" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="tender">
+                          Участие в тендере
+                        </SelectItem>
+                        <SelectItem value="contract">
+                          Исполнение контракта
+                        </SelectItem>
+                        <SelectItem value="warranty">
+                          Исполнение гарантийных обязательств
+                        </SelectItem>
+                        <SelectItem value="advance">Возврат аванса</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.guaranteeType && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.guaranteeType.message}
+                  </p>
+                )}
               </div>
 
               <div className="mt-2 md:mt-3 space-y-2 md:space-y-3">
@@ -128,53 +196,84 @@ export default function TopApplicationForm() {
                 <Input
                   id="fullname"
                   type="text"
-                  name="fullname"
                   placeholder="ФИО"
-                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md"
-                  required
-                  onChange={(e) => {
-                    const value = e.target.value.replace(/[0-9]/g, "");
-                    e.target.value = value;
-                  }}
+                  className={`bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md ${
+                    errors.fullname ? "border-red-500" : ""
+                  }`}
+                  {...register("fullname", {
+                    onChange: (e) => {
+                      const value = e.target.value.replace(/[0-9]/g, "");
+                      e.target.value = value;
+                    },
+                  })}
                 />
+                {errors.fullname && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.fullname.message}
+                  </p>
+                )}
               </div>
 
               <div className="mt-2 md:mt-3 space-y-2 md:space-y-3">
                 <Label htmlFor="phone" className="text-xs md:text-sm">
                   Телефон
                 </Label>
-                <PhoneInput
-                  key={phoneKey}
-                  id="phone"
+                <Controller
                   name="phone"
-                  className="bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md"
-                  required
+                  control={control}
+                  render={({ field }) => (
+                    <PhoneInput
+                      key={phoneKey}
+                      id="phone"
+                      className={`bg-white border-gray-300 px-4 py-2.5 md:py-6 text-sm md:text-base rounded-md ${
+                        errors.phone ? "border-red-500" : ""
+                      }`}
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
 
               <div className="mt-3 md:mt-4 space-y-2 md:space-y-3">
-                <Label className="flex items-start gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    defaultChecked
-                    required
-                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
-                  />
-                  <span className="text-xs md:text-sm ml-2">
-                    Я даю согласие на обработку{" "}
-                    <span className="font-medium text-primary">
-                      персональных данных
-                    </span>
-                  </span>
-                </Label>
+                <Controller
+                  name="consent"
+                  control={control}
+                  render={({ field }) => (
+                    <Label className="flex items-start gap-2 cursor-pointer">
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30 mt-0.5"
+                      />
+                      <span className="text-xs md:text-sm ml-2">
+                        Я даю согласие на обработку{" "}
+                        <span className="font-medium text-primary">
+                          персональных данных
+                        </span>
+                      </span>
+                    </Label>
+                  )}
+                />
+                {errors.consent && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.consent.message}
+                  </p>
+                )}
               </div>
 
               <Button
                 type="submit"
                 className="mt-4 btn-three h-12 w-full"
                 size="lg"
+                disabled={isSubmitting}
               >
-                Получить БГ
+                {isSubmitting ? "Отправка..." : "Получить БГ"}
               </Button>
             </form>
           </div>

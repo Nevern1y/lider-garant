@@ -1,6 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import Image from "next/image";
 import { toast } from "sonner";
 import {
@@ -14,16 +16,41 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-type FormValues = {
-  product: string;
-  name: string;
-  phone: string;
-  inn: string;
-  amount: string;
-};
+const formSchema = z.object({
+  product: z.string().min(1, "Выберите продукт"),
+  name: z
+    .string()
+    .min(1, "Введите имя")
+    .min(2, "Имя должно содержать минимум 2 символа")
+    .regex(/^[а-яёa-z\s]+$/i, "Имя должно содержать только буквы"),
+  phone: z
+    .string()
+    .min(1, "Введите телефон")
+    .regex(
+      /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/,
+      "Введите корректный номер телефона"
+    )
+    .refine((phone) => phone.replace(/\D/g, "").length === 11, {
+      message: "Введите корректный номер телефона",
+    }),
+  inn: z
+    .string()
+    .min(1, "Введите ИНН")
+    .regex(/^\d{10}$|^\d{12}$/, "ИНН должен содержать 10 или 12 цифр"),
+  amount: z
+    .string()
+    .min(1, "Укажите сумму")
+    .refine((amount) => {
+      const num = Number(amount.replace(/\s/g, ""));
+      return !isNaN(num) && num > 0;
+    }, "Укажите сумму больше 0"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function ApplicationFormSection() {
   const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       product: "Кредиты",
       name: "",
@@ -35,35 +62,15 @@ export default function ApplicationFormSection() {
   });
 
   const onSubmit = (values: FormValues) => {
-    const isInnValid = /^\d{10}$|^\d{12}$/.test(values.inn);
-    const phoneDigits = values.phone.replace(/\D/g, "");
     const amountNum = Number(values.amount.replace(/\s/g, ""));
-
-    if (!values.name) {
-      toast.error("Введите имя");
-      return;
-    }
-
-    if (phoneDigits.length !== 11) {
-      toast.error("Введите корректный номер телефона");
-      return;
-    }
-
-    if (!isInnValid) {
-      toast.error("ИНН должен содержать 10 или 12 цифр");
-      return;
-    }
-
-    if (!amountNum || amountNum <= 0) {
-      toast.error("Укажите сумму больше 0");
-      return;
-    }
 
     toast.success("Заявка отправлена", {
       description: `${values.name}, ${
         values.product
       } — ${amountNum.toLocaleString("ru-RU")} ₽`,
     });
+
+    form.reset();
   };
 
   const products = [
@@ -108,12 +115,6 @@ export default function ApplicationFormSection() {
                   <FormField
                     control={form.control}
                     name="name"
-                    rules={{
-                      required: "Введите имя",
-                      validate: (v) =>
-                        /^[а-яёa-z\s]+$/i.test(v.trim()) ||
-                        "Имя должно содержать только буквы",
-                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
@@ -141,12 +142,6 @@ export default function ApplicationFormSection() {
                   <FormField
                     control={form.control}
                     name="phone"
-                    rules={{
-                      required: "Введите телефон",
-                      validate: (v) =>
-                        v.replace(/\D/g, "").length === 11 ||
-                        "Введите корректный номер",
-                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">
@@ -183,12 +178,6 @@ export default function ApplicationFormSection() {
                   <FormField
                     control={form.control}
                     name="inn"
-                    rules={{
-                      required: "Введите ИНН",
-                      validate: (v) =>
-                        /^\d{10}$|^\d{12}$/.test(v) ||
-                        "ИНН должен содержать 10 или 12 цифр",
-                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-xs uppercase tracking-[0.2em] text-foreground/60">

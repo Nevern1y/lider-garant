@@ -15,6 +15,11 @@ import SeeAlso from "@/components/see-also";
 import { CheckCheck } from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 import FaqSection from "@/components/FaqSection";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 export default function Page() {
   const TOTAL_OFFERS = 25;
@@ -66,6 +71,68 @@ export default function Page() {
   const [minAmount, setMinAmount] = useState<number | "">("");
   const [maxAmount, setMaxAmount] = useState<number | "">("");
   const [showAll, setShowAll] = useState(false);
+
+  const formSchema = z.object({
+    inn: z
+      .string()
+      .min(1, "Введите ИНН")
+      .regex(/^(\d{10}|\d{12})$/, "ИНН должен содержать 10 или 12 цифр"),
+    amount: z
+      .string()
+      .min(1, "Введите сумму")
+      .refine((val) => Number(val) > 0, "Сумма должна быть больше 0"),
+    phone: z
+      .string()
+      .min(1, "Введите номер телефона")
+      .regex(
+        /^\+7 \d{3} \d{3} \d{2} \d{2}$/,
+        "Введите корректный номер телефона"
+      ),
+    fullname: z
+      .string()
+      .min(2, "ФИО должно содержать минимум 2 символа")
+      .regex(/^[а-яА-ЯёЁ\s]+$/, "ФИО должно содержать только русские буквы"),
+    consent: z
+      .boolean()
+      .refine(
+        (val) => val === true,
+        "Необходимо дать согласие на обработку персональных данных"
+      ),
+  });
+
+  type FormData = z.infer<typeof formSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      inn: "",
+      amount: "",
+      phone: "",
+      fullname: "",
+      consent: true,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast.success(
+        "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+      );
+
+      reset();
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+    }
+  };
 
   const filteredBanks = banks
     .map((bank, i) => ({
@@ -490,67 +557,118 @@ export default function Page() {
               </p>
               <form
                 className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-[0_0_30px_-15px_rgba(0,0,0,0.25)]"
-                action="#"
-                method="post"
+                onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="grid gap-4">
-                  <Input
-                    type="text"
-                    name="inn"
-                    placeholder="ИНН"
-                    inputMode="numeric"
-                    pattern="^(\\d{10}|\\d{12})$"
-                    title="ИНН должен содержать 10 или 12 цифр"
-                    required
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                  />
-                  <Input
-                    type="number"
-                    name="amount"
-                    placeholder="Сумма"
-                    inputMode="numeric"
-                    min={1}
-                    step={1000}
-                    title="Укажите сумму больше 0"
-                    required
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                  />
-                  <PhoneInput
-                    name="phone"
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                    required
-                  />
-                  <Input
-                    placeholder="ФИО"
-                    className="h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground"
-                    required
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/[0-9]/g, "");
-                      e.target.value = value;
-                    }}
-                  />
+                  <div>
+                    <Input
+                      type="text"
+                      placeholder="ИНН"
+                      inputMode="numeric"
+                      className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                        errors.inn ? "border-red-500" : ""
+                      }`}
+                      {...register("inn")}
+                    />
+                    {errors.inn && (
+                      <p className="text-red-500 text-xs mt-1 ml-4">
+                        {errors.inn.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Input
+                      type="number"
+                      placeholder="Сумма"
+                      inputMode="numeric"
+                      min={1}
+                      step={1000}
+                      className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                        errors.amount ? "border-red-500" : ""
+                      }`}
+                      {...register("amount")}
+                    />
+                    {errors.amount && (
+                      <p className="text-red-500 text-xs mt-1 ml-4">
+                        {errors.amount.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Controller
+                      name="phone"
+                      control={control}
+                      render={({ field }) => (
+                        <PhoneInput
+                          className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                            errors.phone ? "border-red-500" : ""
+                          }`}
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
+                    {errors.phone && (
+                      <p className="text-red-500 text-xs mt-1 ml-4">
+                        {errors.phone.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Input
+                      placeholder="ФИО"
+                      className={`h-12 w-full rounded-full border border-foreground/15 bg-background/90 px-4 text-sm text-foreground ${
+                        errors.fullname ? "border-red-500" : ""
+                      }`}
+                      {...register("fullname", {
+                        onChange: (e) => {
+                          const value = e.target.value.replace(/[0-9]/g, "");
+                          e.target.value = value;
+                        },
+                      })}
+                    />
+                    {errors.fullname && (
+                      <p className="text-red-500 text-xs mt-1 ml-4">
+                        {errors.fullname.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
-                <Label className="flex items-start gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    defaultChecked
-                    required
-                    className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30"
-                  />
-                  <span className="text-xs md:text-sm ml-2">
-                    Я даю согласие на обработку{" "}
-                    <span className="font-medium text-primary">
-                      персональных данных
-                    </span>
-                  </span>
-                </Label>
+                <Controller
+                  name="consent"
+                  control={control}
+                  render={({ field }) => (
+                    <Label className="flex items-start gap-2 cursor-pointer">
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5 rounded border border-gray-300 accent-primary focus:ring-2 focus:ring-primary/30 mt-0.5"
+                      />
+                      <span className="text-xs md:text-sm ml-2">
+                        Я даю согласие на обработку{" "}
+                        <span className="font-medium text-primary">
+                          персональных данных
+                        </span>
+                      </span>
+                    </Label>
+                  )}
+                />
+                {errors.consent && (
+                  <p className="text-red-500 text-xs mt-1 ml-4">
+                    {errors.consent.message}
+                  </p>
+                )}
 
                 <Button
                   type="submit"
-                  className="h-11 rounded-xl px-6 text-sm font-semibold bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0 "
+                  className="h-11 rounded-xl px-6 text-sm font-semibold bg-primary text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-2xl active:translate-y-0"
+                  disabled={isSubmitting}
                 >
-                  Отправить заявку
+                  {isSubmitting ? "Отправка..." : "Отправить заявку"}
                 </Button>
               </form>
             </div>
