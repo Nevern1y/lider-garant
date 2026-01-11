@@ -1,26 +1,22 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import LottieHero from "@/components/LottieHero";
 
 const steps = [
   {
     title: "Пройдите простую регистрацию",
     desc: "Создайте аккаунт за минуту и получите доступ к личному кабинету.",
-    image: "/window.svg",
-    lottie: "/step1.json",
+    image: "/step-1.png",
   },
   {
     title: "Заведите заявку на финансовый продукт",
     desc: "Выберите продукт и заполните короткую форму — это займёт пару минут.",
-    image: "/file.svg",
-    lottie: "/step2.json",
+    image: "/step-2.png",
   },
   {
     title: "Выберите предложение в режиме одного окна",
     desc: "Сравните условия от партнёров и подтвердите лучший вариант онлайн.",
-    image: "/globe.svg",
-    lottie: "/step3.json",
+    image: "/step-3.png",
   },
 ];
 
@@ -177,10 +173,15 @@ export default function HowItWorksSection() {
 
             <div className="relative h-full overflow-hidden rounded-[20px] sm:rounded-[30px] border border-foreground/10 bg-white/5">
               <div
-                className="h-full w-full transition-opacity duration-300"
+                className="h-full w-full transition-opacity duration-300 flex items-center justify-center"
                 style={{ opacity: fading ? 0 : 1 }}
               >
-                <LottieHero src={steps[active].lottie} />
+                <Image
+                  src={steps[active].image}
+                  alt={steps[active].title}
+                  fill
+                  className="w-full h-full object-contain"
+                />
               </div>
 
               <div className="absolute bottom-4 left-4 flex items-center gap-2 sm:gap-3 rounded-full bg-black/40 px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-lg backdrop-blur-xl">
