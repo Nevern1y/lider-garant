@@ -37,7 +37,7 @@ export default function Home() {
     },
     {
       id: "ved",
-      title: "ВЭД",
+      title: "Международные платежи",
       desc: "Прямые корреспондентские счета в иностранных банках и гарантийные списания комиссии.",
       btn: "Подробнее",
       img: "/finance-products/four.png",
@@ -45,7 +45,7 @@ export default function Home() {
     },
     {
       id: "leasing",
-      title: "Лизинг",
+      title: "Лизинг для юрлиц",
       desc: "Финансируем новое и с пробегом с авансом от 0%.",
       btn: "Узнать больше",
       img: "/finance-products/money.png",
@@ -53,7 +53,7 @@ export default function Home() {
     },
     {
       id: "insurance",
-      title: "Страхование",
+      title: "Страхование СМР",
       desc: "Экспресс-страхование контрактов свыше 30 млн рублей.",
       btn: "Узнать больше",
       img: "/finance-products/hands.png",
