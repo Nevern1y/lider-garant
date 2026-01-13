@@ -50,7 +50,7 @@ export default function WhyUs({ variant }: WhyUsProps) {
   return (
     <section className="mx-auto w-full max-w-7xl py-5">
       <h2 className="mb-12 text-center text-4xl font-bold text-primary ">
-        Почему выбрать нас для {specialWord}?
+        Почему выбирают нас для {specialWord}?
       </h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">

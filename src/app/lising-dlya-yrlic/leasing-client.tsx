@@ -596,7 +596,7 @@ export default function Page() {
               ].map((t, i) => (
                 <Link
                   key={i}
-                  href="/#application"
+                  href="/v-razrabotke"
                   className="block nav-link link-gradient"
                 >
                   {t}
