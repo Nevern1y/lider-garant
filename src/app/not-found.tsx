@@ -1,8 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
+import { Label } from "@/components/ui/label";
 
 export default function NotFound() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-7xl items-center justify-center px-6 py-20">
       <FadeIn>
@@ -24,17 +40,56 @@ export default function NotFound() {
                 <Link href="/">На главную</Link>
               </Button>
               <Button
-                asChild
                 variant="outline"
                 size="lg"
                 className="rounded-full border-white/20 text-white px-8"
+                onClick={() => setModalOpen(true)}
               >
-                <Link href="/contacts">Связаться с нами</Link>
+                Связаться с нами
               </Button>
             </div>
           </div>
         </div>
       </FadeIn>
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="sm:max-w-md border-none">
+          <DialogHeader>
+            <DialogTitle className="text-primary">
+              Заказать обратный звонок
+            </DialogTitle>
+            <DialogDescription>
+              Оставьте телефон — перезвоним в течение 15 минут.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-3 py-2">
+            <div className="grid gap-1">
+              <Label htmlFor="name">Имя</Label>
+              <Input
+                id="name"
+                placeholder="Иван Иванович Иванов"
+                className="text-white"
+              />
+            </div>
+            <div className="grid gap-1">
+              <Label htmlFor="phone">Телефон</Label>
+              <PhoneInput
+                id="phone"
+                name="phone"
+                className="h-11 rounded-full text-white"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              onClick={() => setModalOpen(false)}
+              className="btn-three w-full"
+            >
+              Отправить
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }

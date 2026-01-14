@@ -496,9 +496,11 @@ export default function BankGuaranteePage() {
                       Сумма: до 500 млн ₽ · Срок: до 2600 дн · Комиссия: от 1.8%
                     </div>
                   </div>
-                  <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm  hover:-translate-y-0.5 hover:shadow-md bg-none border border-primary hover:bg-primary text-primary hover:text-white transition-all">
-                    Подать заявку
-                  </Button>
+                  <Link href="#form">
+                    <Button className="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm  hover:-translate-y-0.5 hover:shadow-md bg-none border border-primary hover:bg-primary text-primary hover:text-white transition-all">
+                      Подать заявку
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -622,7 +624,7 @@ export default function BankGuaranteePage() {
                 ].map((t, i) => (
                   <Link
                     key={i}
-                    href="/#application"
+                    href="/v-razrabotke"
                     className="block nav-link link-gradient"
                   >
                     {t}

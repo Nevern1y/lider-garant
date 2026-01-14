@@ -573,7 +573,7 @@ export default function DepositsPage() {
                 ].map((t, i) => (
                   <Link
                     key={i}
-                    href="/page-in-develop"
+                    href="/v-razrabotke"
                     className="block nav-link link-gradient"
                   >
                     {t}

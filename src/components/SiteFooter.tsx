@@ -68,7 +68,7 @@ export default function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Telegram"
-                className="rounded-2xl"
+                className="rounded-xl"
               >
                 <img src="/tg-logo.webp" alt="" className="w-12 h-12" />
               </a>
@@ -77,12 +77,12 @@ export default function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="VK"
-                className="rounded-2xl"
+                className=""
               >
                 <img
                   src="/vk-logo.webp"
                   alt=""
-                  className="w-10 h-10 rounded-2xl"
+                  className="w-10 h-10 rounded-xl"
                 />
               </a>
             </div>
@@ -219,9 +219,8 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/vacancii"
-                  className={`nav-link link-gradient ${pathname === "/vacancies" ? "active" : ""
-                    }`}
+                  href="/vacansii"
+                  className={`nav-link link-gradient ${pathname === "/vacancies" ? "active" : ""}`}
                 >
                   Вакансии
                 </Link>
