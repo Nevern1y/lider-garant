@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
+import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 
 const fonte = Plus_Jakarta_Sans({
@@ -75,8 +76,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${fonte.className} ${font2.className} antialiased`}>
-        <AppShell>{children}</AppShell>
+      <body className={`${fonte.className} ${font2.className} antialiased`} suppressHydrationWarning>
+        <AuthProvider>
+          <AppShell>{children}</AppShell>
+        </AuthProvider>
         <Toaster richColors closeButton />
       </body>
     </html>

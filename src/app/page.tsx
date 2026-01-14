@@ -106,7 +106,7 @@ export default function Home() {
                   <span className="circle">
                     <span className="icon arrow"></span>
                   </span>
-                  <Link href="/voyti" className="button-text">
+                  <Link href="https://lk.lider-garant.ru/auth" className="button-text">
                     Войти
                   </Link>
                 </button>

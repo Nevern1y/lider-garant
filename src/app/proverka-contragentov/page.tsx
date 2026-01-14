@@ -1,4 +1,18 @@
+import { Metadata } from "next";
+import { getSeoPage } from "@/lib/seo-api";
+import { generatePageMetadata, generateMetadataFromSeoPage } from "@/utils/metadata";
 import ManagerCTASection from "@/components/ManagerCTASection";
+
+const SLUG = "proverka-contragentov";
+const FALLBACK_TITLE = "Проверка контрагентов";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seoData = await getSeoPage(SLUG);
+  if (seoData) {
+    return generateMetadataFromSeoPage(seoData, SLUG);
+  }
+  return generatePageMetadata(FALLBACK_TITLE, `/${SLUG}`);
+}
 
 export default function Page() {
   return (

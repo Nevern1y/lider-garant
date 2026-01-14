@@ -154,7 +154,7 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
               </a>
               <Dialog open={modalOpen} onOpenChange={setModalOpen}>
                 <DialogTrigger asChild>
-                  <button className="text-xs font-medium text-brand nav-link link-gradient">
+                  <button className="text-xs font-medium text-brand nav-link link-gradient" suppressHydrationWarning>
                     Обратный звонок
                   </button>
                 </DialogTrigger>
@@ -209,7 +209,9 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
               </Dialog>
             </div>
 
-            <button className="btn-three py-2 px-6">Личный кабинет</button>
+            <Link href="https://lk.lider-garant.ru/auth" className="btn-three py-2 px-6">
+              Личный кабинет
+            </Link>
           </div>
 
           <button
@@ -315,7 +317,7 @@ export default function Header({ onOpenCallModal }: HeaderProps) {
                     </div>
                   </div>
                   <Link
-                    href="#login"
+                    href="https://lk.lider-garant.ru/auth"
                     onClick={() => setMobileOpen(false)}
                     className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-5 font-semibold text-primary-foreground shadow-sm transition hover:shadow-md"
                   >

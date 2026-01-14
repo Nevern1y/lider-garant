@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Particles } from "./Particles";
 
 const dataSources = [
   { name: "ЕГРЮЛ", color: "from-blue-400 to-blue-600" },
@@ -91,26 +92,7 @@ export const FullAnimation = () => {
   return (
     <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-primary/20 backdrop-blur-sm">
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-primary/50 rounded-full"
-            animate={{
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
+        <Particles />
       </div>
 
       <AnimatePresence mode="wait">
@@ -230,11 +212,10 @@ export const FullAnimation = () => {
                   whileHover={{ y: -5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedBank(i)}
-                  className={`relative p-4 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
-                    selectedBank === i
-                      ? "bg-gradient-to-br from-primary/20 to-[#004f70]/20 border-2 border-primary shadow-xl"
-                      : "bg-white/10 border-2 border-white/20 shadow-lg hover:border-primary hover:shadow-xl"
-                  }`}
+                  className={`relative p-4 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 ${selectedBank === i
+                    ? "bg-gradient-to-br from-primary/20 to-[#004f70]/20 border-2 border-primary shadow-xl"
+                    : "bg-white/10 border-2 border-white/20 shadow-lg hover:border-primary hover:shadow-xl"
+                    }`}
                 >
                   {selectedBank === i && (
                     <motion.div
@@ -250,11 +231,10 @@ export const FullAnimation = () => {
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-3xl">{offer.logo}</div>
                     <div
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        offer.status === "approved"
-                          ? "bg-warning/20 text-warning"
-                          : "bg-white/20 text-white/80"
-                      }`}
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${offer.status === "approved"
+                        ? "bg-warning/20 text-warning"
+                        : "bg-white/20 text-white/80"
+                        }`}
                     >
                       {offer.status === "approved"
                         ? "Одобрено"

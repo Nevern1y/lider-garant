@@ -1,8 +1,16 @@
 import { Metadata } from "next";
-import { generatePageMetadata } from "@/utils/metadata";
+import { getSeoPage } from "@/lib/seo-api";
+import { generatePageMetadata, generateMetadataFromSeoPage } from "@/utils/metadata";
 
-export const metadata: Metadata = generatePageMetadata(
-  "Тендерное сопровождение"
-);
+const SLUG = "tendernoe-soprovojdenie";
+const FALLBACK_TITLE = "Тендерное сопровождение";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seoData = await getSeoPage(SLUG);
+  if (seoData) {
+    return generateMetadataFromSeoPage(seoData, SLUG);
+  }
+  return generatePageMetadata(FALLBACK_TITLE, `/${SLUG}`);
+}
 
 export { default } from "./tender-support-client";
