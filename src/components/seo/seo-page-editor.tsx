@@ -42,6 +42,9 @@ export interface SeoPage {
     meta_description: string
     meta_keywords: string
     h1_title: string
+    h2_title: string
+    h3_title: string
+    hero_image: string | null
     main_description: string
     page_type: 'landing' | 'product' | 'custom'
     template_name: string
@@ -200,6 +203,9 @@ export function SeoPageEditor({
         meta_description: "",
         meta_keywords: "",
         h1_title: "",
+        h2_title: "",
+        h3_title: "",
+        hero_image: null,
         main_description: "",
         page_type: "product",
         template_name: "",
@@ -511,6 +517,58 @@ export function SeoPageEditor({
                                         placeholder="Главный заголовок страницы"
                                         className="bg-[#1a1a2e] border-slate-600 text-white placeholder:text-slate-500 focus:border-[#3ce8d1] focus-visible:ring-[#3ce8d1]/20 rounded-lg h-10"
                                     />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label className="text-slate-300 text-sm font-medium">H2 Заголовок</Label>
+                                        <Input
+                                            value={formData.h2_title || ""}
+                                            onChange={(e) => setFormData({ ...formData, h2_title: e.target.value })}
+                                            placeholder="Вторичный заголовок"
+                                            className="bg-[#1a1a2e] border-slate-600 text-white placeholder:text-slate-500 focus:border-[#3ce8d1] focus-visible:ring-[#3ce8d1]/20 rounded-lg h-10"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="text-slate-300 text-sm font-medium">H3 Заголовок</Label>
+                                        <Input
+                                            value={formData.h3_title || ""}
+                                            onChange={(e) => setFormData({ ...formData, h3_title: e.target.value })}
+                                            placeholder="Третичный заголовок"
+                                            className="bg-[#1a1a2e] border-slate-600 text-white placeholder:text-slate-500 focus:border-[#3ce8d1] focus-visible:ring-[#3ce8d1]/20 rounded-lg h-10"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Hero Image */}
+                                <div className="space-y-3 p-4 rounded-xl bg-[#1a1a2e]/50 border border-slate-700/50">
+                                    <Label className="text-white font-medium flex items-center gap-2">
+                                        🖼️ Картинка главного блока
+                                    </Label>
+                                    {formData.hero_image && (
+                                        <div className="relative inline-block">
+                                            <img
+                                                src={formData.hero_image}
+                                                alt="Hero preview"
+                                                className="max-h-32 rounded-lg border border-slate-600"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setFormData({ ...formData, hero_image: null })}
+                                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"
+                                            >
+                                                <X className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                    )}
+                                    <Input
+                                        type="text"
+                                        value={formData.hero_image || ""}
+                                        onChange={(e) => setFormData({ ...formData, hero_image: e.target.value || null })}
+                                        placeholder="URL картинки (например: /images/hero.jpg)"
+                                        className="bg-[#0f0f1a] border-slate-600 text-white placeholder:text-slate-500 focus:border-[#3ce8d1] focus-visible:ring-[#3ce8d1]/20 rounded-lg h-10"
+                                    />
+                                    <p className="text-xs text-slate-500">Введите URL изображения или путь к файлу в /public</p>
                                 </div>
 
                                 <div className="space-y-2">
