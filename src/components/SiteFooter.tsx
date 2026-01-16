@@ -129,7 +129,7 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/lisig-dlya-yrlic"
+                  href="/lising-dlya-yrlic"
                   className="nav-link link-gradient"
                 >
                   Лизинг для юрлиц
