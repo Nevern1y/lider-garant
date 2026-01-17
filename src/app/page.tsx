@@ -102,14 +102,12 @@ export default function Home() {
                 Все для госзакупок и личных нужд — получите предложение онлайн
               </p>
               <div className="flex flex-col gap-5 items-start md:flex-row md:items-center">
-                <button className="learn-more">
+                <Link href="https://lk.lider-garant.ru/auth" className="learn-more">
                   <span className="circle">
                     <span className="icon arrow"></span>
                   </span>
-                  <Link href="https://lk.lider-garant.ru/auth" className="button-text">
-                    Войти
-                  </Link>
-                </button>
+                  <span className="button-text">Войти</span>
+                </Link>
               </div>
             </div>
 
