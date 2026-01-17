@@ -15,7 +15,7 @@ export default function ThemeToggle() {
       "(prefers-color-scheme: dark)"
     ).matches;
 
-    const initialTheme = stored || (prefersDark ? "dark" : "light");
+    const initialTheme = stored || "dark";
     setTheme(initialTheme);
     document.documentElement.setAttribute("data-theme", initialTheme);
   }, []);
@@ -53,9 +53,8 @@ export default function ThemeToggle() {
   return (
     <div className="flex items-center gap-2">
       <Sun
-        className={`h-5 w-5 transition-opacity ${
-          theme === "light" ? "opacity-100 text-primary" : "opacity-30"
-        }`}
+        className={`h-5 w-5 transition-opacity ${theme === "light" ? "opacity-100 text-primary" : "opacity-30"
+          }`}
       />
 
       <button
@@ -75,9 +74,8 @@ export default function ThemeToggle() {
       </button>
 
       <Moon
-        className={`h-5 w-5 transition-opacity ${
-          theme === "dark" ? "opacity-100 text-primary" : "opacity-30"
-        }`}
+        className={`h-5 w-5 transition-opacity ${theme === "dark" ? "opacity-100 text-primary" : "opacity-30"
+          }`}
       />
     </div>
   );
